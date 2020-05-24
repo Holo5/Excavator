@@ -1,0 +1,44 @@
+{
+  "name": "holo5-excavator",
+  "version": "0.0.1",
+  "description": "Habbo furniture & figure extractor for Holo5.",
+  "main": "index.js",
+  "scripts": {
+    "client:dev": "yarn parcel Client\\index.html --no-cache --out-dir Client\\Build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pi-Bouf/Holo5-Excavator.git"
+  },
+  "keywords": [
+    "holo5",
+    "createjs",
+    "habbo",
+    "extractor"
+  ],
+  "author": "Pi-Bouf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pi-Bouf/Holo5-Excavator/issues"
+  },
+  "homepage": "https://github.com/Pi-Bouf/Holo5-Excavator#readme",
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js",
+    "mixins": "./Client/assets/sass/mixins.scss",
+    "images": "./Client/assets/images/"
+  },
+  "devDependencies": {
+    "@types/vue": "^2.0.0",
+    "@vue/component-compiler-utils": "^3.1.2",
+    "parcel": "^1.12.4",
+    "sass": "^1.26.5",
+    "typescript": "^3.9.3",
+    "vue-class-component": "^7.2.3",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vuex": "^3.4.0"
+  }
+}
