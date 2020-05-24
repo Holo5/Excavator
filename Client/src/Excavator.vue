@@ -1,0 +1,33 @@
+<template>
+    <div id="excavator">
+        <panels></panels>
+    </div>
+</template>
+
+<script lang="ts">
+    import Vue from 'vue';
+    import Panels from './Components/Panels.vue';
+
+    export default Vue.extend({
+        name: 'Excavator',
+        components: {
+            Panels
+        }
+    });
+</script>
+
+<style lang="scss" scoped>
+    @import "~mixins";
+
+    #excavator {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background: top left url("../assets/images/habbobg.png");
+        width: 100%;
+        height: 100%;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+</style>
