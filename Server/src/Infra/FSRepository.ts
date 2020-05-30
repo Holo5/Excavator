@@ -69,12 +69,20 @@ export class FSRepository {
         fs.writeFileSync(Path.resolve(this._extractedPath, filename), data, {encoding: "utf8", flag: "w+"});
     }
 
+    writeInTmpFolder(filename: string, data: any) {
+        fs.writeFileSync(Path.resolve(this._tmpPath, filename), data, {encoding: "utf8", flag: "w+"});
+    }
+
     existInExtractedFolder(filename: string) {
         return fs.existsSync(Path.resolve(this._extractedPath, filename));
     }
 
     readInExtractedFolder(filename: string) {
         return fs.readFileSync(Path.resolve(this._extractedPath, filename));
+    }
+
+    readInTmpFolder(filename: string): any {
+        return fs.readFileSync(Path.resolve(this._tmpPath, filename));
     }
 
     get xmlParser(): Parser {

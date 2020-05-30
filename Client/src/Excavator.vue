@@ -16,8 +16,9 @@
     });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     @import "~mixins";
+    @import "~perfect-scrollbar";
 
     #excavator {
         display: flex;

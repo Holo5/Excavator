@@ -1,14 +1,42 @@
 <template>
     <div id="figure-panel">
-        OK
+        <card-list>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+            <figure-card>shirt_M_clothes</figure-card>
+
+        </card-list>
     </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
+    import CardList from '../Shared/CardList.vue';
+    import FigureCard from '../Shared/CardList/FigureCard.vue';
 
     export default Vue.extend({
-        name: 'FigurePanel'
+        name: 'FigurePanel',
+        components: {
+            CardList,
+            FigureCard
+        }
     });
 </script>
 

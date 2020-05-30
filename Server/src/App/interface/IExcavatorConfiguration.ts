@@ -1,12 +1,16 @@
 export interface IExcavatorConfiguration {
     tmpDir: string,
     assetExtractorPath: string,
+    externalVariablesUrl: string,
     keepTmpFiles: boolean,
+    forceHttps: boolean,
     figure: {
         figureData: string,
-        figureMap: string
+        figureMap: string,
+        swfBaseUrl: string
     },
     furni: {
-        furniData: string
+        furniData: string,
+        swfBaseUrl: string
     }
 }
