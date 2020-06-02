@@ -4,6 +4,8 @@ export interface IExcavatorConfiguration {
     externalVariablesUrl: string,
     keepTmpFiles: boolean,
     forceHttps: boolean,
+    serverPort: number,
+    packetDebug: boolean,
     figure: {
         figureData: string,
         figureMap: string,

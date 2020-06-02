@@ -7,47 +7,31 @@ import download = require('download');
 import {Part} from '../Domain/FigureMap/Part';
 import {Lib} from '../Domain/FigureMap/Lib';
 import {black, blue, cyan, gray, green, grey, magenta, red, white, yellow} from 'colors';
+import {FigureMapListComposer} from '../Network/Outgoing/Figure/FigureMap/FigureMapListComposer';
 
 const FIGURE_DATA_NAME = 'figuremap.xml';
 
 @singleton()
 export class FigureMapExtractor {
     private _figureMapJson: any;
+    private _libs: Lib[];
 
     constructor(
         @inject(HabboDataExtractor) private _habboDataExtractor: HabboDataExtractor,
         @inject(FSRepository) private _fsRepository: FSRepository
-    ) {}
+    ) {
+        this._libs = [];
+    }
 
     async retrieve() {
+        console.log(cyan("Retrieving ") + yellow("figuremaps..."));
+
         await this.download();
         this.convertToJson();
         this.parse();
 
-        console.log("");
-        console.log("");
-        console.log("");
-        console.log(red("HELLOOOO"));
-        console.log(green("HELLOOOO"));
-        console.log(yellow("HELLOOOO"));
-        console.log(blue("HELLOOOO"));
-        console.log(magenta("HELLOOOO"));
-        console.log(cyan("HELLOOOO"));
-        console.log(white("HELLOOOO"));
-        console.log(gray("HELLOOOO"));
-        console.log(grey("HELLOOOO"));
-
-        console.log("");
-        console.log("");
-        console.log("");
-        console.log("");
-        console.log("");
-        console.log("");
-
-
-        console.log(cyan("Initing ") + yellow("FigureMapExtractor"));
-        console.log(green("HELLOOOO"));
-
+        console.log(blue("Clothes founds: ") + magenta(this._libs.length.toString()));
+        new FigureMapListComposer(this._libs).send();
     }
 
     private async download() {
@@ -74,5 +58,11 @@ export class FigureMapExtractor {
             previousValue.push(new Lib(currentValue.attributes.id, currentValue.attributes.revision, parts));
             return previousValue;
         }, []);
+
+        this._libs = libs;
+    }
+
+    public get libs(): Lib[] {
+        return this._libs;
     }
 }

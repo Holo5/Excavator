@@ -1,12 +1,12 @@
 import {Part} from './Part';
 
 export class Lib {
-    private id_: string;
+    private _id: string;
     private _revision: string;
     private _parts: Part[];
 
-    constructor(id_: string, revision: string, parts: Part[]) {
-        this.id_ = id_;
+    constructor(id: string, revision: string, parts: Part[]) {
+        this._id = id;
         this._revision = revision;
         this._parts = parts;
     }

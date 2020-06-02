@@ -1,5 +1,5 @@
 import {singleton} from "tsyringe";
-import {blue, yellow} from "colors";
+import {blue, cyan, magenta, yellow} from 'colors';
 import * as Path from "path";
 import * as fs from "fs";
 import * as fse from "fs-extra";
@@ -26,6 +26,8 @@ export class FSRepository {
     }
 
     public init() {
+        console.log(cyan("Initing ") + yellow("FSRepository"));
+
         this.createArch();
     }
 
@@ -33,27 +35,27 @@ export class FSRepository {
         console.log(blue("Preparing directories..."));
 
         if (!fs.existsSync(this._tmpPath)) {
-            console.log(yellow("Creating tmp path..."));
+            console.log(magenta("Creating tmp path..."));
             fs.mkdirSync(this._tmpPath, {recursive: true});
         }
 
         if (!fs.existsSync(this._buildPath)) {
-            console.log(yellow("Creating build path..."));
+            console.log(magenta("Creating build path..."));
             fs.mkdirSync(this._buildPath, {recursive: true});
         }
 
 
         if (!fs.existsSync(this._swfPath)) {
-            console.log(yellow("Creating swf path..."));
+            console.log(magenta("Creating swf path..."));
             fs.mkdirSync(this._swfPath, {recursive: true});
         }
 
         if (!fs.existsSync(this._extractedPath)) {
-            console.log(yellow("Creating extracted swf path..."));
+            console.log(magenta("Creating extracted swf path..."));
             fs.mkdirSync(this._extractedPath, {recursive: true});
         }
 
-        console.log(blue("Directories created !"));
+        console.log(blue("Folder tree created !"));
     }
 
     cleanExtratedRepository() {
