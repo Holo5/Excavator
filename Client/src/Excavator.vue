@@ -12,6 +12,10 @@
         name: 'Excavator',
         components: {
             Panels
+        },
+        mounted() {
+            this.$store.dispatch('webSocket/registerPackets');
+            this.$store.dispatch('webSocket/connect');
         }
     });
 </script>

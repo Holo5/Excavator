@@ -11,10 +11,14 @@ export interface IFigureMapListMessage {
 export class FigureMapListComposer extends Outgoing<IFigureMapListMessage> {
     private _libs: Lib[];
 
-    constructor(libs: Lib[]) {
+    constructor(libs: Lib[] = undefined) {
         super(OutgoingHeader.FIGUREMAPLIST);
 
-        this._libs = libs;
+        if(libs !== undefined) {
+            this._libs = libs;
+        } else {
+            this._libs = container.resolve(FigureMapExtractor).libs
+        }
     }
 
     public process() {

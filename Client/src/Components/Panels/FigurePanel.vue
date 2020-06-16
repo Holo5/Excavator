@@ -1,27 +1,7 @@
 <template>
     <div id="figure-panel">
         <card-list>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-            <figure-card>shirt_M_clothes</figure-card>
-
+            <figure-card v-for="lib in libs">{{ lib._id }}</figure-card>
         </card-list>
     </div>
 </template>
@@ -30,12 +10,16 @@
     import Vue from 'vue';
     import CardList from '../Shared/CardList.vue';
     import FigureCard from '../Shared/CardList/FigureCard.vue';
+    import {mapState} from 'vuex';
 
     export default Vue.extend({
         name: 'FigurePanel',
         components: {
             CardList,
             FigureCard
+        },
+        computed: {
+            ...mapState('figureModule', ['libs'])
         }
     });
 </script>

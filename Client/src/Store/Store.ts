@@ -1,11 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import {FurniExcavatorModule} from './Modules/FurniExcavatorModule';
+import {WebSocketModule} from './Modules/WebSocket/WebSocketModule';
+import {FigureModule} from './Modules/Figure/FigureModule';
 
 Vue.use(Vuex);
 
 export const Store = new Vuex.Store({
     modules: {
-        furniExcavator: FurniExcavatorModule
+        webSocket: WebSocketModule,
+        figureModule: FigureModule
     }
 });

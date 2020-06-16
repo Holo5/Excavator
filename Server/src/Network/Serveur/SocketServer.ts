@@ -8,6 +8,7 @@ import {blue, cyan, green, magenta, yellow} from 'colors';
 import {Configuration} from '../../../Config';
 import {Outgoing} from '../Outgoing/Outgoing';
 import {OutgoingHeader} from '../Outgoing/OutgoingHeader';
+import {FigureMapListComposer} from '../Outgoing/Figure/FigureMap/FigureMapListComposer';
 
 @singleton()
 export class SocketServer {
@@ -33,7 +34,8 @@ export class SocketServer {
   private onConnection(ws: WebSocket) {
     this._client = ws;
     this._client.on('message', (message: string) => { console.log(message) });
-    this._client.on('close', () => { this.onClose() });
+    this._client.on('close', () => { this.onClose() })
+    new FigureMapListComposer().send();
   }
 
   private onMessage(message: string) {
@@ -49,7 +51,7 @@ export class SocketServer {
   public send(outgoing: Outgoing<any>) {
     if(this._client !== false) {
       console.log(blue("Socket send => ") + magenta(OutgoingHeader[outgoing.getOutgoingData().header]))
-      this._client.send(outgoing.getOutgoingData());
+      this._client.send(JSON.stringify(outgoing.getOutgoingData()));
     }
   }
 }

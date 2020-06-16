@@ -10,4 +10,16 @@ export class Lib {
         this._revision = revision;
         this._parts = parts;
     }
+
+    public get id(): string {
+        return this._id;
+    }
+
+    public get revision(): string {
+        return this._revision;
+    }
+
+    public get parts(): Part[] {
+        return this._parts;
+    }
 }
