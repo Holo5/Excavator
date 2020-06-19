@@ -4,6 +4,7 @@ import {Outgoing} from '../../../../../Server/src/Network/Outgoing/Outgoing';
 import {OutgoingHeader} from '../../../../../Server/src/Network/Outgoing/OutgoingHeader';
 import {FigureMapIncoming} from './Incoming/Figure/FigureMap/FigureMapIncoming';
 import {Incoming} from './Incoming/Incoming';
+import {LibExtractionStateChangeIncoming} from "./Incoming/Figure/FigureMap/LibExtractionStateChangeIncoming";
 
 interface IStateInterface {
     socket: WebSocket
@@ -26,6 +27,7 @@ export const WebSocketModule: Module<IStateInterface, any> = {
     actions: {
         registerPackets: ({state, dispatch}) => {
             dispatch('addHandler', {header: OutgoingHeader.FIGUREMAPLIST, handler: FigureMapIncoming});
+            dispatch('addHandler', {header: OutgoingHeader.LIB_EXTRACTION_STATE_CHANGED, handler: LibExtractionStateChangeIncoming});
         },
         connect: ({state, dispatch}) => {
             state.socket = new WebSocket(Configuration.serverAdress);

@@ -1,25 +1,22 @@
 import {Part} from './Part';
+import {ExtractionState} from "./Enum/ExtractionState";
+import {LibExtractionStateChangeComposer} from "../../Network/Outgoing/Figure/FigureMap/LibExtractionStateChangeComposer";
 
 export class Lib {
-    private _id: string;
-    private _revision: string;
-    private _parts: Part[];
+    public id: string;
+    public revision: string;
+    public parts: Part[];
+    public extractionState: ExtractionState;
 
     constructor(id: string, revision: string, parts: Part[]) {
-        this._id = id;
-        this._revision = revision;
-        this._parts = parts;
+        this.id = id;
+        this.revision = revision;
+        this.parts = parts;
+        this.extractionState = ExtractionState.WAITING;
     }
 
-    public get id(): string {
-        return this._id;
-    }
-
-    public get revision(): string {
-        return this._revision;
-    }
-
-    public get parts(): Part[] {
-        return this._parts;
+    setExtractionState(value: ExtractionState) {
+        this.extractionState = value;
+        new LibExtractionStateChangeComposer(this).send();
     }
 }

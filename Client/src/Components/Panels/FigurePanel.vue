@@ -1,8 +1,9 @@
 <template>
     <div id="figure-panel">
         <card-list>
-            <figure-card v-for="lib in libs">{{ lib._id }}</figure-card>
+            <figure-card v-for="lib in libs">{{ lib.id }} {{ lib.extractionState }}</figure-card>
         </card-list>
+        <figure-status-summary></figure-status-summary>
     </div>
 </template>
 
@@ -11,12 +12,14 @@
     import CardList from '../Shared/CardList.vue';
     import FigureCard from '../Shared/CardList/FigureCard.vue';
     import {mapState} from 'vuex';
+    import FigureStatusSummary from "./FigurePanel/FigureStatusSummary.vue";
 
     export default Vue.extend({
         name: 'FigurePanel',
         components: {
             CardList,
-            FigureCard
+            FigureCard,
+            FigureStatusSummary
         },
         computed: {
             ...mapState('figureModule', ['libs'])

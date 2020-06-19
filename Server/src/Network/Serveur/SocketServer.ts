@@ -4,7 +4,7 @@ import * as WebSocket from 'ws';
 import {Express} from "express";
 import {Server} from "http";
 import {singleton} from "tsyringe";
-import {blue, cyan, green, magenta, yellow} from 'colors';
+import {blue, cyan, magenta, yellow} from 'colors';
 import {Configuration} from '../../../Config';
 import {Outgoing} from '../Outgoing/Outgoing';
 import {OutgoingHeader} from '../Outgoing/OutgoingHeader';
@@ -34,7 +34,7 @@ export class SocketServer {
   private onConnection(ws: WebSocket) {
     this._client = ws;
     this._client.on('message', (message: string) => { console.log(message) });
-    this._client.on('close', () => { this.onClose() })
+    this._client.on('close', () => { this.onClose() });
     new FigureMapListComposer().send();
   }
 

@@ -1,6 +1,7 @@
 import {OutgoingHeader} from './OutgoingHeader';
 import {container} from 'tsyringe';
 import {SocketServer} from '../Serveur/SocketServer';
+import {white, yellow} from "colors";
 
 export interface IOutgoingData {
     header: number,
@@ -27,5 +28,9 @@ export abstract class Outgoing<T> {
             header: this._header,
             data: this._data
         }
+    }
+
+    protected log(text: string) {
+        console.log(yellow("[" + this.constructor.name + "] " + white(text)));
     }
 }
