@@ -75,6 +75,10 @@ export class FSRepository {
         fs.writeFileSync(Path.resolve(this._tmpPath, filename), data, {encoding: "utf8", flag: "w+"});
     }
 
+    writeInSwfFolder(filename: string, data: any) {
+        fs.writeFileSync(Path.resolve(this._swfPath, filename), data, {encoding: "utf8", flag: "w+"});
+    }
+
     existInExtractedFolder(filename: string) {
         return fs.existsSync(Path.resolve(this._extractedPath, filename));
     }
@@ -83,8 +87,20 @@ export class FSRepository {
         return fs.readFileSync(Path.resolve(this._extractedPath, filename));
     }
 
-    readInTmpFolder(filename: string): any {
-        return fs.readFileSync(Path.resolve(this._tmpPath, filename));
+    readInTmpFolder(filename: string): any | false {
+        try {
+            return fs.readFileSync(Path.resolve(this._tmpPath, filename));
+        } catch (e) {
+            return false;
+        }
+    }
+
+    readInSwfFolder(filename: string): any | false {
+        try {
+            return fs.readFileSync(Path.resolve(this._swfPath, filename));
+        } catch (e) {
+            return false;
+        }
     }
 
     get xmlParser(): Parser {

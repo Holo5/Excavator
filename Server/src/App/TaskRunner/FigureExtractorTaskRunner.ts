@@ -1,8 +1,10 @@
-import {inject, singleton} from "tsyringe";
-import {FigureMapExtractor} from "../../Extractor/FigureMapExtractor";
-import {Lib} from "../../Domain/FigureMap/Lib";
-import {ExtractionState} from "../../Domain/FigureMap/Enum/ExtractionState";
-import * as Listr from "listr";
+import {inject, singleton} from 'tsyringe';
+import {FigureMapExtractor} from '../../Extractor/FigureMapExtractor';
+import {Lib} from '../../Domain/FigureMap/Lib';
+import {ExtractionState} from '../../Domain/FigureMap/Enum/ExtractionState';
+import * as Listr from 'listr';
+import {blue} from 'colors';
+import {FigureTask} from '../../Domain/Tasks/FigureTask';
 
 // @ts-ignore
 
@@ -11,7 +13,7 @@ export class FigureExtractorTaskRunner {
   private _libsToExtract: Lib[];
 
   constructor(
-    @inject(FigureMapExtractor) private _figureMapExtractor: FigureMapExtractor
+      @inject(FigureMapExtractor) private _figureMapExtractor: FigureMapExtractor
   ) {
     this._libsToExtract = [];
   }
@@ -20,61 +22,18 @@ export class FigureExtractorTaskRunner {
     this._libsToExtract = [];
     this.trimWaitingLib();
 
-    let taks = new Listr([
-        this.getRandomTask()
-      ]
-    );
+    let tasks = [];
+    for(let i = 0; i < 25; i++) {
+      tasks.push({
+        title: this._libsToExtract[i].id,
+        task: async () => { await new FigureTask(this._libsToExtract[i]).run(); }
+      })
+    }
+
+    let taks = new Listr(tasks);
 
     taks.run().then(() => {
-      console.log("HEY");
-
-    });
-  }
-
-  getRandomTask() {
-    return {
-      title: "Test :D " + (Math.random() * 15000).toString(),
-      task: () => new Listr([
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-        {
-          title: "Test :D " + (Math.random() * 15000).toString(),
-          task: this.getDelayedTask
-        },
-
-      ])
-    }
-  }
-
-  getDelayedTask() {
-    return new Promise(resolve => {
-      setTimeout(resolve, Math.random() * 1000)
+      console.log(blue('All files extracted...'));
     });
   }
 
