@@ -35,6 +35,10 @@
         background-color: #EEE;
         color: #333333;
 
+        &.extracted {
+          background-color: #85CD63;
+        }
+
         &:hover {
             background-color: white;
             animation: animate 2s linear infinite;

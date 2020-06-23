@@ -26,6 +26,8 @@ export class Holo5Excavator {
         await this._habboDataExtractor.init();
 
         await this._figureMapExtractor.retrieve();
-        this._figureExtractorTaskRunner.startExtraction();
+        setTimeout(() => {
+            this._figureExtractorTaskRunner.startExtraction();
+        }, 2000);
     }
 }

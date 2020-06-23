@@ -1,7 +1,7 @@
 <template>
     <div id="figure-panel">
         <card-list>
-            <figure-card v-for="lib in libs">{{ lib.id }} {{ lib.extractionState }}</figure-card>
+            <figure-card v-for="lib in libs" :class="{'extracted': lib.extractionState === 2}">{{ lib.id }}</figure-card>
         </card-list>
         <figure-status-summary></figure-status-summary>
     </div>

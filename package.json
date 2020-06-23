@@ -59,6 +59,7 @@
     "listr-simple-tree-renderer": "^0.1.3",
     "path": "^0.12.7",
     "reflect-metadata": "^0.1.13",
+    "spritesheet-js": "^1.2.6",
     "tsyringe": "^4.3.0",
     "vue": "^2.6.11",
     "vue2-perfect-scrollbar": "^1.5.0",
