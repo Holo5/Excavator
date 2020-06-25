@@ -5,10 +5,8 @@ import {HabboFlashExtractor} from '../../Extractor/HabboFlashExtractor';
 import {AssetDownloader} from '../../App/Downloader/AssetDownloader';
 import {HabboDataExtractor} from '../../Extractor/HabboDataExtractor';
 import {HabboDataType} from '../../Extractor/Enum/HabboDataType';
-import * as SpriteSheet from 'spritesheet-js';
-import * as Path from "path";
-import {FSRepository} from "../../Infra/FSRepository";
 import {ExtractionState} from "../FigureMap/Enum/ExtractionState";
+import {SpritesheetBuilder} from '../../App/Builder/SpritesheetBuilder';
 
 export class FigureTask extends Task {
     private _lib: Lib;
@@ -23,10 +21,7 @@ export class FigureTask extends Task {
         let assetLink = container.resolve(HabboDataExtractor).getHabboData(HabboDataType.FLASH_CLIENT_URL) + this._lib.id + ".swf";
         await container.resolve(AssetDownloader).download(assetLink);
         await container.resolve(HabboFlashExtractor).extract(this._lib.id);
-        let test = Path.resolve(container.resolve(FSRepository).extractedPath, this._lib.id, 'images');
-
-        SpriteSheet(test + '/*.png', {format: 'pixi.js', trim: false, 'path': Path.resolve(container.resolve(FSRepository).buildPath, this._lib.id)}, function (err) {
-        });
+        await container.resolve(SpritesheetBuilder).build(this._lib.id);
 
         this._lib.setExtractionState(ExtractionState.EXTRACTED);
     }

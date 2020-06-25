@@ -28,6 +28,6 @@ export class Holo5Excavator {
         await this._figureMapExtractor.retrieve();
         setTimeout(() => {
             this._figureExtractorTaskRunner.startExtraction();
-        }, 2000);
+        }, 300);
     }
 }
