@@ -103,6 +103,30 @@ export class FSRepository {
         }
     }
 
+    readSpritesheet(filename: string): any | false {
+        try {
+            return fs.readFileSync(Path.resolve(this._buildPath, filename, filename + '.json'));
+        } catch (e) {
+            return false;
+        }
+    }
+
+    writeSpriteSheet(filename: string, data: string) {
+        fs.writeFileSync(Path.resolve(this._buildPath, filename, filename + '.json'), data, {encoding: "utf8", flag: "w+"});
+    }
+
+    readBinaries(filename: string, type?: string): any | false {
+        try {
+            if(type !== undefined) {
+                return fs.readFileSync(Path.resolve(this._extractedPath, filename, "binaries", filename + "_" + type + '.bin'));
+            } else {
+                return fs.readFileSync(Path.resolve(this._extractedPath, filename, "binaries", filename + '.bin'));
+            }
+        } catch (e) {
+            return false;
+        }
+    }
+
     get xmlParser(): Parser {
         return this._xmlParser;
     }

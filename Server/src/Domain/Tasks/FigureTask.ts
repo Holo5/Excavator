@@ -22,6 +22,7 @@ export class FigureTask extends Task {
         await container.resolve(AssetDownloader).download(assetLink);
         await container.resolve(HabboFlashExtractor).extract(this._lib.id);
         await container.resolve(SpritesheetBuilder).build(this._lib.id);
+        await container.resolve(SpritesheetBuilder).retrieveOffsets(this._lib.id);
 
         this._lib.setExtractionState(ExtractionState.EXTRACTED);
     }
