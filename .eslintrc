@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": ["airbnb-typescript/base"],
+  "rules": {
+    "indent": ["error", 2],
+    "@typescript-eslint/indent": ["error", 2],
+    "linebreak-style": [0, "error", "windows"],
+    "import/prefer-default-export": "off",
+    "object-curly-newline": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "import/no-cycle": "off", // I recommend turning this on when you are ready to refactor, can improve performance a lot
+    "radix": ["error", "as-needed"],
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "max-len": [0, 120]
+  }
+}

@@ -1,12 +1,12 @@
-import {Lib} from "../../../../Domain/FigureMap/Lib";
-import {Outgoing} from "../../Outgoing";
-import {OutgoingHeader} from "../../OutgoingHeader";
+import { Lib } from '../../../../Domain/FigureMap/Lib';
+import { Outgoing } from '../../Outgoing';
+import { OutgoingHeader } from '../../OutgoingHeader';
 
 export interface ILibExtractionStateChangeMessage {
   lib: Lib
 }
 
-export class LibExtractionStateChangeComposer extends Outgoing<ILibExtractionStateChangeMessage>{
+export class LibExtractionStateChangeComposer extends Outgoing<ILibExtractionStateChangeMessage> {
   private _lib: Lib;
 
   constructor(lib: Lib) {
@@ -18,7 +18,7 @@ export class LibExtractionStateChangeComposer extends Outgoing<ILibExtractionSta
 
   process() {
     this._data = {
-      lib: this._lib
-    }
+      lib: this._lib,
+    };
   }
 }

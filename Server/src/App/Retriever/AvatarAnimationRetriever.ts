@@ -1,8 +1,10 @@
-import {singleton} from 'tsyringe';
+import { singleton } from 'tsyringe';
 
 @singleton()
 export class AvatarAnimationRetriever {
-    async retrieve(id: string) {
+  /* unused
+  async retrieve(id: string) {
 
-    }
+  }
+  */
 }

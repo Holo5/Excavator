@@ -1,29 +1,29 @@
-import {Outgoing} from '../../Outgoing';
-import {OutgoingHeader} from '../../OutgoingHeader';
-import {Lib} from '../../../../Domain/FigureMap/Lib';
-import {container} from 'tsyringe';
-import {FigureMapExtractor} from '../../../../Extractor/FigureMapExtractor';
+import { container } from 'tsyringe';
+import { Outgoing } from '../../Outgoing';
+import { OutgoingHeader } from '../../OutgoingHeader';
+import { Lib } from '../../../../Domain/FigureMap/Lib';
+import { FigureMapExtractor } from '../../../../Extractor/FigureMapExtractor';
 
 export interface IFigureMapListMessage {
-    libs: Lib[];
+  libs: Lib[];
 }
 
 export class FigureMapListComposer extends Outgoing<IFigureMapListMessage> {
-    private _libs: Lib[];
+  private _libs: Lib[];
 
-    constructor(libs: Lib[] = undefined) {
-        super(OutgoingHeader.FIGUREMAPLIST);
+  constructor(libs: Lib[] = undefined) {
+    super(OutgoingHeader.FIGUREMAPLIST);
 
-        if(libs !== undefined) {
-            this._libs = libs;
-        } else {
-            this._libs = container.resolve(FigureMapExtractor).libs
-        }
+    if (libs !== undefined) {
+      this._libs = libs;
+    } else {
+      this._libs = container.resolve(FigureMapExtractor).libs;
     }
+  }
 
-    public process() {
-        this._data = {
-            libs: container.resolve(FigureMapExtractor).libs
-        };
-    }
+  public process() {
+    this._data = {
+      libs: container.resolve(FigureMapExtractor).libs,
+    };
+  }
 }
