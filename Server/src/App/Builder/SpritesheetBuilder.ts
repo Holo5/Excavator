@@ -29,16 +29,16 @@ export class SpritesheetBuilder {
 
     async retrieveOffsets(id: string) {
         let spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(id));
-        let xmlOffset = this._fsRepository.readBinaries(id, "manifest");
+        let xmlOffset = this._fsRepository.readBinaries(id, 'manifest');
         xmlOffset = JSON.parse(xml2json(xmlOffset, {compact: false}));
-        if(spritesheet === false && xmlOffset === false) return;
+        if (spritesheet === false && xmlOffset === false) return;
 
         Array.from(xmlOffset?.elements[0]?.elements[0]?.elements[0]?.elements).some((elm: any) => {
             let offset = elm?.elements[0]?.attributes?.value?.split(',');
             let name = elm?.attributes?.name;
 
-            let spriteSourceSize: {x: number, y: number, w: number, h: number} = spritesheet?.frames[`${id}_${name}.png`]?.spriteSourceSize;
-            if(spriteSourceSize !== undefined) {
+            let spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}.png`]?.spriteSourceSize;
+            if (spriteSourceSize !== undefined) {
                 spriteSourceSize.x = parseInt(offset[0]);
                 spriteSourceSize.y = parseInt(offset[0]);
             }
@@ -47,17 +47,16 @@ export class SpritesheetBuilder {
         this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
 
 
-
         /*
-        let keys = Object.keys(spritesheet.frames);
+         let keys = Object.keys(spritesheet.frames);
 
-        let regExp = new RegExp(/(shirt_F_petaldress)_(.+)\./);
-        keys.forEach(key => {
-           let result = regExp.exec(key)[2].split("_");
-           if(result[1] === "wlk" && result[3] == "3320") {
-               console.log(result);
-           }
-        });
-        */
+         let regExp = new RegExp(/(shirt_F_petaldress)_(.+)\./);
+         keys.forEach(key => {
+         let result = regExp.exec(key)[2].split("_");
+         if(result[1] === "wlk" && result[3] == "3320") {
+         console.log(result);
+         }
+         });
+         */
     }
 }
