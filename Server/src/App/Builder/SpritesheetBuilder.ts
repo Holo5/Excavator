@@ -50,6 +50,6 @@ export class SpritesheetBuilder {
       return null;
     });
 
-        this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
-    }
+    this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
+  }
 }

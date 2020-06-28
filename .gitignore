@@ -1,3 +1,4 @@
 node_modules/*
 Client/Build/*
 Server/tmp/*
+.idea
