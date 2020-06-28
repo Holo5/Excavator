@@ -1,11 +1,10 @@
 export abstract class Incoming<T> {
-    protected packet: T;
+  protected packet: T;
 
-    setPacket(packet: T) {
-        this.packet = packet;
+  setPacket(packet: T) {
+    this.packet = packet;
+    return this;
+  }
 
-        return this;
-    }
-
-    public abstract process(): void;
+  public abstract process(): void;
 }

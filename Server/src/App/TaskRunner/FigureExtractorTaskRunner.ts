@@ -1,17 +1,17 @@
-import {inject, singleton} from 'tsyringe';
-import {FigureMapExtractor} from '../../Extractor/FigureMapExtractor';
-import {Lib} from '../../Domain/FigureMap/Lib';
-import {ExtractionState} from '../../Domain/FigureMap/Enum/ExtractionState';
+import { inject, singleton } from 'tsyringe';
 import * as Listr from 'listr';
-import {blue} from 'colors';
-import {FigureTask} from '../../Domain/Tasks/FigureTask';
+import { blue } from 'colors';
+import { FigureMapExtractor } from '../../Extractor/FigureMapExtractor';
+import { Lib } from '../../Domain/FigureMap/Lib';
+import { ExtractionState } from '../../Domain/FigureMap/Enum/ExtractionState';
+import { FigureTask } from '../../Domain/Tasks/FigureTask';
 
 @singleton()
 export class FigureExtractorTaskRunner {
   private _libsToExtract: Lib[];
 
   constructor(
-      @inject(FigureMapExtractor) private _figureMapExtractor: FigureMapExtractor
+    @inject(FigureMapExtractor) private _figureMapExtractor: FigureMapExtractor,
   ) {
     this._libsToExtract = [];
   }
@@ -43,7 +43,7 @@ export class FigureExtractorTaskRunner {
   }
 
   private trimWaitingLib() {
-    this._figureMapExtractor.libs.forEach(lib => {
+    this._figureMapExtractor.libs.forEach((lib) => {
       if (lib.extractionState === ExtractionState.WAITING) {
         this._libsToExtract.push(lib);
       }

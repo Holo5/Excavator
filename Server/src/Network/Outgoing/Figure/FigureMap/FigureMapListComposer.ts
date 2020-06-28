@@ -1,11 +1,11 @@
-import {Outgoing} from '../../Outgoing';
-import {OutgoingHeader} from '../../OutgoingHeader';
-import {Lib} from '../../../../Domain/FigureMap/Lib';
-import {container} from 'tsyringe';
-import {FigureMapExtractor} from '../../../../Extractor/FigureMapExtractor';
+import { container } from 'tsyringe';
+import { Outgoing } from '../../Outgoing';
+import { OutgoingHeader } from '../../OutgoingHeader';
+import { Lib } from '../../../../Domain/FigureMap/Lib';
+import { FigureMapExtractor } from '../../../../Extractor/FigureMapExtractor';
 
 export interface IFigureMapListMessage {
-    libs: Lib[];
+  libs: Lib[];
 }
 
 export class FigureMapListComposer extends Outgoing<IFigureMapListMessage> {

@@ -1,14 +1,14 @@
-import {inject, singleton} from 'tsyringe';
-import {FSRepository} from '../../Infra/FSRepository';
+import { inject, singleton } from 'tsyringe';
 import * as download from 'download';
+import { FSRepository } from '../../Infra/FSRepository';
 
 @singleton()
 export class AssetDownloader {
-    constructor(
-        @inject(FSRepository) private _fsRepository: FSRepository
-    ) {}
+  constructor(
+    @inject(FSRepository) private _fsRepository: FSRepository,
+  ) {}
 
-    async download(assetLink: string) {
-        await download(assetLink, this._fsRepository.swfPath);
-    }
+  async download(assetLink: string) {
+    await download(assetLink, this._fsRepository.swfPath);
+  }
 }

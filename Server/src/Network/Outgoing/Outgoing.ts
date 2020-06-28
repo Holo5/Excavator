@@ -11,7 +11,7 @@ export abstract class Outgoing<Data> {
         this._header = header;
     }
 
-    abstract process(): void;
+  abstract process(): void;
 
     public evaluate(): IOutgoingData<Data> {
         this.process();

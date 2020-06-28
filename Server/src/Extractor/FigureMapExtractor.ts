@@ -41,33 +41,33 @@ export class FigureMapExtractor {
         this._socketServer.send(new FigureMapListComposer(this._libs));
     }
 
-    private async download() {
-        let externalVariables = await download(this._habboDataExtractor.getHabboData(HabboDataType.FIGUREMAP_URL));
-        this._fsRepository.writeInTmpFolder(FIGURE_DATA_NAME, externalVariables);
-    }
+  private async download() {
+    const externalVariables = await download(
+      this._habboDataExtractor.getHabboData(HabboDataType.FIGUREMAP_URL),
+    );
+    this._fsRepository.writeInTmpFolder(FIGURE_DATA_NAME, externalVariables);
+  }
 
-    private convertToJson() {
-        let xml = this._fsRepository.readInTmpFolder(FIGURE_DATA_NAME);
-        this._figureMapJson = JSON.parse(xml2json(xml, {compact: false}));
-    }
+  private convertToJson() {
+    const xml = this._fsRepository.readInTmpFolder(FIGURE_DATA_NAME);
+    this._figureMapJson = JSON.parse(xml2json(xml, { compact: false }));
+  }
 
-    private parse() {
-        let libs: Array<any> = this._figureMapJson.elements[0].elements;
-        libs = libs.reduce((previousValue, currentValue) => {
+  private parse() {
+    let libs: Array<any> = this._figureMapJson.elements[0].elements;
+    libs = libs.reduce((previousValue, currentValue) => {
+      let parts: Array<any> = currentValue.elements;
+      parts = parts.reduce((previousValue1, currentValue1) => {
+        previousValue1.push(new Part(currentValue1.attributes.id, currentValue1.attributes.type));
+        return previousValue1;
+      }, []);
 
-            let parts: Array<any> = currentValue.elements;
-            parts = parts.reduce((previousValue1, currentValue1) => {
+      previousValue.push(new Lib(currentValue.attributes.id, currentValue.attributes.revision, parts));
+      return previousValue;
+    }, []);
 
-                previousValue1.push(new Part(currentValue1.attributes.id, currentValue1.attributes.type));
-                return previousValue1;
-            }, []);
-
-            previousValue.push(new Lib(currentValue.attributes.id, currentValue.attributes.revision, parts));
-            return previousValue;
-        }, []);
-
-        this._libs = libs;
-    }
+    this._libs = libs;
+  }
 
     public get libs(): Lib[] {
         return this._libs;
