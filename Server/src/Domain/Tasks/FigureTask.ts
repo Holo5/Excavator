@@ -7,6 +7,8 @@ import {HabboDataExtractor} from '../../Extractor/HabboDataExtractor';
 import {HabboDataType} from '../../Extractor/Enum/HabboDataType';
 import {ExtractionState} from "../FigureMap/Enum/ExtractionState";
 import {SpritesheetBuilder} from '../../App/Builder/SpritesheetBuilder';
+import {AvatarAnimationRetriever} from '../../App/Retriever/AvatarAnimationRetriever';
+import {FSRepository} from '../../Infra/FSRepository';
 
 export class FigureTask extends Task {
     private _lib: Lib;
@@ -23,6 +25,7 @@ export class FigureTask extends Task {
         await container.resolve(HabboFlashExtractor).extract(this._lib.id);
         await container.resolve(SpritesheetBuilder).build(this._lib.id);
         await container.resolve(SpritesheetBuilder).retrieveOffsets(this._lib.id);
+        await container.resolve(AvatarAnimationRetriever).retrieve(this._lib.id);
 
         this._lib.setExtractionState(ExtractionState.EXTRACTED);
     }
