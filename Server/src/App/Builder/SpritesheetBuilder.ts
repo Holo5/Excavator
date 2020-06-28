@@ -36,8 +36,6 @@ export class SpritesheetBuilder {
       return;
     }
 
-    console.log('xmlOffset', xmlOffset);
-
     Array.from(xmlOffset?.elements[0]?.elements[0]?.elements[0]?.elements).some((elm: any) => {
       const offset = elm?.elements[0]?.attributes?.value?.split(',');
       const name = elm?.attributes?.name;
