@@ -50,18 +50,6 @@ export class SpritesheetBuilder {
       return null;
     });
 
-    this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
-
-    /*
-      let keys = Object.keys(spritesheet.frames);
-
-      let regExp = new RegExp(/(shirt_F_petaldress)_(.+)\./);
-      keys.forEach(key => {
-      let result = regExp.exec(key)[2].split("_");
-      if(result[1] === "wlk" && result[3] == "3320") {
-      console.log(result);
-      }
-      });
-    */
-  }
+        this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
+    }
 }

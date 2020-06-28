@@ -76,9 +76,13 @@ export class FSRepository {
     fs.writeFileSync(Path.resolve(this._swfPath, filename), data, { encoding: 'utf8', flag: 'w+' });
   }
 
-  existInExtractedFolder(filename: string) {
-    return fs.existsSync(Path.resolve(this._extractedPath, filename));
-  }
+    existInSwfFolder(filename: string) {
+        return fs.existsSync(Path.resolve(this._swfPath, filename, '.swf'));
+    }
+
+    existInExtractedFolder(filename: string) {
+        return fs.existsSync(Path.resolve(this._extractedPath, filename));
+    }
 
   readInExtractedFolder(filename: string) {
     return fs.readFileSync(Path.resolve(this._extractedPath, filename));
