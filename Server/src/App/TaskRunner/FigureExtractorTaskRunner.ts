@@ -1,6 +1,4 @@
 import { inject, singleton } from 'tsyringe';
-import * as Listr from 'listr';
-import { blue } from 'colors';
 import { FigureMapExtractor } from '../../Extractor/FigureMapExtractor';
 import { Lib } from '../../Domain/FigureMap/Lib';
 import { ExtractionState } from '../../Domain/FigureMap/Enum/ExtractionState';
@@ -20,7 +18,8 @@ export class FigureExtractorTaskRunner {
     this._libsToExtract = [];
     this.trimWaitingLib();
 
-    for(let i = 0; i < this._libsToExtract.length; i++) {
+    for (let i = 0; i < this._libsToExtract.length; i++) {
+      // eslint-disable-next-line no-await-in-loop
       await new FigureTask(this._libsToExtract[i]).run();
     }
 

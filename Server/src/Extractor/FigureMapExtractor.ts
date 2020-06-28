@@ -1,45 +1,44 @@
-import {container, inject, singleton} from 'tsyringe';
-import {HabboDataExtractor} from './HabboDataExtractor';
-import {HabboDataType} from './Enum/HabboDataType';
-import {FSRepository} from '../Infra/FSRepository';
-import {xml2json} from 'xml-js';
-import download = require('download');
-import {Part} from '../Domain/FigureMap/Part';
-import {Lib} from '../Domain/FigureMap/Lib';
-import {black, blue, cyan, gray, green, grey, magenta, red, white, yellow} from 'colors';
-import {FigureMapListComposer} from '../Network/Outgoing/Figure/FigureMap/FigureMapListComposer';
-import {SocketServer} from "../Network/Server/SocketServer";
-import {Logger} from "../App/Logger/Logger";
+import * as download from 'download';
+import { container, inject, singleton } from 'tsyringe';
+import { magenta } from 'colors';
+import { xml2json } from 'xml-js';
+import { HabboDataExtractor } from './HabboDataExtractor';
+import { HabboDataType } from './Enum/HabboDataType';
+import { FSRepository } from '../Infra/FSRepository';
+import { Part } from '../Domain/FigureMap/Part';
+import { Lib } from '../Domain/FigureMap/Lib';
+import { FigureMapListComposer } from '../Network/Outgoing/Figure/FigureMap/FigureMapListComposer';
+import { SocketServer } from '../Network/Server/SocketServer';
+import { Logger } from '../App/Logger/Logger';
 
 const FIGURE_DATA_NAME = 'figuremap.xml';
 
 @singleton()
 export class FigureMapExtractor {
-    private readonly _socketServer: SocketServer
-    private _figureMapJson: any;
-    private _libs: Lib[];
+  private readonly _socketServer: SocketServer;
+  private _figureMapJson: any;
+  private _libs: Lib[];
 
-    constructor(
-        @inject(HabboDataExtractor) private readonly _habboDataExtractor: HabboDataExtractor,
-        @inject(FSRepository) private readonly _fsRepository: FSRepository,
-    ) {
-        this._libs = [];
+  constructor(
+    @inject(HabboDataExtractor) private readonly _habboDataExtractor: HabboDataExtractor,
+    @inject(FSRepository) private readonly _fsRepository: FSRepository,
+  ) {
+    this._libs = [];
+    this._socketServer = container.resolve(SocketServer);
+  }
 
-        this._socketServer = container.resolve(SocketServer)
-    }
+  async retrieve() {
+    Logger.info('Retrieving figuremap...');
 
-    async retrieve() {
-        Logger.info("Retrieving figuremap...")
+    await this.download();
 
-        await this.download();
+    this.convertToJson();
+    this.parse();
 
-        this.convertToJson();
-        this.parse();
+    Logger.info(`Found ${magenta(this._libs.length.toString())} clothes`);
 
-        Logger.info(`Found ${magenta(this._libs.length.toString())} clothes`)
-
-        this._socketServer.send(new FigureMapListComposer(this._libs));
-    }
+    this._socketServer.send(new FigureMapListComposer(this._libs));
+  }
 
   private async download() {
     const externalVariables = await download(
@@ -69,7 +68,7 @@ export class FigureMapExtractor {
     this._libs = libs;
   }
 
-    public get libs(): Lib[] {
-        return this._libs;
-    }
+  public get libs(): Lib[] {
+    return this._libs;
+  }
 }
