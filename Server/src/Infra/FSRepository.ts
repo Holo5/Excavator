@@ -50,6 +50,9 @@ export class FSRepository {
     Logger.info('Folder tree created!');
   }
 
+    console.log(blue('Folder tree created !'));
+  }
+
   cleanExtratedRepository() {
     fse.emptyDirSync(this._extractedPath);
     fse.emptyDirSync(this._swfPath);

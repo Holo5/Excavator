@@ -4,7 +4,7 @@ import * as http from 'http';
 import { Server } from 'http';
 import * as WebSocket from 'ws';
 import { singleton } from 'tsyringe';
-import { blue, cyan, magenta, yellow } from 'colors';
+import { magenta, yellow } from 'colors';
 import { Configuration } from '../../../Config';
 import { Outgoing } from '../Outgoing/Outgoing';
 import { OutgoingHeader } from '../Outgoing/OutgoingHeader';

@@ -1,10 +1,10 @@
+import * as download from 'download';
 import { container, inject, singleton } from 'tsyringe';
+import { magenta } from 'colors';
 import { xml2json } from 'xml-js';
-import { black, blue, cyan, gray, green, grey, magenta, red, white, yellow } from 'colors';
-import download = require('download');
-import {HabboDataExtractor} from './HabboDataExtractor';
-import {HabboDataType} from './Enum/HabboDataType';
-import {FSRepository} from '../Infra/FSRepository';
+import { HabboDataExtractor } from './HabboDataExtractor';
+import { HabboDataType } from './Enum/HabboDataType';
+import { FSRepository } from '../Infra/FSRepository';
 import { Part } from '../Domain/FigureMap/Part';
 import { Lib } from '../Domain/FigureMap/Lib';
 import { FigureMapListComposer } from '../Network/Outgoing/Figure/FigureMap/FigureMapListComposer';
@@ -24,7 +24,6 @@ export class FigureMapExtractor {
     @inject(FSRepository) private readonly _fsRepository: FSRepository,
   ) {
     this._libs = [];
-
     this._socketServer = container.resolve(SocketServer);
   }
 

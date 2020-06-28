@@ -1,5 +1,4 @@
 import { inject, singleton } from 'tsyringe';
-import { type } from 'os';
 import { FSRepository } from '../../Infra/FSRepository';
 import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';

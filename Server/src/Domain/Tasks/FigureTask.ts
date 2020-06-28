@@ -1,5 +1,4 @@
 import { container } from 'tsyringe';
-import { blue, red } from 'colors';
 import { Task } from './Task';
 import { Lib } from '../FigureMap/Lib';
 import { HabboFlashExtractor } from '../../Extractor/HabboFlashExtractor';
