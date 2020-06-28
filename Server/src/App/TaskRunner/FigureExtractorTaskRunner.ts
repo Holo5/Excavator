@@ -6,8 +6,6 @@ import * as Listr from 'listr';
 import {blue} from 'colors';
 import {FigureTask} from '../../Domain/Tasks/FigureTask';
 
-// @ts-ignore
-
 @singleton()
 export class FigureExtractorTaskRunner {
   private _libsToExtract: Lib[];
@@ -18,11 +16,16 @@ export class FigureExtractorTaskRunner {
     this._libsToExtract = [];
   }
 
-  startExtraction() {
+  async startExtraction() {
     this._libsToExtract = [];
     this.trimWaitingLib();
 
-    new FigureTask(this._libsToExtract[0]).run();
+    for(let i = 0; i < this._libsToExtract.length; i++) {
+      await new FigureTask(this._libsToExtract[i]).run();
+    }
+
+    //
+    // new FigureTask(this._libsToExtract[0]).run();
 
     // let tasks = [];
     // for(let i = 0; i < 10; i++) {
