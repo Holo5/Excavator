@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-import { Configuration } from '../../../Configuration';
+import { Configuration } from '../../../../../Server/Config';
 import { Outgoing } from '../../../../../Server/src/Network/Outgoing/Outgoing';
 import { OutgoingHeader } from '../../../../../Server/src/Network/Outgoing/OutgoingHeader';
 import { FigureMapIncoming } from './Incoming/Figure/FigureMap/FigureMapIncoming';

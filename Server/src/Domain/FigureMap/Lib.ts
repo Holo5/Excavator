@@ -1,6 +1,5 @@
 import { Part } from './Part';
 import { ExtractionState } from './Enum/ExtractionState';
-import { LibExtractionStateChangeComposer } from '../../Network/Outgoing/Figure/FigureMap/LibExtractionStateChangeComposer';
 
 export class Lib {
   public id: string;
@@ -15,7 +14,7 @@ export class Lib {
     this.extractionState = ExtractionState.WAITING;
   }
 
-    setExtractionState(value: ExtractionState) {
-        this.extractionState = value;
-    }
+  setExtractionState(value: ExtractionState) {
+    this.extractionState = value;
+  }
 }

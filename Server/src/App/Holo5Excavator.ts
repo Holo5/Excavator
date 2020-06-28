@@ -1,6 +1,6 @@
 import { inject, singleton } from 'tsyringe';
 import { FSRepository } from '../Infra/FSRepository';
-import { SocketServer } from '../Network/Serveur/SocketServer';
+import { SocketServer } from '../Network/Server/SocketServer';
 import { HabboDataExtractor } from '../Extractor/HabboDataExtractor';
 import { FigureMapExtractor } from '../Extractor/FigureMapExtractor';
 import { FigureExtractorTaskRunner } from './TaskRunner/FigureExtractorTaskRunner';

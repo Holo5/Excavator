@@ -1,11 +1,10 @@
-import {singleton} from "tsyringe";
-import {blue, cyan, magenta, yellow} from 'colors';
-import * as Path from "path";
-import * as fs from "fs";
-import * as fse from "fs-extra";
-import {Parser} from "xml2js";
-import {Configuration} from '../../Config';
-import {Logger} from "../App/Logger/Logger";
+import { singleton } from 'tsyringe';
+import { blue, cyan, magenta, yellow } from 'colors';
+import * as Path from 'path';
+import * as fs from 'fs';
+import * as fse from 'fs-extra';
+import { Parser } from 'xml2js';
+import { Configuration } from '../../Config';
 
 @singleton<FSRepository>()
 export class FSRepository {
@@ -30,23 +29,31 @@ export class FSRepository {
     this.createArch();
   }
 
-    private createArch() {
-        console.log(blue("Preparing directories..."));
+  private createArch() {
+    console.log(blue('Preparing directories...'));
 
-            fs.mkdirSync(path, {recursive: true});
-        }
+    if (!fs.existsSync(this._tmpPath)) {
+      console.log(magenta('Creating tmp path...'));
+      fs.mkdirSync(this._tmpPath, { recursive: true });
     }
 
-    private createArch() {
-        Logger.info("Preparing directories...");
-
-        FSRepository.mkdir(this._tmpPath, 'tmp')
-        FSRepository.mkdir(this._buildPath, 'build')
-        FSRepository.mkdir(this._swfPath, 'swf')
-        FSRepository.mkdir(this._extractedPath, 'extracted swf')
-
-        Logger.info("Folder tree created!")
+    if (!fs.existsSync(this._buildPath)) {
+      console.log(magenta('Creating build path...'));
+      fs.mkdirSync(this._buildPath, { recursive: true });
     }
+
+    if (!fs.existsSync(this._swfPath)) {
+      console.log(magenta('Creating swf path...'));
+      fs.mkdirSync(this._swfPath, { recursive: true });
+    }
+
+    if (!fs.existsSync(this._extractedPath)) {
+      console.log(magenta('Creating extracted swf path...'));
+      fs.mkdirSync(this._extractedPath, { recursive: true });
+    }
+
+    console.log(blue('Folder tree created !'));
+  }
 
   cleanExtratedRepository() {
     fse.emptyDirSync(this._extractedPath);
@@ -69,13 +76,13 @@ export class FSRepository {
     fs.writeFileSync(Path.resolve(this._swfPath, filename), data, { encoding: 'utf8', flag: 'w+' });
   }
 
-    existInSwfFolder(filename: string) {
-        return fs.existsSync(Path.resolve(this._swfPath, filename, '.swf'));
-    }
+  existInSwfFolder(filename: string) {
+    return fs.existsSync(Path.resolve(this._swfPath, filename, '.swf'));
+  }
 
-    existInExtractedFolder(filename: string) {
-        return fs.existsSync(Path.resolve(this._extractedPath, filename));
-    }
+  existInExtractedFolder(filename: string) {
+    return fs.existsSync(Path.resolve(this._extractedPath, filename));
+  }
 
   readInExtractedFolder(filename: string) {
     return fs.readFileSync(Path.resolve(this._extractedPath, filename));
@@ -140,34 +147,33 @@ export class FSRepository {
     return this._extractedPath;
   }
 
-    /*
-    releaseFurni(furniType: FurniType) {
-        if (!fs.existsSync(Path.resolve(this._buildPath, furniType.realClassName))) {
-            fs.mkdirSync(Path.resolve(this._buildPath, furniType.realClassName));
-        }
-        fs.copyFileSync(
-            Path.resolve(this._buildPath, furniType.realClassName + ".json"),
-            Path.resolve(this._buildPath, furniType.realClassName, furniType.realClassName + ".json"),
-        );
-        fs.unlinkSync(Path.resolve(this._buildPath, furniType.realClassName + ".json"));
-        fs.copyFileSync(
-            Path.resolve(this._extractedPath, furniType.realClassName, "sprites", furniType.realClassName + "_sprite.png"),
-            Path.resolve(this._buildPath, furniType.realClassName, furniType.realClassName + "_sprite.png"),
-        );
-    }
+  /*
+  releaseFurni(furniType: FurniType) {
+      if (!fs.existsSync(Path.resolve(this._buildPath, furniType.realClassName))) {
+          fs.mkdirSync(Path.resolve(this._buildPath, furniType.realClassName));
+      }
+      fs.copyFileSync(
+          Path.resolve(this._buildPath, furniType.realClassName + '.json'),
+          Path.resolve(this._buildPath, furniType.realClassName, furniType.realClassName + '.json'),
+      );
+      fs.unlinkSync(Path.resolve(this._buildPath, furniType.realClassName + '.json'));
+      fs.copyFileSync(
+          Path.resolve(this._extractedPath, furniType.realClassName, 'sprites', furniType.realClassName + '_sprite.png'),
+          Path.resolve(this._buildPath, furniType.realClassName, furniType.realClassName + '_sprite.png'),
+      );
+  }
 
-    existingImages(furniType: FurniType) {
-        if(fs.existsSync(Path.resolve(this.extractedPath, furniType.realClassName, "images"))) {
-            let files = fs.readdirSync(Path.resolve(this.extractedPath, furniType.realClassName, "images"))
-            if(files.length > 1) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-   */
-
+  existingImages(furniType: FurniType) {
+      if(fs.existsSync(Path.resolve(this.extractedPath, furniType.realClassName, 'images'))) {
+          let files = fs.readdirSync(Path.resolve(this.extractedPath, furniType.realClassName, 'images'))
+          if(files.length > 1) {
+              return true;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
+  }
+  */
 }
