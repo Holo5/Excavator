@@ -1,4 +1,4 @@
-import { white, yellow } from 'colors';
+import { yellow } from 'colors';
 import { OutgoingHeader } from './OutgoingHeader';
 import { IOutgoingData } from './IOutgoingData';
 import { Logger } from '../../App/Logger/Logger';

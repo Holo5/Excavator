@@ -1,5 +1,5 @@
 import { singleton } from 'tsyringe';
-import { blue, cyan, magenta, yellow } from 'colors';
+import { yellow } from 'colors';
 import * as Path from 'path';
 import * as fs from 'fs';
 import * as fse from 'fs-extra';
