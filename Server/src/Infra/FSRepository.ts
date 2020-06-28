@@ -5,6 +5,7 @@ import * as fs from "fs";
 import * as fse from "fs-extra";
 import {Parser} from "xml2js";
 import {Configuration} from '../../Config';
+import {Logger} from "../App/Logger/Logger";
 
 @singleton<FSRepository>()
 export class FSRepository {
@@ -26,36 +27,28 @@ export class FSRepository {
     }
 
     public init() {
-        console.log(cyan("Initing ") + yellow("FSRepository"));
+        Logger.info(`Initializing ${yellow(this.constructor.name)}`);
 
         this.createArch();
     }
 
+    private static mkdir(path: string, name: string): void {
+        if (!fs.existsSync(path)) {
+            Logger.info(`Creating ${name} path...`);
+
+            fs.mkdirSync(path, {recursive: true});
+        }
+    }
+
     private createArch() {
-        console.log(blue("Preparing directories..."));
+        Logger.info("Preparing directories...");
 
-        if (!fs.existsSync(this._tmpPath)) {
-            console.log(magenta("Creating tmp path..."));
-            fs.mkdirSync(this._tmpPath, {recursive: true});
-        }
+        FSRepository.mkdir(this._tmpPath, 'tmp')
+        FSRepository.mkdir(this._buildPath, 'build')
+        FSRepository.mkdir(this._swfPath, 'swf')
+        FSRepository.mkdir(this._extractedPath, 'extracted swf')
 
-        if (!fs.existsSync(this._buildPath)) {
-            console.log(magenta("Creating build path..."));
-            fs.mkdirSync(this._buildPath, {recursive: true});
-        }
-
-
-        if (!fs.existsSync(this._swfPath)) {
-            console.log(magenta("Creating swf path..."));
-            fs.mkdirSync(this._swfPath, {recursive: true});
-        }
-
-        if (!fs.existsSync(this._extractedPath)) {
-            console.log(magenta("Creating extracted swf path..."));
-            fs.mkdirSync(this._extractedPath, {recursive: true});
-        }
-
-        console.log(blue("Folder tree created !"));
+        Logger.info("Folder tree created!")
     }
 
     cleanExtratedRepository() {

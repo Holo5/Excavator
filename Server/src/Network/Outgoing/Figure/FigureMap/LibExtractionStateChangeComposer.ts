@@ -7,7 +7,7 @@ export interface ILibExtractionStateChangeMessage {
 }
 
 export class LibExtractionStateChangeComposer extends Outgoing<ILibExtractionStateChangeMessage>{
-  private _lib: Lib;
+  private readonly _lib: Lib;
 
   constructor(lib: Lib) {
     super(OutgoingHeader.LIB_EXTRACTION_STATE_CHANGED);

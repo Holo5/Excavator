@@ -26,7 +26,7 @@ export const WebSocketModule: Module<IStateInterface, any> = {
     getters: {},
     actions: {
         registerPackets: ({state, dispatch}) => {
-            dispatch('addHandler', {header: OutgoingHeader.FIGUREMAPLIST, handler: FigureMapIncoming});
+            dispatch('addHandler', {header: OutgoingHeader.FIGUREMAP_LIST, handler: FigureMapIncoming});
             dispatch('addHandler', {header: OutgoingHeader.LIB_EXTRACTION_STATE_CHANGED, handler: LibExtractionStateChangeIncoming});
         },
         connect: ({state, dispatch}) => {

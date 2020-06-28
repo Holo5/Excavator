@@ -9,21 +9,19 @@ export interface IFigureMapListMessage {
 }
 
 export class FigureMapListComposer extends Outgoing<IFigureMapListMessage> {
-    private _libs: Lib[];
+    private readonly _figureMapExtractor: FigureMapExtractor;
+    private readonly _libs: Lib[];
 
     constructor(libs: Lib[] = undefined) {
-        super(OutgoingHeader.FIGUREMAPLIST);
+        super(OutgoingHeader.FIGUREMAP_LIST);
 
-        if(libs !== undefined) {
-            this._libs = libs;
-        } else {
-            this._libs = container.resolve(FigureMapExtractor).libs
-        }
+        this._figureMapExtractor = container.resolve(FigureMapExtractor)
+        this._libs = libs ?? this._figureMapExtractor.libs
     }
 
     public process() {
         this._data = {
-            libs: container.resolve(FigureMapExtractor).libs
+            libs: this._libs
         };
     }
 }

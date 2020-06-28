@@ -17,6 +17,5 @@ export class Lib {
 
     setExtractionState(value: ExtractionState) {
         this.extractionState = value;
-        new LibExtractionStateChangeComposer(this).send();
     }
 }
