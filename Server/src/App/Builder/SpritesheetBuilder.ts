@@ -1,13 +1,13 @@
-import { container, inject, singleton } from 'tsyringe';
+import {container, inject, singleton} from 'tsyringe';
 import * as Path from 'path';
-import { xml2json } from 'xml-js';
+import {xml2json} from 'xml-js';
 import * as SpriteSheet from 'spritesheet-js';
-import { FSRepository } from '../../Infra/FSRepository';
+import {FSRepository} from '../../Infra/FSRepository';
 
 @singleton()
 export class SpritesheetBuilder {
   constructor(
-    @inject(FSRepository) private _fsRepository: FSRepository,
+      @inject(FSRepository) private _fsRepository: FSRepository,
   ) {}
 
   async build(id: string) {
@@ -15,14 +15,17 @@ export class SpritesheetBuilder {
       const path = Path.resolve(container.resolve(FSRepository).extractedPath, id, 'images', '*.png');
 
       SpriteSheet(
-        path,
-        {
-          format: 'pixi.js',
-          trim: false,
-          path: Path.resolve(container.resolve(FSRepository).buildPath, id),
-          name: id,
-        },
-        resolve,
+          path,
+          {
+            format: 'pixi.js',
+            trim: false,
+            path: Path.resolve(container.resolve(FSRepository).buildPath, id),
+            name: id,
+          },
+          (err) => {
+            if (err) throw err;
+            resolve();
+          },
       );
     });
   }
@@ -30,7 +33,7 @@ export class SpritesheetBuilder {
   async retrieveOffsets(id: string) {
     const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(id));
     let xmlOffset = this._fsRepository.readBinaries(id, 'manifest');
-    xmlOffset = JSON.parse(xml2json(xmlOffset, { compact: false }));
+    xmlOffset = JSON.parse(xml2json(xmlOffset, {compact: false}));
 
     if (spritesheet === false && xmlOffset === false) {
       return;
