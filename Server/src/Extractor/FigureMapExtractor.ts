@@ -11,7 +11,7 @@ import { FigureMapListComposer } from '../Network/Outgoing/Figure/FigureMap/Figu
 import { SocketServer } from '../Network/Server/SocketServer';
 import { Logger } from '../App/Logger/Logger';
 
-const FIGURE_DATA_NAME = 'figuremap.xml';
+const FIGURE_MAP_NAME = 'figuremap.xml';
 
 @singleton()
 export class FigureMapExtractor {
@@ -41,14 +41,14 @@ export class FigureMapExtractor {
   }
 
   private async download() {
-    const externalVariables = await download(
+    const figureMap = await download(
       this._habboDataExtractor.getHabboData(HabboDataType.FIGUREMAP_URL),
     );
-    this._fsRepository.writeInTmpFolder(FIGURE_DATA_NAME, externalVariables);
+    this._fsRepository.writeInTmpFolder(FIGURE_MAP_NAME, figureMap);
   }
 
   private convertToJson() {
-    const xml = this._fsRepository.readInTmpFolder(FIGURE_DATA_NAME);
+    const xml = this._fsRepository.readInTmpFolder(FIGURE_MAP_NAME);
     this._figureMapJson = JSON.parse(xml2json(xml, { compact: false }));
   }
 

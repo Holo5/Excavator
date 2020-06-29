@@ -6,4 +6,12 @@ export class Part {
     this._id = id;
     this._type = type;
   }
+
+  public get id(): string {
+    return this._id;
+  }
+
+  public get type(): string {
+    return this._type;
+  }
 }

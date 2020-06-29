@@ -4,6 +4,8 @@ import { SocketServer } from '../Network/Server/SocketServer';
 import { HabboDataExtractor } from '../Extractor/HabboDataExtractor';
 import { FigureMapExtractor } from '../Extractor/FigureMapExtractor';
 import { FigureExtractorTaskRunner } from './TaskRunner/FigureExtractorTaskRunner';
+import { FigureDataExtractor } from '../Extractor/FigureDataExtractor';
+import { Holo5FigureDataAssembler } from './Assembler/Holo5FigureDataAssembler';
 // import { HabboFlashExtractor } from '../Extractor/HabboFlashExtractor';
 // import { AssetDownloader } from './Downloader/AssetDownloader';
 
@@ -16,6 +18,8 @@ export class Holo5Excavator {
     @inject(SocketServer) private _socketServer: SocketServer,
     @inject(HabboDataExtractor) private _habboDataExtractor: HabboDataExtractor,
     @inject(FigureMapExtractor) private _figureMapExtractor: FigureMapExtractor,
+    @inject(FigureDataExtractor) private _figureDataExtractor: FigureDataExtractor,
+    @inject(Holo5FigureDataAssembler) private _holo5FigureDataAssembler: Holo5FigureDataAssembler,
     @inject(FigureExtractorTaskRunner) private _figureExtractorTaskRunner: FigureExtractorTaskRunner,
   ) {}
 
@@ -24,9 +28,10 @@ export class Holo5Excavator {
     this._socketServer.init();
     await this._habboDataExtractor.init();
 
+    await this._figureDataExtractor.retrieve();
     await this._figureMapExtractor.retrieve();
-    setTimeout(() => {
-      this._figureExtractorTaskRunner.startExtraction();
-    }, 300);
+    await this._holo5FigureDataAssembler.assemble();
+
+    this._figureExtractorTaskRunner.startExtraction();
   }
 }
