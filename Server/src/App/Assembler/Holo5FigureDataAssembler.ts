@@ -30,7 +30,7 @@ export class Holo5FigureDataAssembler {
     const currentSetTypes: SetTypes = {};
 
     this._figureDataExtractor.setTypes.forEach((setType: SetType) => {
-      currentSetTypes.setTypes[setType.type] = {
+      currentSetTypes[setType.type] = {
         paletteid: setType.paletteid,
         mand_f_0: setType.mand_f_0,
         mand_m_0: setType.mand_m_0,
@@ -40,7 +40,7 @@ export class Holo5FigureDataAssembler {
       };
 
       setType.sets.forEach((set) => {
-        currentSetTypes.setTypes[setType.type].sets[set.id] = {
+        currentSetTypes[setType.type].sets[set.id] = {
           club: set.club,
           colorable: set.colorable,
           gender: set.gender,
@@ -52,7 +52,7 @@ export class Holo5FigureDataAssembler {
         };
 
         set.hiddenParts.forEach((hiddenPart) => {
-          currentSetTypes.setTypes[setType.type].sets[set.id].hiddenparts.push({
+          currentSetTypes[setType.type].sets[set.id].hiddenparts.push({
             partType: hiddenPart.partType,
           });
         });
@@ -60,7 +60,7 @@ export class Holo5FigureDataAssembler {
         set.parts.forEach((part) => {
           const assetName = this.findAssetName(part.id, part.type);
           if (assetName !== undefined) {
-            currentSetTypes.setTypes[setType.type].sets[set.id].parts.push({
+            currentSetTypes[setType.type].sets[set.id].parts.push({
               type: part.type,
               colorable: part.colorable,
               colorindex: part.colorindex,
