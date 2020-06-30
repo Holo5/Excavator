@@ -3,7 +3,7 @@ import { IFigureMapListMessage } from '../../../../../../../../Server/src/Networ
 import { Store } from '../../../../../Store';
 
 export class FigureMapIncoming extends Incoming<IFigureMapListMessage> {
-  public process() {
-    Store.commit('figureModule/SET_LIBS', this.packet.libs);
-  }
+    public process() {
+        Store.commit('figureModule/SET_LIBS', this.packet.libs);
+    }
 }

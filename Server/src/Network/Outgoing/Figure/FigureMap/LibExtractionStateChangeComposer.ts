@@ -3,22 +3,22 @@ import { Outgoing } from '../../Outgoing';
 import { OutgoingHeader } from '../../OutgoingHeader';
 
 export interface ILibExtractionStateChangeMessage {
-  lib: Lib
+    lib: Lib
 }
 
 export class LibExtractionStateChangeComposer extends Outgoing<ILibExtractionStateChangeMessage> {
-  private readonly _lib: Lib;
+    private readonly _lib: Lib;
 
-  constructor(lib: Lib) {
-    super(OutgoingHeader.LIB_EXTRACTION_STATE_CHANGED);
+    constructor(lib: Lib) {
+        super(OutgoingHeader.LIB_EXTRACTION_STATE_CHANGED);
 
-    this._lib = lib;
-    this.log(this._lib.id);
-  }
+        this._lib = lib;
+        this.log(this._lib.id);
+    }
 
-  process() {
-    this._data = {
-      lib: this._lib,
-    };
-  }
+    process() {
+        this._data = {
+            lib: this._lib,
+        };
+    }
 }

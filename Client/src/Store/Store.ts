@@ -6,8 +6,8 @@ import { FigureModule } from './Modules/Figure/FigureModule';
 Vue.use(Vuex);
 
 export const Store = new Vuex.Store({
-  modules: {
-    webSocket: WebSocketModule,
-    figureModule: FigureModule,
-  },
+    modules: {
+        webSocket: WebSocketModule,
+        figureModule: FigureModule,
+    },
 });

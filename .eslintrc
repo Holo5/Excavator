@@ -9,8 +9,8 @@
   ],
   "extends": ["airbnb-typescript/base"],
   "rules": {
-    "indent": ["error", 2],
-    "@typescript-eslint/indent": ["error", 2],
+    "indent": ["error", 4],
+    "@typescript-eslint/indent": ["error", 4],
     "linebreak-style": [0, "error", "windows"],
     "import/prefer-default-export": "off",
     "object-curly-newline": "off",

@@ -6,14 +6,14 @@ import { AvatarFigurePartType } from './Enum/AvatarFigurePartType';
 
 @singleton()
 export class HabboAvatarAsset {
-  find(id: string, type: IType, spritesheet: any): string {
-    const { gesture, partType, layerId, frame } = type;
-    let { direction } = type;
+    find(id: string, type: IType, spritesheet: any): string {
+        const { gesture, partType, layerId, frame } = type;
+        let { direction } = type;
 
-    const missingAngle: boolean = AvatarDirectionAngle.MISSING_ANGLE[type.direction];
+        const missingAngle: boolean = AvatarDirectionAngle.MISSING_ANGLE[type.direction];
 
-    if (
-      missingAngle
+        if (
+            missingAngle
       && !(gesture === 'wav'
       && (partType === AvatarFigurePartType.LEFT_HAND
           || partType === AvatarFigurePartType.LEFT_SLEEVE
@@ -31,25 +31,25 @@ export class HabboAvatarAsset {
       || partType === AvatarFigurePartType.RIGHT_HAND_ITEM
       || partType === AvatarFigurePartType.LEFT_HAND_ITEM
       || partType === AvatarFigurePartType.CHEST_PRINT)
-    ) {
-      if (type.direction !== '4') {
-        if (type.direction === '5') {
-          direction = '1';
-        } else if (type.direction === '6') {
-          direction = '0';
+        ) {
+            if (type.direction !== '4') {
+                if (type.direction === '5') {
+                    direction = '1';
+                } else if (type.direction === '6') {
+                    direction = '0';
+                }
+            }
+        } else {
+            direction = '2';
         }
-      }
-    } else {
-      direction = '2';
+
+        let frameName = `${id}_h_${gesture}_${partType}_${layerId}_${direction}_${frame}.png`;
+
+        const asset = spritesheet.frames[frameName];
+        if (asset === undefined) {
+            frameName = `${id}_h_std_${partType}_${layerId}_${direction}_0.png`;
+        }
+
+        return frameName;
     }
-
-    let frameName = `${id}_h_${gesture}_${partType}_${layerId}_${direction}_${frame}.png`;
-
-    const asset = spritesheet.frames[frameName];
-    if (asset === undefined) {
-      frameName = `${id}_h_std_${partType}_${layerId}_${direction}_0.png`;
-    }
-
-    return frameName;
-  }
 }
