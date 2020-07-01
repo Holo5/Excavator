@@ -16,7 +16,6 @@ export class AvatarDirectionAngle {
         lsm: { direction: [], framesCount: 0 },
         lsr: { direction: [], framesCount: 0 },
         ley: { direction: [], framesCount: 0 },
-
         wav: { direction: [0, 1, 2, 3, 4, 5, 6, 7], framesCount: 2 },
         crr: { direction: [0, 1, 2, 3, 4, 5, 6, 7], framesCount: 1 },
         drk: { direction: [0, 1, 2, 3, 4, 5, 6, 7], framesCount: 1 },
