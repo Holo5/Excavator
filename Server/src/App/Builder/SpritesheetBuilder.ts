@@ -18,7 +18,7 @@ export class SpritesheetBuilder {
                 path,
                 {
                     format: 'pixi.js',
-                    trim: false,
+                    trim: true,
                     path: Path.resolve(container.resolve(FSRepository).buildPath, id),
                     name: id,
                 },
@@ -43,7 +43,7 @@ export class SpritesheetBuilder {
             const offset = elm?.elements[0]?.attributes?.value?.split(',');
             const name = elm?.attributes?.name;
 
-            if (spritesheet.frames[`${id}_${name}.png`].trimmed !== undefined) {
+            if (spritesheet?.frames[`${id}_${name}.png`]?.trimmed !== undefined) {
                 spritesheet.frames[`${id}_${name}.png`].trimmed = true;
             }
             const spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}.png`]?.spriteSourceSize;
