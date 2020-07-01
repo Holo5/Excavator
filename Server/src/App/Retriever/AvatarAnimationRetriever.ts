@@ -2,6 +2,7 @@ import { inject, singleton } from 'tsyringe';
 import { FSRepository } from '../../Infra/FSRepository';
 import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
+import {Logger} from '../Logger/Logger';
 
 export interface IType {
     gesture: string,
@@ -38,7 +39,7 @@ export class AvatarAnimationRetriever {
             gestures.forEach((gesture) => {
                 const gestureData = AvatarDirectionAngle.GESTURE_DATA[gesture];
                 if (gestureData === undefined) {
-                    console.error('Gesture not found !', gesture);
+                    Logger.error(`Gesture ${gesture} not found for ${id} !`);
                 }
 
                 gestureData.direction.forEach((dir) => {

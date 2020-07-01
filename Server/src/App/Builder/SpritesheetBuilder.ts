@@ -43,6 +43,9 @@ export class SpritesheetBuilder {
             const offset = elm?.elements[0]?.attributes?.value?.split(',');
             const name = elm?.attributes?.name;
 
+            if (spritesheet.frames[`${id}_${name}.png`].trimmed !== undefined) {
+                spritesheet.frames[`${id}_${name}.png`].trimmed = true;
+            }
             const spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}.png`]?.spriteSourceSize;
             if (spriteSourceSize !== undefined) {
                 spriteSourceSize.x = parseInt(offset[0]);
