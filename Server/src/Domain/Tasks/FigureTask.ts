@@ -43,15 +43,23 @@ export class FigureTask extends Task {
         await this._assetDownloader.download(assetLink);
         await this._flashExtractor.extract(this._lib.id);
 
-        await this._spritesheetBuilder.build(this._lib.id);
+        try {
+            await this._spritesheetBuilder.build(this._lib.id);
+        } catch (e) {
+            Logger.error(`Error creating ${this._lib.id}'s spritesheet`);
+        }
 
         try {
             await this._spritesheetBuilder.retrieveOffsets(this._lib.id);
         } catch (e) {
-            Logger.error(`Error retrieving ${this._lib.id} offsets`);
+            Logger.error(`Error retrieving ${this._lib.id}'s offsets`);
         }
 
-        await this._animationRetriever.retrieve(this._lib.id);
+        try {
+            await this._animationRetriever.retrieve(this._lib.id);
+        } catch (e) {
+            Logger.error(`Can't retrieve ${this._lib.id}'s animations`);
+        }
 
         this._lib.setExtractionState(ExtractionState.EXTRACTED);
 
