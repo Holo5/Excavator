@@ -1,7 +1,7 @@
 import { container, inject, singleton } from 'tsyringe';
 import * as Path from 'path';
 import { xml2js } from 'xml-js';
-import * as SpriteSheet from 'spritesheet-js';
+import * as SpriteSheet from '@pi-bouf/spritesheet-js';
 import { FSRepository } from '../../Infra/FSRepository';
 
 @singleton()

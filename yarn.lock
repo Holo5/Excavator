@@ -851,6 +851,19 @@
     "@parcel/utils" "^1.11.0"
     physical-cpu-count "^2.0.0"
 
+"@pi-bouf/spritesheet-js@^1.2.7":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@pi-bouf/spritesheet-js/-/spritesheet-js-1.2.7.tgz#8fe68a4f3b2ebf9df11337324cb49312fcdf33d9"
+  integrity sha512-+LISPL9bcBKbTCIK1gIAyCS9ECL7S59HLXQy/z9AnniNUvZScx4S9OviIhgkoQOK5f9EFJPsyH8gam5c/2TyVw==
+  dependencies:
+    async "~0.2.9"
+    binpacking "~0.0.1"
+    glob "~3.2.6"
+    mustache "~0.7.2"
+    optimist "~0.6.0"
+    platform-command "git+https://gitlab.com/gitlabdev/platform-command.git"
+    underscore "1.9.2"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
@@ -6722,19 +6735,6 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-spritesheet-js@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/spritesheet-js/-/spritesheet-js-1.2.6.tgz#0709cdd32204d5b8f503cef108e15b36e31b0818"
-  integrity sha1-BwnN0yIE1bj1A87xCOFbNuMbCBg=
-  dependencies:
-    async "~0.2.9"
-    binpacking "~0.0.1"
-    glob "~3.2.6"
-    mustache "~0.7.2"
-    optimist "~0.6.0"
-    platform-command "git+https://gitlab.com/gitlabdev/platform-command.git"
-    underscore "~1.5.2"
-
 sshpk@^1.7.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"
@@ -7355,10 +7355,10 @@ uncss@^0.17.2:
     postcss-selector-parser "6.0.2"
     request "^2.88.0"
 
-underscore@~1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.5.2.tgz#1335c5e4f5e6d33bbb4b006ba8c86a00f556de08"
-  integrity sha1-EzXF5PXm0zu7SwBrqMhqAPVW3gg=
+underscore@1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.2.tgz#0c8d6f536d6f378a5af264a72f7bec50feb7cf2f"
+  integrity sha512-D39qtimx0c1fI3ya1Lnhk3E9nONswSKhnffBI0gME9C99fYOkNi04xs8K6pePLhvl1frbDemkaBQ5ikWllR2HQ==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
