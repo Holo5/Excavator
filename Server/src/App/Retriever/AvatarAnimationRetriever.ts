@@ -66,14 +66,6 @@ export class AvatarAnimationRetriever {
     private getTypes(key: string, regExp: RegExp): IType {
         const result = regExp.exec(key)[2].split('_');
 
-        console.log(key, {
-            gesture: result[1],
-            partType: result[2],
-            layerId: result[3],
-            direction: result[4],
-            frame: result[5],
-        });
-
         return {
             gesture: result[1],
             partType: result[2],

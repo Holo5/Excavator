@@ -42,7 +42,7 @@ export class SocketServer {
     }
 
     private onMessage(message: string) {
-        console.log('Message', message);
+        Logger.debug(message);
     }
 
     private onClose() {

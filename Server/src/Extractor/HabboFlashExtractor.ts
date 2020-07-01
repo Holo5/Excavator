@@ -3,6 +3,7 @@ import { exec } from 'child_process';
 import * as Path from 'path';
 import { red } from 'colors';
 import { FSRepository } from '../Infra/FSRepository';
+import {Logger} from '../App/Logger/Logger';
 
 @singleton()
 export class HabboFlashExtractor {
@@ -22,7 +23,7 @@ export class HabboFlashExtractor {
                 exec(`php ${this._executablePath} ${assetPath} ${extractedPath}`, resolve);
             });
         } else {
-            console.log(red(`Can't extract the file ${assetName}.swf, the file doesn't exist.`));
+            Logger.error(`Can't extract the file ${assetName}.swf, the file doesn't exist.`);
         }
     }
 }
