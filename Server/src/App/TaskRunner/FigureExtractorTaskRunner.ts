@@ -50,7 +50,6 @@ export class FigureExtractorTaskRunner {
         if (this._libsToExtract.length <= 0) return;
 
         const lib = this._libsToExtract.shift();
-        console.log(lib);
         Logger.debug(`Extracting ${lib.id}`);
         const task = new FigureTask(lib);
 
