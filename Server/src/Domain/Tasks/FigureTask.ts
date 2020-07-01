@@ -36,7 +36,7 @@ export class FigureTask extends Task {
     }
 
     async run() {
-        if (this._lib.id === 'hh_pets') return;
+        if (this._lib.id === 'hh_pets' || this._lib.id === 'hh_people_pool') return;
 
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + this._lib.id}.swf`;
 

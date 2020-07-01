@@ -2,7 +2,6 @@ import { inject, singleton } from 'tsyringe';
 import { FSRepository } from '../../Infra/FSRepository';
 import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
-import {Logger} from '../Logger/Logger';
 
 export interface IType {
     gesture: string,
