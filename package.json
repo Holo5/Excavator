@@ -36,7 +36,7 @@
     "@types/express": "^4.17.6",
     "@types/fs-extra": "^9.0.1",
     "@types/listr": "^0.14.2",
-    "@types/node": "^14.0.5",
+    "@types/node": "^14.0.14",
     "@types/vue": "^2.0.0",
     "@types/ws": "^7.2.4",
     "@types/xml2js": "^0.4.5",
