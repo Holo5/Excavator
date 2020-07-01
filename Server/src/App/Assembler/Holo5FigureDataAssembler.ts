@@ -1,10 +1,13 @@
 import { inject, singleton } from 'tsyringe';
 import { FigureDataExtractor } from '../../Extractor/FigureDataExtractor';
 import { FigureMapExtractor } from '../../Extractor/FigureMapExtractor';
-import { IFigureData, SetTypes } from '../../Domain/Model/Interface/IFigureData';
+import { ColorPalettes, IFigureData, SetTypes } from '../../Domain/Model/Interface/IFigureData';
 import { SetType } from '../../Domain/FigureData/SetType';
 import { FSRepository } from '../../Infra/FSRepository';
 import { Logger } from '../Logger/Logger';
+import { ColorPalette } from '../../Domain/FigureData/ColorPalette';
+import { Color } from '../../Domain/FigureData/Color';
+import { Draworder } from '../../HabboLogic/Avatar/Constants/Draworder';
 
 @singleton()
 export class Holo5FigureDataAssembler {
@@ -18,12 +21,33 @@ export class Holo5FigureDataAssembler {
         Logger.info('Assembling figuredata...');
 
         const figureData: IFigureData = {
+            colorPalettes: this.assembleColorPalette(),
             setTypes: this.assembleSetTypes(),
+            draworder: Draworder,
         };
 
         this._fsRepository.writeInTmpFolder('figuredata.json', JSON.stringify(figureData));
 
         Logger.info('Figuredata writed !');
+    }
+
+    private assembleColorPalette() {
+        const currentColorPalettes: ColorPalettes = {};
+
+        this._figureDataExtractor.colorPalettes.forEach((colorPalette: ColorPalette) => {
+            currentColorPalettes[colorPalette.id] = {};
+
+            colorPalette.colors.forEach((color: Color) => {
+                currentColorPalettes[colorPalette.id][color.id] = {
+                    club: color.club,
+                    index: color.index,
+                    color: color.color,
+                    selectable: color.selectable,
+                };
+            });
+        });
+
+        return currentColorPalettes;
     }
 
     private assembleSetTypes() {

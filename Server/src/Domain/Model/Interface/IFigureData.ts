@@ -1,5 +1,28 @@
 export interface IFigureData {
-    setTypes: SetTypes
+    colorPalettes: ColorPalettes,
+    setTypes: SetTypes,
+    draworder: IDraworder
+}
+
+export interface IDraworder {
+    [action: string]: {
+        [direction: string]: string[]
+    }
+}
+
+export interface ColorPalettes {
+    [paletteId: string]: Colors
+}
+
+interface Colors {
+    [colorId: string]: Color
+}
+
+interface Color {
+    index: string,
+    club: string,
+    selectable: string,
+    color: string
 }
 
 export interface SetTypes {

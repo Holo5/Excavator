@@ -6,15 +6,11 @@ import { FigureMapExtractor } from '../Extractor/FigureMapExtractor';
 import { FigureExtractorTaskRunner } from './TaskRunner/FigureExtractorTaskRunner';
 import { FigureDataExtractor } from '../Extractor/FigureDataExtractor';
 import { Holo5FigureDataAssembler } from './Assembler/Holo5FigureDataAssembler';
-// import { HabboFlashExtractor } from '../Extractor/HabboFlashExtractor';
-// import { AssetDownloader } from './Downloader/AssetDownloader';
 
 @singleton()
 export class Holo5Excavator {
     constructor(
         @inject(FSRepository) private _fsRepository: FSRepository,
-        // @inject(HabboFlashExtractor) private _habboFlashExtractor: HabboFlashExtractor,
-        // @inject(AssetDownloader) private _assetDownloader: AssetDownloader,
         @inject(SocketServer) private _socketServer: SocketServer,
         @inject(HabboDataExtractor) private _habboDataExtractor: HabboDataExtractor,
         @inject(FigureMapExtractor) private _figureMapExtractor: FigureMapExtractor,
