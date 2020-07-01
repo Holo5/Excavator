@@ -36,10 +36,13 @@ export class FigureTask extends Task {
     }
 
     async run() {
+        if (this._lib.id === 'hh_pets') return;
+
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + this._lib.id}.swf`;
 
         await this._assetDownloader.download(assetLink);
         await this._flashExtractor.extract(this._lib.id);
+
         await this._spritesheetBuilder.build(this._lib.id);
 
         try {
