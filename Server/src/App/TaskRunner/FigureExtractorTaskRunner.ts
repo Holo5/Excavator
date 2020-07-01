@@ -4,6 +4,7 @@ import { Lib } from '../../Domain/FigureMap/Lib';
 import { ExtractionState } from '../../Domain/FigureMap/Enum/ExtractionState';
 import { ITaskStack } from './ITaskStack';
 import { FigureTask } from '../../Domain/Tasks/FigureTask';
+import {Logger} from '../Logger/Logger';
 
 @singleton()
 export class FigureExtractorTaskRunner {
@@ -47,6 +48,7 @@ export class FigureExtractorTaskRunner {
 
     private addToStack() {
         const lib = this._libsToExtract.shift();
+        Logger.debug("Extracting " + lib.id);
         const task = new FigureTask(lib);
 
         this._stack.push({
