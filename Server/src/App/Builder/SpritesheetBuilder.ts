@@ -1,8 +1,9 @@
-import { container, inject, singleton } from 'tsyringe';
+import {container, inject, singleton} from 'tsyringe';
 import * as Path from 'path';
-import { xml2js } from 'xml-js';
-import * as SpriteSheet from '@pi-bouf/spritesheet-js';
-import { FSRepository } from '../../Infra/FSRepository';
+import {xml2js} from 'xml-js';
+import {FSRepository} from '../../Infra/FSRepository';
+import * as nsg from 'node-sprite-generator';
+import {Logger} from '../Logger/Logger';
 
 @singleton()
 export class SpritesheetBuilder {
@@ -12,41 +13,44 @@ export class SpritesheetBuilder {
 
     async build(id: string) {
         await new Promise((resolve) => {
-            const path = Path.resolve(container.resolve(FSRepository).extractedPath, id, 'images', '*.png');
+            const partsPath = Path.resolve(container.resolve(FSRepository).extractedPath, id, 'images', '*.png');
+            const spriteDest = Path.resolve(container.resolve(FSRepository).buildPath, id, id);
 
-            SpriteSheet(
-                path,
-                {
-                    format: 'pixi.js',
-                    trim: true,
-                    path: Path.resolve(container.resolve(FSRepository).buildPath, id),
-                    name: id,
+            nsg({
+                src: [partsPath],
+                layout: 'packed',
+                spritePath: spriteDest + '.png',
+                stylesheetPath: spriteDest + '.json',
+                layoutOptions: {
+                  padding: 5
                 },
-                (err) => {
-                    if (err) throw err;
-                    resolve();
-                },
-            );
+                stylesheet: Path.resolve(__dirname, 'json.tpl'),
+                compositor: 'jimp'
+            }, resolve);
         });
     }
 
     async retrieveOffsets(id: string) {
         const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(id));
         let xmlOffset = this._fsRepository.readBinaries(id, 'manifest');
-        xmlOffset = xml2js(xmlOffset, { compact: false });
+        xmlOffset = xml2js(xmlOffset, {compact: false});
 
         if (spritesheet === false && xmlOffset === false) {
             return;
+        }
+
+        if(spritesheet?.meta?.image) {
+            spritesheet.meta.image = id + '.png';
         }
 
         Array.from(xmlOffset?.elements[0]?.elements[0]?.elements[0]?.elements).some((elm: any) => {
             const offset = elm?.elements[0]?.attributes?.value?.split(',');
             const name = elm?.attributes?.name;
 
-            if (spritesheet?.frames[`${id}_${name}.png`]?.trimmed !== undefined) {
-                spritesheet.frames[`${id}_${name}.png`].trimmed = true;
+            if (spritesheet?.frames[`${id}_${name}`]?.trimmed !== undefined) {
+                spritesheet.frames[`${id}_${name}`].trimmed = true;
             }
-            const spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}.png`]?.spriteSourceSize;
+            const spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}`]?.spriteSourceSize;
             if (spriteSourceSize !== undefined) {
                 spriteSourceSize.x = parseInt(offset[0]);
                 spriteSourceSize.y = parseInt(offset[0]);

@@ -28,7 +28,7 @@ export class AvatarAnimationRetriever {
         const animations = {};
 
         const types: IType[] = Object.keys(spritesheet.frames).map((key) => {
-            const regExp = new RegExp(`(${id})_(.+)\\.`);
+            const regExp = new RegExp(`(${id})_(.+)`);
             return this.getTypes(key, regExp);
         });
 
