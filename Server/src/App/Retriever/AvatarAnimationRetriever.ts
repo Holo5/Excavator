@@ -33,7 +33,7 @@ export class AvatarAnimationRetriever {
         });
 
         const bodyParts = this.findAllBodyParts(types);
-        bodyParts.forEach(bodyPart => {
+        bodyParts.forEach((bodyPart) => {
             const gestures = this.findAllGestures(types, bodyPart);
             const layersId = this.findAllLayerId(types, bodyPart);
 
@@ -60,11 +60,11 @@ export class AvatarAnimationRetriever {
     }
 
     private findAllGestures(types: IType[], bodyPart: string): string[] {
-        return Array.from(new Set(types.filter(type => type.partType === bodyPart).map((type) => type.gesture)));
+        return Array.from(new Set(types.filter((type) => type.partType === bodyPart).map((type) => type.gesture)));
     }
 
     private findAllLayerId(types: IType[], bodyPart: string): string[] {
-        return Array.from(new Set(types.filter(type => type.partType === bodyPart).map((type) => type.layerId)));
+        return Array.from(new Set(types.filter((type) => type.partType === bodyPart).map((type) => type.layerId)));
     }
 
     private findAllBodyParts(types: IType[]): string[] {
