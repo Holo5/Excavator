@@ -1,9 +1,8 @@
-import {container, inject, singleton} from 'tsyringe';
+import { container, inject, singleton } from 'tsyringe';
 import * as Path from 'path';
-import {xml2js} from 'xml-js';
-import {FSRepository} from '../../Infra/FSRepository';
+import { xml2js } from 'xml-js';
 import * as nsg from 'node-sprite-generator';
-import {Logger} from '../Logger/Logger';
+import { FSRepository } from '../../Infra/FSRepository';
 
 @singleton()
 export class SpritesheetBuilder {
@@ -19,13 +18,13 @@ export class SpritesheetBuilder {
             nsg({
                 src: [partsPath],
                 layout: 'packed',
-                spritePath: spriteDest + '.png',
-                stylesheetPath: spriteDest + '.json',
+                spritePath: `${spriteDest}.png`,
+                stylesheetPath: `${spriteDest}.json`,
                 layoutOptions: {
-                  padding: 5
+                    padding: 5,
                 },
                 stylesheet: Path.resolve(__dirname, 'json.tpl'),
-                compositor: 'jimp'
+                compositor: 'jimp',
             }, resolve);
         });
     }
@@ -33,14 +32,14 @@ export class SpritesheetBuilder {
     async retrieveOffsets(id: string) {
         const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(id));
         let xmlOffset = this._fsRepository.readBinaries(id, 'manifest');
-        xmlOffset = xml2js(xmlOffset, {compact: false});
+        xmlOffset = xml2js(xmlOffset, { compact: false });
 
         if (spritesheet === false && xmlOffset === false) {
             return;
         }
 
-        if(spritesheet?.meta?.image) {
-            spritesheet.meta.image = id + '.png';
+        if (spritesheet?.meta?.image) {
+            spritesheet.meta.image = `${id}.png`;
         }
 
         Array.from(xmlOffset?.elements[0]?.elements[0]?.elements[0]?.elements).some((elm: any) => {

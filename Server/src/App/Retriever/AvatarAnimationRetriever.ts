@@ -2,7 +2,7 @@ import { inject, singleton } from 'tsyringe';
 import { FSRepository } from '../../Infra/FSRepository';
 import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
-import {Logger} from '../Logger/Logger';
+import { Logger } from '../Logger/Logger';
 
 export interface IType {
     gesture: string,
@@ -47,7 +47,7 @@ export class AvatarAnimationRetriever {
                     for (let frame = 0; frame < gestureData.framesCount; frame++) {
                         frames.push(this._habboAvatarAsset.find(id, { direction: dir, layerId, frame: frame.toString(), gesture, partType: types[0].partType }, spritesheet));
                     }
-                    animations[`${layerId}_${gesture}_${dir}`] = frames;
+                    animations[`${types[0].partType}_${layerId}_${gesture}_${dir}`] = frames;
                 });
             });
         });
