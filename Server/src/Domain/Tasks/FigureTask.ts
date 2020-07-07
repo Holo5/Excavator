@@ -40,7 +40,8 @@ export class FigureTask extends Task {
             || this._lib.id === 'hh_people_pool'
             || this._lib.id === 'jacket_U_snowwar4_team1'
             || this._lib.id === 'jacket_U_snowwar4_team2'
-            || this._lib.id === 'hh_human_fx') return;
+            || this._lib.id === 'hh_human_fx'
+            || this._lib.id !== 'hh_human_body') return;
 
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + this._lib.id}.swf`;
 

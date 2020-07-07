@@ -44,12 +44,15 @@ export class AvatarAnimationRetriever {
                         Logger.error(`Gesture ${gesture} not found for ${id} !`);
                     }
 
-                    gestureData.direction.forEach((dir) => {
+                    gestureData.direction.forEach((direction) => {
                         const frames = [];
                         for (let frame = 0; frame < gestureData.framesCount; frame++) {
-                            frames.push(this._habboAvatarAsset.find(id, { direction: dir, layerId, frame: frame.toString(), gesture, partType: bodyPart }, spritesheet));
+                            if(`${bodyPart}_${layerId}_${gesture}_${direction}` === 'bd_1_wlk_0') {
+                                console.log({ direction: direction, layerId, frame: frame.toString(), gesture, partType: bodyPart })
+                            }
+                            frames.push(this._habboAvatarAsset.find(id, { direction: direction, layerId, frame: frame.toString(), gesture, partType: bodyPart }, spritesheet));
                         }
-                        animations[`${bodyPart}_${layerId}_${gesture}_${dir}`] = frames;
+                        animations[`${bodyPart}_${layerId}_${gesture}_${direction}`] = frames;
                     });
                 });
             });
