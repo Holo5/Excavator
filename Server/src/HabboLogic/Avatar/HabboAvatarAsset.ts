@@ -12,6 +12,13 @@ export class HabboAvatarAsset {
 
         const missingAngle: boolean = AvatarDirectionAngle.MISSING_ANGLE[type.direction];
 
+        let frameName = `${id}_h_${gesture}_${partType}_${layerId}_${direction}_${frame}`;
+        let asset = spritesheet.frames[frameName];
+
+        if (asset !== undefined) {
+            return frameName
+        }
+
         if (
             missingAngle
       && !(gesture === 'wav'
@@ -43,9 +50,9 @@ export class HabboAvatarAsset {
             direction = '2';
         }
 
-        let frameName = `${id}_h_${gesture}_${partType}_${layerId}_${direction}_${frame}`;
+        frameName = `${id}_h_${gesture}_${partType}_${layerId}_${direction}_${frame}`;
 
-        const asset = spritesheet.frames[frameName];
+        asset = spritesheet.frames[frameName];
         if (asset === undefined) {
             frameName = `${id}_h_std_${partType}_${layerId}_${direction}_0`;
         }

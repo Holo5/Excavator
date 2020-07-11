@@ -47,9 +47,6 @@ export class AvatarAnimationRetriever {
                     gestureData.direction.forEach((direction) => {
                         const frames = [];
                         for (let frame = 0; frame < gestureData.framesCount; frame++) {
-                            if(`${bodyPart}_${layerId}_${gesture}_${direction}` === 'bd_1_wlk_0') {
-                                console.log({ direction: direction, layerId, frame: frame.toString(), gesture, partType: bodyPart })
-                            }
                             frames.push(this._habboAvatarAsset.find(id, { direction: direction, layerId, frame: frame.toString(), gesture, partType: bodyPart }, spritesheet));
                         }
                         animations[`${bodyPart}_${layerId}_${gesture}_${direction}`] = frames;
