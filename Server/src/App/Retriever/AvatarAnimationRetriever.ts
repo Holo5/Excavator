@@ -47,7 +47,7 @@ export class AvatarAnimationRetriever {
                     gestureData.direction.forEach((direction) => {
                         const frames = [];
                         for (let frame = 0; frame < gestureData.framesCount; frame++) {
-                            frames.push(this._habboAvatarAsset.find(id, { direction: direction, layerId, frame: frame.toString(), gesture, partType: bodyPart }, spritesheet));
+                            frames.push(this._habboAvatarAsset.find(id, { direction, layerId, frame: frame.toString(), gesture, partType: bodyPart }, spritesheet));
                         }
                         animations[`${bodyPart}_${layerId}_${gesture}_${direction}`] = frames;
                     });

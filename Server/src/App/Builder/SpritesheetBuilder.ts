@@ -51,8 +51,8 @@ export class SpritesheetBuilder {
             }
             const spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}`]?.spriteSourceSize;
             if (spriteSourceSize !== undefined) {
-                spriteSourceSize.x = parseInt(offset[0]);
-                spriteSourceSize.y = parseInt(offset[0]);
+                spriteSourceSize.x = parseInt(offset[0]) * -1;
+                spriteSourceSize.y = parseInt(offset[1]) * -1;
             }
             return null;
         });
