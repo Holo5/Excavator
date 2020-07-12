@@ -20,9 +20,6 @@ export class SpritesheetBuilder {
                 layout: 'packed',
                 spritePath: `${spriteDest}.png`,
                 stylesheetPath: `${spriteDest}.json`,
-                layoutOptions: {
-                    padding: 5,
-                },
                 stylesheet: Path.resolve(__dirname, 'json.tpl'),
                 compositor: 'jimp',
             }, resolve);
