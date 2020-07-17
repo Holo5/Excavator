@@ -8,7 +8,7 @@ export interface IType {
     gesture: string,
     partType: string,
     layerId: string,
-    direction: string,
+    direction: number,
     frame: string
 }
 
@@ -78,7 +78,7 @@ export class AvatarAnimationRetriever {
             gesture: result[1],
             partType: result[2],
             layerId: result[3],
-            direction: result[4],
+            direction: parseInt(result[4]),
             frame: result[5],
         };
     }

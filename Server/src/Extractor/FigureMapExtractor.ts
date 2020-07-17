@@ -30,7 +30,12 @@ export class FigureMapExtractor {
     async retrieve() {
         Logger.info('Retrieving figuremap...');
 
-        await this.download();
+        try {
+            await this.download();
+        } catch (e) {
+            Logger.error("Figuremap can't be downloaded...");
+            Logger.debug(`Link ${this._habboDataExtractor.getHabboData(HabboDataType.FIGUREMAP_URL)}`);
+        }
 
         this.convertToJson();
         this.parse();

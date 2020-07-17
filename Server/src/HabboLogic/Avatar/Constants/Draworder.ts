@@ -1,110 +1,24 @@
 import { IDraworder } from '../../../Domain/Model/Interface/IFigureData';
 
 export const Draworder: IDraworder = {
-    std: {
-        0: [
-            'li', 'lh', 'ls', 'lc', 'ri', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'rh', 'rs', 'rc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
-        1: [
-            'li', 'lh', 'ls', 'lc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'ri', 'rh', 'rs', 'rc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
-        2: [
-            'li', 'lh', 'ls', 'lc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'rh', 'rs', 'rc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he',
-            'ri',
-        ],
-        3: [
-            'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'li', 'lh', 'ls', 'lc', 'rh', 'rs', 'rc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he',
-            'ri',
-        ],
-        4: [
-            'rh', 'rs', 'rc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'lh', 'ls', 'lc', 'li', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he',
-            'ri',
-        ],
-        5: [
-            'rh', 'rs', 'rc', 'ri', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'li', 'lh', 'ls', 'lc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
-        6: [
-            'rh', 'rs', 'rc', 'ri', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'li', 'lh', 'ls', 'lc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
-        7: [
-            'li', 'lh', 'ls', 'lc', 'ri', 'rh', 'rs', 'rc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
+    vertical: {
+        0: ['rs', ',rc', 'rhs', ',rh', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',ri', 'li', ',lc', 'lh', ',lhs', 'ls'],
+        1: ['rs', ',rc', 'rhs', ',rh', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',ri', 'li', ',lc', 'lh', ',lhs', 'ls'],
+        2: ['rs', ',rc', 'rhs', ',rh', 'li', ',ri', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',lc', 'lh', ',lhs', 'ls'],
+        3: ['lc', ',lh', 'lhs', ',ls', 'rs', ',rc', 'rhs', ',rh', 'ri', ',li', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp'],
+        4: ['lc', ',lh', 'lhs', ',ls', 'li', ',ri', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',rs', 'rc', ',rhs', 'rh'],
+        5: ['lc', ',lh', 'lhs', ',ls', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',ri', 'li', ',rs', 'rc', ',rhs', 'rh'],
+        6: ['lc', ',lh', 'lhs', ',ls', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',li', 'ri', ',rs', 'rc', ',rhs', 'rh'],
+        7: ['fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',ri', 'li', ',lc', 'lh', ',lhs', 'ls', ',rs', 'rc', ',rhs', 'rh'],
     },
-    'lh-up': {
-        4: [
-            'rh', 'rs', 'rc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ri', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'lh', 'ls', 'lc',
-            'li',
-        ],
-        5: [
-            'rh', 'rs', 'rc', 'ri', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'li', 'lh', 'ls',
-            'lc',
-        ],
-        6: [
-            'rh', 'rs', 'rc', 'ri', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'li', 'lh', 'ls',
-            'lc',
-        ],
+    sitting: {
+        0: ['rs', ',rc', 'rhs', ',rh', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',ri', 'li', ',lc', 'lh', ',lhs', 'ls'],
+        2: ['rs', ',rc', 'rhs', ',rh', 'li', ',ri', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',lc', 'lh', ',lhs', 'ls'],
+        4: ['lc', ',lh', 'lhs', ',ls', 'li', ',ri', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',rs', 'rc', ',rhs', 'rh'],
+        6: ['lc', ',lh', 'lhs', ',ls', 'fc', ',ey', 'hrb', ',ea', 'ha', ',he', 'hd', ',fa', 'hr', ',bd', 'sh', ',ss', 'cc', ',bds', 'wa', ',ch', 'lg', ',ca', 'cp', ',li', 'ri', ',rs', 'rc', ',rhs', 'rh'],
     },
-    'rh-up': {
-        0: [
-            'li', 'lh', 'ls', 'lc', 'ri', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'rh', 'rs',
-            'rc',
-        ],
-        1: [
-            'li', 'lh', 'ls', 'lc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri', 'rh', 'rs',
-            'rc',
-        ],
-        2: [
-            'li', 'lh', 'ls', 'lc', 'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri', 'rh', 'rs',
-            'rc',
-        ],
-        3: [
-            'bd', 'sh', 'lg', 'ch', 'cc', 'cp', 'wa', 'li', 'lh', 'ls', 'lc', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri', 'rh', 'rs',
-            'rc',
-        ],
-    },
-    sit: {
-        2: [
-            'li', 'lh', 'ls', 'lc', 'bd', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'rh', 'rs', 'rc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri',
-            'sh',
-        ],
-        3: [
-            'bd', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'li', 'lh', 'ls', 'lc', 'rh', 'rs', 'rc', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri',
-            'sh',
-        ],
-        4: [
-            'rh', 'rs', 'rc', 'bd', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'lh', 'ls', 'lc', 'li', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri',
-            'sh',
-        ],
-    },
-    'sit.lh-up': {
-        4: [
-            'rh', 'rs', 'rc', 'bd', 'lg', 'ch', 'cc', 'cp', 'wa', 'ri', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'lh', 'ls', 'lc', 'li',
-            'sh',
-        ],
-    },
-    'sit.rh-up': {
-        2: [
-            'li', 'lh', 'ls', 'lc', 'bd', 'lg', 'ch', 'cc', 'cp', 'wa', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri', 'rh', 'rs', 'rc',
-            'sh',
-        ],
-        3: [
-            'bd', 'lg', 'ch', 'cc', 'cp', 'wa', 'li', 'lh', 'ls', 'lc', 'ca', 'hd', 'fc', 'ey', 'hr', 'hrb', 'fa', 'ea', 'ha', 'he', 'ri', 'rh', 'rs', 'rc',
-            'sh',
-        ],
-    },
-    lay: {
-        2: [
-            'lh', 'ls', 'lc', 'li', 'bd', 'lg', 'sh', 'ch', 'cc', 'cp', 'hd', 'fc', 'ey', 'wa', 'ri', 'rh', 'rs', 'rc', 'ca', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
-        4: [
-            'rh', 'rs', 'rc', 'ri', 'bd', 'lg', 'sh', 'ch', 'cc', 'cp', 'hd', 'fc', 'ey', 'wa', 'li', 'lh', 'ls', 'lc', 'ca', 'hr', 'hrb', 'fa', 'ea', 'ha',
-            'he',
-        ],
+    horizontal: {
+        2: ['lc', 'lh', 'lhs', 'ls', 'ri', 'li', 'fc', 'ey', 'hrb', 'ea', 'ha', 'he', 'hd', 'fa', 'hr', 'bd', 'sh', 'ss', 'cc', 'bds', 'wa', 'ch', 'lg', 'ca', 'cp', 'rs', 'rc', 'rhs', 'rh'],
+        4: ['lc', ',lh', 'lhs', 'ls', 'ri', 'li', 'fc', 'ey', 'hrb', 'ea', 'ha', 'he', 'hd', 'fa', 'hr', 'bd', 'sh', 'ss', 'cc', 'bds', 'wa', 'ch', 'lg', 'ca', 'cp', 'rs', 'rc', 'rhs', 'rh'],
     },
 };

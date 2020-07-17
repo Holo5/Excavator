@@ -83,8 +83,8 @@ export class Holo5FigureDataAssembler {
 
                 set.parts.forEach((part) => {
                     let assetName = this.findAssetName(part.id, part.type);
-                    if(part.type === "hrb" && assetName === undefined) {
-                       assetName = this.findAssetName(part.id, "hr");
+                    if (part.type === 'hrb' && assetName === undefined) {
+                        assetName = this.findAssetName(part.id, 'hr');
                     }
                     if (assetName !== undefined) {
                         currentSetTypes[setType.type].sets[set.id].parts.push({
