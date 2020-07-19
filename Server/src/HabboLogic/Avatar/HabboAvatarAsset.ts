@@ -42,16 +42,6 @@ export class HabboAvatarAsset {
             }
         }
 
-        if ((
-            _local_20 === AvatarFigurePartType.FACE_ACCESSORY
-      || _local_20 === AvatarFigurePartType.CHEST_ACCESSORY
-      || _local_20 === AvatarFigurePartType.EYE_ACCESSORY
-      || _local_20 === AvatarFigurePartType.WAIST_ACCESSORY
-      || _local_20 === AvatarFigurePartType.WAIST_ACCESSORY
-        ) && type.direction === 7) {
-            _local_6 = 3;
-        }
-
         _local_24 = `${id}_h_${_local_10}_${_local_20}_${_local_21}_${_local_6}_${_local_23}`;
         const asset = spritesheet.frames[_local_24];
         if (asset === undefined) {
