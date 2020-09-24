@@ -26,6 +26,7 @@ export class AvatarAnimationRetriever {
     async retrieve(id: string) {
         const spritesheet = JSON.parse(this._fsRepository.readSpritesheet(id));
         const animations = {};
+        const partsType = {};
 
         const types: IType[] = Object.keys(spritesheet.frames).map((key) => {
             const regExp = new RegExp(`(${id})_(.+)`);
@@ -36,6 +37,10 @@ export class AvatarAnimationRetriever {
         bodyParts.forEach((bodyPart) => {
             const gestures = this.findAllGestures(types, bodyPart);
             const layersId = this.findAllLayerId(types, bodyPart);
+
+            partsType[bodyPart] = {
+                gestures: gestures
+            };
 
             layersId.forEach((layerId) => {
                 gestures.forEach((gesture) => {
@@ -56,6 +61,7 @@ export class AvatarAnimationRetriever {
         });
 
         spritesheet.animations = animations;
+        spritesheet.partsType = partsType;
         this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
     }
 
