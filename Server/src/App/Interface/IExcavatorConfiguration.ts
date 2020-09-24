@@ -6,13 +6,9 @@ export interface IExcavatorConfiguration {
     forceHttps: boolean,
     serverPort: number,
     packetDebug: boolean,
-    figure: {
-        figureData: string,
-        figureMap: string,
-        swfBaseUrl: string
-    },
-    furni: {
-        furniData: string,
-        swfBaseUrl: string
+    folder: {
+        figures: string,
+        furnis: string,
+        furniIcons: string,
     }
 }

@@ -3,6 +3,7 @@ import * as Path from 'path';
 import { xml2js } from 'xml-js';
 import * as nsg from 'node-sprite-generator';
 import { FSRepository } from '../../Infra/FSRepository';
+import {Configuration} from '../../../Config';
 
 @singleton()
 export class SpritesheetBuilder {
@@ -10,10 +11,10 @@ export class SpritesheetBuilder {
         @inject(FSRepository) private _fsRepository: FSRepository,
     ) {}
 
-    async build(id: string) {
+    async build(id: string, folder: string) {
         await new Promise((resolve) => {
             const partsPath = Path.resolve(container.resolve(FSRepository).extractedPath, id, 'images', '*.png');
-            const spriteDest = Path.resolve(container.resolve(FSRepository).buildPath, id, id);
+            const spriteDest = Path.resolve(container.resolve(FSRepository).buildPath, folder, id, id);
 
             nsg({
                 src: [partsPath],
@@ -26,8 +27,8 @@ export class SpritesheetBuilder {
         });
     }
 
-    async retrieveOffsets(id: string) {
-        const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(id));
+    async retrieveFigureOffset(id: string) {
+        const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(id, Configuration.folder.figures));
         let xmlOffset = this._fsRepository.readBinaries(id, 'manifest');
         xmlOffset = xml2js(xmlOffset, { compact: false });
 
@@ -54,6 +55,6 @@ export class SpritesheetBuilder {
             return null;
         });
 
-        this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
+        this._fsRepository.writeSpriteSheet(id, Configuration.folder.figures, JSON.stringify(spritesheet));
     }
 }

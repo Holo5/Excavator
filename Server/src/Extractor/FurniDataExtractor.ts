@@ -145,7 +145,13 @@ export class FurniDataExtractor {
 
         Logger.info(`Found ${magenta(this._floorItems.length.toString())} floor items`);
         Logger.info(`Found ${magenta(this._wallItems.length.toString())} wall items`);
+    }
 
-        //this._socketServer.send(new FigureMapListComposer(this._libs));
+    public get floorItems(): FloorItem[] {
+        return this._floorItems;
+    }
+
+    public get wallItems(): WallItem[] {
+        return this._wallItems;
     }
 }

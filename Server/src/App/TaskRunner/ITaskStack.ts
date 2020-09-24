@@ -1,6 +1,6 @@
-import { FigureTask } from '../../Domain/Tasks/FigureTask';
+import {Task} from '../../Domain/Tasks/Task';
 
 export interface ITaskStack {
-    task: FigureTask,
+    task: Task,
     running: boolean
 }

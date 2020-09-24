@@ -3,6 +3,7 @@ import { FSRepository } from '../../Infra/FSRepository';
 import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
 import { Logger } from '../Logger/Logger';
+import {Configuration} from '../../../Config';
 
 export interface IType {
     gesture: string,
@@ -24,7 +25,7 @@ export class AvatarAnimationRetriever {
     }
 
     async retrieve(id: string) {
-        const spritesheet = JSON.parse(this._fsRepository.readSpritesheet(id));
+        const spritesheet = JSON.parse(this._fsRepository.readSpritesheet(id, Configuration.folder.figures));
         const animations = {};
         const partsType = {};
 
@@ -62,7 +63,7 @@ export class AvatarAnimationRetriever {
 
         spritesheet.animations = animations;
         spritesheet.partsType = partsType;
-        this._fsRepository.writeSpriteSheet(id, JSON.stringify(spritesheet));
+        this._fsRepository.writeSpriteSheet(id, Configuration.folder.figures, JSON.stringify(spritesheet));
     }
 
     private findAllGestures(types: IType[], bodyPart: string): string[] {

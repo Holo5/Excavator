@@ -47,6 +47,10 @@ export class FSRepository {
         FSRepository.mkdir(this._swfPath, 'swf');
         FSRepository.mkdir(this._extractedPath, 'extracted swf');
 
+        FSRepository.mkdir(Path.resolve(this._buildPath, Configuration.folder.figures), "figure's folder");
+        FSRepository.mkdir(Path.resolve(this._buildPath, Configuration.folder.furnis), "figure's folder");
+        FSRepository.mkdir(Path.resolve(this._buildPath, Configuration.folder.furniIcons), "furni icon's folder");
+
         Logger.info('Folder tree created!');
     }
 
@@ -55,12 +59,12 @@ export class FSRepository {
         fse.emptyDirSync(this._swfPath);
     }
 
-    getFurniData() {
-        return fs.readFileSync(Path.resolve(this._extractedPath, 'furnidata.xml'));
-    }
-
     writeInExtractedFolder(filename: string, data: any) {
         fs.writeFileSync(Path.resolve(this._extractedPath, filename), data, { encoding: 'utf8', flag: 'w+' });
+    }
+
+    writeInBuildFolder(filename: string, folder: string, data: any) {
+        fs.writeFileSync(Path.resolve(this._buildPath, folder, filename), data, { encoding: 'utf8', flag: 'w+' });
     }
 
     writeInTmpFolder(filename: string, data: any) {
@@ -69,10 +73,6 @@ export class FSRepository {
 
     writeInSwfFolder(filename: string, data: any) {
         fs.writeFileSync(Path.resolve(this._swfPath, filename), data, { encoding: 'utf8', flag: 'w+' });
-    }
-
-    existInSwfFolder(filename: string) {
-        return fs.existsSync(Path.resolve(this._swfPath, filename, '.swf'));
     }
 
     existInExtractedFolder(filename: string) {
@@ -99,16 +99,16 @@ export class FSRepository {
         }
     }
 
-    readSpritesheet(filename: string): any | false {
+    readSpritesheet(filename: string, type: string): any | false {
         try {
-            return fs.readFileSync(Path.resolve(this._buildPath, filename, `${filename}.json`));
+            return fs.readFileSync(Path.resolve(this._buildPath, type, filename, `${filename}.json`));
         } catch (e) {
             return false;
         }
     }
 
-    writeSpriteSheet(filename: string, data: string) {
-        fs.writeFileSync(Path.resolve(this._buildPath, filename, `${filename}.json`), data, { encoding: 'utf8', flag: 'w+' });
+    writeSpriteSheet(filename: string, folder: string, data: string) {
+        fs.writeFileSync(Path.resolve(this._buildPath, folder, filename, `${filename}.json`), data, { encoding: 'utf8', flag: 'w+' });
     }
 
     readBinaries(filename: string, type?: string): any | false {
@@ -141,34 +141,4 @@ export class FSRepository {
     get extractedPath(): string {
         return this._extractedPath;
     }
-
-    /*
-    releaseFurni(furniType: FurniType) {
-        if (!fs.existsSync(Path.resolve(this._buildPath, furniType.realClassName))) {
-            fs.mkdirSync(Path.resolve(this._buildPath, furniType.realClassName));
-        }
-        fs.copyFileSync(
-            Path.resolve(this._buildPath, furniType.realClassName + ".json"),
-            Path.resolve(this._buildPath, furniType.realClassName, furniType.realClassName + ".json"),
-        );
-        fs.unlinkSync(Path.resolve(this._buildPath, furniType.realClassName + ".json"));
-        fs.copyFileSync(
-            Path.resolve(this._extractedPath, furniType.realClassName, "sprites", furniType.realClassName + "_sprite.png"),
-            Path.resolve(this._buildPath, furniType.realClassName, furniType.realClassName + "_sprite.png"),
-        );
-    }
-
-    existingImages(furniType: FurniType) {
-        if(fs.existsSync(Path.resolve(this.extractedPath, furniType.realClassName, "images"))) {
-            let files = fs.readdirSync(Path.resolve(this.extractedPath, furniType.realClassName, "images"))
-            if(files.length > 1) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-   */
 }

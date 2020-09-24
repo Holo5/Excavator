@@ -8,6 +8,9 @@ import { Logger } from '../Logger/Logger';
 import { ColorPalette } from '../../Domain/FigureData/ColorPalette';
 import { Color } from '../../Domain/FigureData/Color';
 import { Draworder } from '../../HabboLogic/Avatar/Constants/Draworder';
+import {Configuration} from '../../../Config';
+
+const LOCAL_FIGURE_DATA_NAME = "figuredata.json"
 
 @singleton()
 export class Holo5FigureDataAssembler {
@@ -26,7 +29,7 @@ export class Holo5FigureDataAssembler {
             draworder: Draworder,
         };
 
-        this._fsRepository.writeInTmpFolder('figuredata.json', JSON.stringify(figureData));
+        this._fsRepository.writeInBuildFolder(LOCAL_FIGURE_DATA_NAME, Configuration.folder.figures, JSON.stringify(figureData));
 
         Logger.info('Figuredata writed !');
     }

@@ -8,13 +8,9 @@ export const Configuration: IExcavatorConfiguration = {
     forceHttps: true,
     serverPort: 6691,
     packetDebug: true,
-    figure: {
-        figureData: '',
-        figureMap: '',
-        swfBaseUrl: '',
-    },
-    furni: {
-        furniData: '',
-        swfBaseUrl: '',
-    },
+    folder: {
+        figures: 'figure',
+        furnis: 'furni',
+        furniIcons: 'icons'
+    }
 };

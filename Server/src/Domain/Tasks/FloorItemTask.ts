@@ -1,19 +1,17 @@
 import { container } from 'tsyringe';
 import { Task } from './Task';
-import { Lib } from '../FigureMap/Lib';
 import { HabboFlashExtractor } from '../../Extractor/HabboFlashExtractor';
 import { AssetDownloader } from '../../App/Downloader/AssetDownloader';
 import { HabboDataExtractor } from '../../Extractor/HabboDataExtractor';
-import { HabboDataType } from '../../Extractor/Enum/HabboDataType';
-import { ExtractionState } from '../FigureMap/Enum/ExtractionState';
 import { SpritesheetBuilder } from '../../App/Builder/SpritesheetBuilder';
 import { AvatarAnimationRetriever } from '../../App/Retriever/AvatarAnimationRetriever';
 import { SocketServer } from '../../Network/Server/SocketServer';
-import { LibExtractionStateChangeComposer } from '../../Network/Outgoing/Figure/FigureMap/LibExtractionStateChangeComposer';
-import { Logger } from '../../App/Logger/Logger';
+import {FloorItem} from '../FurniData/FloorItem';
+import {HabboDataType} from '../../Extractor/Enum/HabboDataType';
+import {Logger} from '../../App/Logger/Logger';
 import {Configuration} from '../../../Config';
 
-export class FigureTask extends Task {
+export class FloorItemTask extends Task {
     private readonly _dataExtractor: HabboDataExtractor;
     private readonly _assetDownloader: AssetDownloader;
     private readonly _flashExtractor: HabboFlashExtractor;
@@ -21,12 +19,12 @@ export class FigureTask extends Task {
     private readonly _animationRetriever: AvatarAnimationRetriever;
     private readonly _socketServer: SocketServer;
 
-    private _lib: Lib;
+    private _floorItem: FloorItem;
 
-    constructor(lib: Lib) {
+    constructor(floorItem: FloorItem) {
         super();
 
-        this._lib = lib;
+        this._floorItem = floorItem;
 
         this._dataExtractor = container.resolve(HabboDataExtractor);
         this._assetDownloader = container.resolve(AssetDownloader);
@@ -37,38 +35,35 @@ export class FigureTask extends Task {
     }
 
     async run() {
-        if (this._lib.id === 'hh_pets'
-            || this._lib.id === 'hh_people_pool'
-            || this._lib.id === 'jacket_U_snowwar4_team1'
-            || this._lib.id === 'jacket_U_snowwar4_team2'
-            || this._lib.id === 'hh_human_fx') return;
 
-        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + this._lib.id}.swf`;
+        const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
+        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}${this._floorItem.revision}/${className}.swf`;
 
         try {
             await this._assetDownloader.download(assetLink);
         } catch (e) {
-            Logger.error(`Flash file ${this._lib.id} can't be downloaded.`);
+            Logger.error(`Flash file ${this._floorItem.id} can't be downloaded.`);
             Logger.debug(`Link: ${assetLink}`);
             return;
         }
 
         try {
-            await this._flashExtractor.extract(this._lib.id);
+            await this._flashExtractor.extract(this._floorItem.className);
         } catch (e) {
-            Logger.error(`Flash file ${this._lib.id} can't be extracted.`);
+            Logger.error(`Flash file ${this._floorItem.id} can't be extracted.`);
         }
 
         try {
-            await this._spritesheetBuilder.build(this._lib.id, Configuration.folder.figures);
+            await this._spritesheetBuilder.build(className, Configuration.folder.furnis);
         } catch (e) {
-            Logger.error(`Error creating ${this._lib.id}'s spritesheet`);
+            Logger.error(`Error creating ${this._floorItem.id}'s spritesheet`);
         }
 
+        /*
         try {
-            await this._spritesheetBuilder.retrieveFigureOffset(this._lib.id);
+            await this._spritesheetBuilder.retrieveOffsets(className, Configuration.folder.furnis);
         } catch (e) {
-            Logger.error(`Error retrieving ${this._lib.id}'s offsets`);
+            Logger.error(`Error retrieving ${className}'s offsets`);
         }
 
         try {
@@ -77,8 +72,6 @@ export class FigureTask extends Task {
             Logger.error(`Can't retrieve ${this._lib.id}'s animations`);
         }
 
-        this._lib.setExtractionState(ExtractionState.EXTRACTED);
-
-        this._socketServer.send(new LibExtractionStateChangeComposer(this._lib));
+        */
     }
 }
