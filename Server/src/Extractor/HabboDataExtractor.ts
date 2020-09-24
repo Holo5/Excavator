@@ -4,7 +4,7 @@ import { FSRepository } from '../Infra/FSRepository';
 import { Configuration } from '../../Config';
 import { HabboDataType } from './Enum/HabboDataType';
 
-const EXTERNAL_VARIABLES_NAME = 'external_variables.txt';
+const LOCAL_EXTERNAL_VARIABLES_NAME = 'external_variables.txt';
 
 @singleton()
 export class HabboDataExtractor {
@@ -22,11 +22,11 @@ export class HabboDataExtractor {
 
     private async download() {
         const externalVariables = await download(Configuration.externalVariablesUrl);
-        this._fsRepository.writeInTmpFolder(EXTERNAL_VARIABLES_NAME, externalVariables);
+        this._fsRepository.writeInTmpFolder(LOCAL_EXTERNAL_VARIABLES_NAME, externalVariables);
     }
 
     private extractData() {
-        const data = this._fsRepository.readInTmpFolder(EXTERNAL_VARIABLES_NAME) as Buffer;
+        const data = this._fsRepository.readInTmpFolder(LOCAL_EXTERNAL_VARIABLES_NAME) as Buffer;
         const dataArray: string[] = data
             .toString('utf-8')
             .split('\n')
