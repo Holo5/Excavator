@@ -60,7 +60,7 @@ class FlippedAssetBuilder
         if($fileName !== null) {
             $assetsXML = new \SimpleXMLElement(file_get_contents($this->savePath . '/binaries/' . $fileName));
             foreach ($assetsXML as $asset) {
-                if(isset($asset->attributes()['source']) && $asset->attributes()['flipH'] == 1) {
+                if(isset($asset->attributes()['source'])) {
                     $assetsToExtract[(string) $asset->attributes()->name] = (string) $asset->attributes()['source'];
                 }
             }
