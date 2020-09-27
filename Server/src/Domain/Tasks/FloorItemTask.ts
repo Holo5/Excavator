@@ -60,7 +60,7 @@ export class FloorItemTask extends Task {
             Logger.error(`Error creating ${this._floorItem.id}'s spritesheet`);
         }
 
-/*
+
         try {
             await this._spritesheetBuilder.retrieveFurniOffset(className);
         } catch (e) {

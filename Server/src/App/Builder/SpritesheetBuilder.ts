@@ -64,39 +64,11 @@ export class SpritesheetBuilder {
         xmlOffset = xml2js(xmlOffset, { compact: true });
 
         xmlOffset.assets.asset.forEach(asset => {
-            if(spritesheet.frames[`${classname}_${asset._attributes.name}`] === undefined && asset._attributes.source !== undefined) {
-                console.log(asset._attributes.name);
-            }
+            let spriteSourceSize = spritesheet.frames[`${classname}_${asset._attributes.name}`].spriteSourceSize;
+            spriteSourceSize.x = parseInt(asset._attributes.x);
+            spriteSourceSize.y = parseInt(asset._attributes.y);
         });
 
-        //console.log(xmlOffset);
-
-        /*
-        if (spritesheet === false && xmlOffset === false) {
-            return;
-        }
-
-        if (spritesheet?.meta?.image) {
-            spritesheet.meta.image = `${id}.png`;
-        }
-
-        Array.from(xmlOffset?.elements[0]?.elements[0]?.elements[0]?.elements).some((elm: any) => {
-            const offset = elm?.elements[0]?.attributes?.value?.split(',');
-            const name = elm?.attributes?.name;
-
-            if (spritesheet?.frames[`${id}_${name}`]?.trimmed !== undefined) {
-                spritesheet.frames[`${id}_${name}`].trimmed = true;
-            }
-            const spriteSourceSize: { x: number, y: number, w: number, h: number } = spritesheet?.frames[`${id}_${name}`]?.spriteSourceSize;
-            if (spriteSourceSize !== undefined) {
-                spriteSourceSize.x = parseInt(offset[0]) * -1;
-                spriteSourceSize.y = parseInt(offset[1]) * -1;
-            }
-            return null;
-        });
-
-        this._fsRepository.writeSpriteSheet(id, Configuration.folder.figures, JSON.stringify(spritesheet));
-
-         */
+        this._fsRepository.writeSpriteSheet(classname, Configuration.folder.furnis, JSON.stringify(spritesheet));
     }
 }
