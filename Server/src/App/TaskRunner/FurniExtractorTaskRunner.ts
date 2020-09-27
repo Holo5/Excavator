@@ -37,7 +37,7 @@ export class FurniExtractorTaskRunner {
 
         const floorItem = this._floorItemsToExtract.shift();
 
-        Logger.debug(`Extracting ${floorItem.id}. ${this._floorItemsToExtract.length}`);
+        Logger.debug(`Extracting ${floorItem.className}. ${this._floorItemsToExtract.length}`);
         const task = new FloorItemTask(floorItem);
 
         this._stack.push({

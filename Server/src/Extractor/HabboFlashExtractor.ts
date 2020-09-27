@@ -14,12 +14,13 @@ export class HabboFlashExtractor {
         this._executablePath = Path.resolve(__dirname, '..', '..', 'binaries', 'HabboAssetExtractor', 'Holo5Extractor.php');
     }
 
-    async extract(assetName: string) {
+    async extract(assetName: string, extractFlippedImages: boolean = false) {
         if (this._fsRepository.readInSwfFolder(`${assetName}.swf`)) {
             const assetPath = Path.resolve(this._fsRepository.swfPath, `${assetName}.swf`);
             const extractedPath = Path.resolve(this._fsRepository.extractedPath, assetName);
             await new Promise((resolve) => {
-                exec(`php ${this._executablePath} ${assetPath} ${extractedPath}`, resolve);
+                exec(`php ${this._executablePath} ${assetPath} ${extractedPath}` + (extractFlippedImages === true ? ' --extract-flipped-images' : ''), resolve);
+
             });
         } else {
             Logger.error(`Can't extract the file ${assetName}.swf, the file doesn't exist.`);

@@ -39,6 +39,7 @@ export class FloorItemTask extends Task {
         const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}${this._floorItem.revision}/${className}.swf`;
 
+
         try {
             await this._assetDownloader.download(assetLink);
         } catch (e) {
@@ -48,7 +49,7 @@ export class FloorItemTask extends Task {
         }
 
         try {
-            await this._flashExtractor.extract(this._floorItem.className);
+            await this._flashExtractor.extract(className, true);
         } catch (e) {
             Logger.error(`Flash file ${this._floorItem.id} can't be extracted.`);
         }
@@ -59,13 +60,14 @@ export class FloorItemTask extends Task {
             Logger.error(`Error creating ${this._floorItem.id}'s spritesheet`);
         }
 
-        /*
+/*
         try {
-            await this._spritesheetBuilder.retrieveOffsets(className, Configuration.folder.furnis);
+            await this._spritesheetBuilder.retrieveFurniOffset(className);
         } catch (e) {
             Logger.error(`Error retrieving ${className}'s offsets`);
         }
 
+        /*
         try {
             await this._animationRetriever.retrieve(this._lib.id);
         } catch (e) {

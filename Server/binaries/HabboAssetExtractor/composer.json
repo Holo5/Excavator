@@ -11,6 +11,7 @@
   "require": {
     "php": ">=7.1.0",
     "ext-zlib": "*",
-    "ext-gd": "*"
+    "ext-gd": "*",
+    "ext-xml": "*"
   }
 }

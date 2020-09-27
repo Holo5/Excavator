@@ -29,16 +29,14 @@ export class Holo5Excavator {
         this._fsRepository.init();
         this._socketServer.init();
         await this._habboDataExtractor.init();
-
-        await this._figureDataExtractor.retrieve();
-        await this._figureMapExtractor.retrieve();
-        await this._holo5FigureDataAssembler.assemble();
-
-        this._figureExtractorTaskRunner.startExtraction();
+        //
+        // await this._figureDataExtractor.retrieve();
+        // await this._figureMapExtractor.retrieve();
+        // await this._holo5FigureDataAssembler.assemble();
+        // this._figureExtractorTaskRunner.startExtraction();
 
         await this._furniDataExtractor.retrieve();
         await this._holo5FurniDataAssembler.assemble();
-
         this._furniExtractorTaskRunner.startExtraction();
     }
 }
