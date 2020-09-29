@@ -39,7 +39,7 @@ export class FloorItemTask extends Task {
         const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}${this._floorItem.revision}/${className}.swf`;
 
-
+        /*
         try {
             await this._assetDownloader.download(assetLink);
         } catch (e) {
@@ -59,11 +59,13 @@ export class FloorItemTask extends Task {
         } catch (e) {
             Logger.error(`Error creating ${this._floorItem.id}'s spritesheet`);
         }
+        */
 
 
         try {
             await this._spritesheetBuilder.retrieveFurniOffset(className);
         } catch (e) {
+            Logger.error(e);
             Logger.error(`Error retrieving ${className}'s offsets`);
         }
 
