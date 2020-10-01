@@ -21,7 +21,6 @@ export class AvatarAnimationRetriever {
         @inject(FSRepository) private _fsRepository: FSRepository,
         @inject(HabboAvatarAsset) private _habboAvatarAsset: HabboAvatarAsset,
     ) {
-
     }
 
     async retrieve(id: string) {

@@ -8,7 +8,9 @@ export class AssetDownloader {
         @inject(FSRepository) private _fsRepository: FSRepository,
     ) {}
 
-    async download(assetLink: string) {
-        await download(assetLink, this._fsRepository.swfPath);
+    async download(assetLink: string, filename: string) {
+        if(this._fsRepository.readInSwfFolder(filename + ".swf") === false) {
+            await download(assetLink, this._fsRepository.swfPath);
+        }
     }
 }

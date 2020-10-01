@@ -42,9 +42,10 @@ export class FloorItemTask extends Task {
         const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}${this._floorItem.revision}/${className}.swf`;
 
-        /*
+        if(className === "tickets" || className === "floortile") return;
+
         try {
-            await this._assetDownloader.download(assetLink);
+            await this._assetDownloader.download(assetLink, className);
         } catch (e) {
             Logger.error(`Flash file ${this._floorItem.id} can't be downloaded.`);
             Logger.debug(`Link: ${assetLink}`);
@@ -62,7 +63,6 @@ export class FloorItemTask extends Task {
         } catch (e) {
             Logger.error(`Error creating ${this._floorItem.id}'s spritesheet`);
         }
-        */
 
         try {
             await this._spritesheetBuilder.retrieveFurniOffset(className);

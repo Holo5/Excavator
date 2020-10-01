@@ -46,7 +46,7 @@ export class FigureTask extends Task {
         const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + this._lib.id}.swf`;
 
         try {
-            await this._assetDownloader.download(assetLink);
+            await this._assetDownloader.download(assetLink, this._lib.id);
         } catch (e) {
             Logger.error(`Flash file ${this._lib.id} can't be downloaded.`);
             Logger.debug(`Link: ${assetLink}`);

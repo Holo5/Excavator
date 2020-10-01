@@ -34,8 +34,8 @@ export class FurniVisualizationRetriever {
         }).pop();
         furniProperty.visualization.layerCount = visualization._attributes.layerCount !== undefined ? parseInt(visualization._attributes.layerCount) : 0;
 
-        if (visualization?.layers?.layer?.length > 0) {
-            visualization.layers?.layer?.forEach(layer => {
+        if (visualization?.layers !== undefined) {
+            this.formatArray(visualization.layers?.layer).forEach(layer => {
                 if (layer?._attributes.id !== undefined) {
                     furniProperty.visualization.layers[parseInt(layer._attributes.id)] = {
                         id: parseInt(layer._attributes?.id),
@@ -48,14 +48,14 @@ export class FurniVisualizationRetriever {
             });
         }
 
-        if(visualization?.directions?.direction?.length > 0) {
-            visualization?.directions?.direction.forEach(direction => {
+        if(visualization?.directions !== undefined) {
+            this.formatArray(visualization?.directions?.direction).forEach(direction => {
                furniProperty.visualization.directions.push(parseInt(direction._attributes.id));
             });
         }
 
-        if (visualization?.colors?.color?.length > 0) {
-            visualization.colors.color.forEach(color => {
+        if (visualization?.colors !== undefined) {
+            this.formatArray(visualization.colors.color).forEach(color => {
                 furniProperty.visualization.colors[parseInt(color._attributes.id)] = {};
 
                 if (color?.colorLayer?.length > 0) {
@@ -66,19 +66,18 @@ export class FurniVisualizationRetriever {
             });
         }
 
-        if (visualization?.animations?.animation?.length > 0) {
-            visualization.animations.animation.forEach(animation => {
+        if (visualization?.animations !== undefined) {
+            this.formatArray(visualization.animations.animation).forEach(animation => {
                 furniProperty.visualization.animation[animation._attributes.id] = {};
 
-                animation?.animationLayer?.forEach(animationLayer => {
-                    let frameSequence = Object.values(animationLayer?.frameSequence?.frame)
-                        .map((frame: any) => {
-                            if(frame._attributes !== undefined) {
-                                return parseInt(frame._attributes.id);
-                            } else if(frame.id !== undefined) {
-                                return parseInt(frame.id);
-                            }
+                this.formatArray(animation?.animationLayer).forEach(animationLayer => {
+                    let frameSequence = [];
+
+                    this.formatArray(animationLayer?.frameSequence).forEach(fs => {
+                        this.formatArray(fs.frame).forEach(elm => {
+                           frameSequence.push(parseInt(elm._attributes.id));
                         });
+                    });
 
                     furniProperty.visualization.animation[animation._attributes.id][animationLayer._attributes.id] = {
                         frameSequence: frameSequence,
@@ -92,6 +91,11 @@ export class FurniVisualizationRetriever {
 
         spritesheet.furniProperty = furniProperty;
         this._fsRepository.writeSpriteSheet(classname, Configuration.folder.furnis, JSON.stringify(spritesheet));
+    }
+
+    formatArray(elm: any) {
+        if(elm === undefined) return [];
+        return elm.length === undefined ? [elm] : elm;
     }
 
     private buildFurniProperty(): IFurniProperty {
