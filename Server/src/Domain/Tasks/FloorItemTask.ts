@@ -10,6 +10,7 @@ import {FloorItem} from '../FurniData/FloorItem';
 import {HabboDataType} from '../../Extractor/Enum/HabboDataType';
 import {Logger} from '../../App/Logger/Logger';
 import {Configuration} from '../../../Config';
+import {FurniVisualizationRetriever} from '../../App/Retriever/FurniVisualizationRetriever';
 
 export class FloorItemTask extends Task {
     private readonly _dataExtractor: HabboDataExtractor;
@@ -17,6 +18,7 @@ export class FloorItemTask extends Task {
     private readonly _flashExtractor: HabboFlashExtractor;
     private readonly _spritesheetBuilder: SpritesheetBuilder;
     private readonly _animationRetriever: AvatarAnimationRetriever;
+    private readonly _furniVisualizationRetriever: FurniVisualizationRetriever;
     private readonly _socketServer: SocketServer;
 
     private _floorItem: FloorItem;
@@ -31,6 +33,7 @@ export class FloorItemTask extends Task {
         this._flashExtractor = container.resolve(HabboFlashExtractor);
         this._spritesheetBuilder = container.resolve(SpritesheetBuilder);
         this._animationRetriever = container.resolve(AvatarAnimationRetriever);
+        this._furniVisualizationRetriever = container.resolve(FurniVisualizationRetriever);
         this._socketServer = container.resolve(SocketServer);
     }
 
@@ -61,7 +64,6 @@ export class FloorItemTask extends Task {
         }
         */
 
-
         try {
             await this._spritesheetBuilder.retrieveFurniOffset(className);
         } catch (e) {
@@ -69,13 +71,12 @@ export class FloorItemTask extends Task {
             Logger.error(`Error retrieving ${className}'s offsets`);
         }
 
-        /*
         try {
-            await this._animationRetriever.retrieve(this._lib.id);
+            await this._furniVisualizationRetriever.buildVisualization(className);
         } catch (e) {
-            Logger.error(`Can't retrieve ${this._lib.id}'s animations`);
+            Logger.error(e);
+            Logger.error(`Can't retrieve ${className}'s visualization... :(`);
+            throw e;
         }
-
-        */
     }
 }
