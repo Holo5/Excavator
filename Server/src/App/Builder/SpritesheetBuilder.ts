@@ -64,13 +64,17 @@ export class SpritesheetBuilder {
         let xmlOffset: any = this._fsRepository.readBinaries(classname, classname + '_assets');
         xmlOffset = xml2js(xmlOffset, { compact: true });
 
+        if (spritesheet?.meta?.image) {
+            spritesheet.meta.image = `${classname}.png`;
+        }
+
         xmlOffset.assets.asset.forEach(asset => {
             let assetName: string = asset._attributes.name;
 
             try {
                 let spriteSourceSize = spritesheet.frames[`${classname}_${asset._attributes.name}`].spriteSourceSize;
-                spriteSourceSize.x = parseInt(asset._attributes.x);
-                spriteSourceSize.y = parseInt(asset._attributes.y);
+                spriteSourceSize.x = asset._attributes.flipH === undefined ? -parseInt(asset._attributes.x) : -(parseInt(spriteSourceSize.w) - parseInt(asset._attributes.x));
+                spriteSourceSize.y = -parseInt(asset._attributes.y);
             } catch (e) {
                 Logger.error("Error finding frame " + assetName,)
             }
