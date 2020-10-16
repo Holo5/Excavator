@@ -60,11 +60,11 @@ export class HabboDataExtractor {
         });
     }
 
-    getHabboData(habboDataType: HabboDataType) {
+    getHabboData(habboDataType: HabboDataType): string {
         const data = this._variables[habboDataType];
         if (data !== undefined && data.substring(0, 2) === '//') {
-            return this._variables[habboDataType].replace('//', Configuration.forceHttps ? 'https://' : 'http://');
+            return this._variables[habboDataType].replace('//', Configuration.forceHttps ? 'https://' : 'http://').trim();
         }
-        return this._variables[habboDataType];
+        return this._variables[habboDataType].trim();
     }
 }

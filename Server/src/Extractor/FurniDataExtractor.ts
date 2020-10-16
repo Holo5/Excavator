@@ -123,7 +123,9 @@ export class FurniDataExtractor {
         if (elm.elements === undefined) return [];
 
         elm.elements.forEach(elm1 => {
-            colors.push(elm1.elements[0].text);
+            if(elm1.elements !== undefined && elm1.elements.length > 0) {
+                colors.push(elm1.elements[0].text);
+            }
         });
 
         return colors;
