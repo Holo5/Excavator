@@ -40,7 +40,7 @@ export class FloorItemTask extends Task {
     async run() {
 
         const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
-        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}${this._floorItem.revision}/${className}.swf`;
+        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}/${className}.swf`;
 
         if(className === "tickets" || className === "floortile") return;
 
@@ -56,6 +56,10 @@ export class FloorItemTask extends Task {
             await this._flashExtractor.extract(className, true);
         } catch (e) {
             Logger.error(`Flash file ${this._floorItem.id} can't be extracted.`);
+        }
+
+        if(!this._flashExtractor.checkIsExtracted(className)) {
+            return;
         }
 
         try {
@@ -76,7 +80,6 @@ export class FloorItemTask extends Task {
         } catch (e) {
             Logger.error(e);
             Logger.error(`Can't retrieve ${className}'s visualization... :(`);
-            throw e;
         }
     }
 }

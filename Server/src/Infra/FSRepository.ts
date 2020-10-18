@@ -122,6 +122,11 @@ export class FSRepository {
         }
     }
 
+    checkFileExtracted(filename: string): boolean {
+        return fse.readdirSync(Path.resolve(this._extractedPath, filename, 'images')).length > 0 &&
+            fse.readdirSync(Path.resolve(this._extractedPath, filename, 'binaries')).length > 0;
+    }
+
     get xmlParser(): Parser {
         return this._xmlParser;
     }

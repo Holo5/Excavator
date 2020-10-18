@@ -32,7 +32,7 @@ export class FurniVisualizationRetriever {
         let visualization = xmlVisualization?.visualizationData?.graphics.visualization.filter(vis => {
             return (vis._attributes !== undefined) && (vis._attributes.size !== undefined) && vis._attributes.size == '64';
         }).pop();
-        furniProperty.visualization.layerCount = visualization._attributes.layerCount !== undefined ? parseInt(visualization._attributes.layerCount) : 0;
+        furniProperty.visualization.layerCount = visualization?._attributes?.layerCount !== undefined ? parseInt(visualization._attributes.layerCount) : 0;
 
         if (visualization?.layers !== undefined) {
             this.formatArray(visualization.layers?.layer).forEach(layer => {

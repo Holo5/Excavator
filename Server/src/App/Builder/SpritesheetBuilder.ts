@@ -24,7 +24,12 @@ export class SpritesheetBuilder {
                 stylesheetPath: `${spriteDest}.json`,
                 stylesheet: Path.resolve(__dirname, 'json.tpl'),
                 compositor: 'jimp',
-            }, resolve);
+            }, function (err) {
+                if(err) {
+                    throw err;
+                }
+                resolve();
+            });
         });
     }
 

@@ -26,4 +26,8 @@ export class HabboFlashExtractor {
             Logger.error(`Can't extract the file ${assetName}.swf, the file doesn't exist.`);
         }
     }
+
+    checkIsExtracted(id: string): boolean {
+        return this._fsRepository.checkFileExtracted(id);
+    }
 }
