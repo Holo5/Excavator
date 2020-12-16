@@ -59,6 +59,10 @@ export class FigureTask extends Task {
             Logger.error(`Flash file ${this._lib.id} can't be extracted.`);
         }
 
+        if(!this._flashExtractor.checkIsExtracted(this._lib.id)) {
+            return;
+        }
+
         try {
             await this._spritesheetBuilder.build(this._lib.id, Configuration.folder.figures);
         } catch (e) {
@@ -75,6 +79,7 @@ export class FigureTask extends Task {
             await this._animationRetriever.retrieve(this._lib.id);
         } catch (e) {
             Logger.error(`Can't retrieve ${this._lib.id}'s animations`);
+            throw e;
         }
 
         this._lib.setExtractionState(ExtractionState.EXTRACTED);

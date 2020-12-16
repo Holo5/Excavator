@@ -41,10 +41,11 @@ export class FigureDataExtractor {
         this.parsePalette();
         this.parseSetTypes();
 
-        Logger.info('All data from firedata retrieved !');
+        Logger.info('All data from figuredata retrieved !');
     }
 
     private async download() {
+        Logger.debug(`Downloading ${this._habboDataExtractor.getHabboData(HabboDataType.FIGUREDATA_URL)}`);
         const figureData = await download(
             this._habboDataExtractor.getHabboData(HabboDataType.FIGUREDATA_URL),
         );

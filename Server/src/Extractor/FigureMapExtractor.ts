@@ -46,6 +46,7 @@ export class FigureMapExtractor {
     }
 
     private async download() {
+        Logger.debug(`Downloading ${this._habboDataExtractor.getHabboData(HabboDataType.FIGUREMAP_URL)}`);
         const figureMap = await download(
             this._habboDataExtractor.getHabboData(HabboDataType.FIGUREMAP_URL),
         );
