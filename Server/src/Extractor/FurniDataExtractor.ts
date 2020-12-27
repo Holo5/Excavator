@@ -48,7 +48,7 @@ export class FurniDataExtractor {
                 currentValue.attributes.classname,
                 parseInt(this.getSubData(currentValue.elements, 'revision')),
                 this.getSubData(currentValue.elements, 'category'),
-                parseInt(this.getSubData(currentValue.elements, 'defaultir')),
+                parseInt(this.getSubData(currentValue.elements, 'defaultdir')),
                 parseInt(this.getSubData(currentValue.elements, 'xdim')),
                 parseInt(this.getSubData(currentValue.elements, 'ydim')),
                 this.getPartsColor(currentValue.elements),
