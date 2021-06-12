@@ -1,3 +1,3 @@
 export abstract class Task {
-    async abstract run(): Promise<any>;
+    abstract run(): Promise<any>;
 }

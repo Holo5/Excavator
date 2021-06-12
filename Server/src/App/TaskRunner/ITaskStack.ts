@@ -1,4 +1,4 @@
-import {Task} from '../../Domain/Tasks/Task';
+import { Task } from '../../Domain/Tasks/Task';
 
 export interface ITaskStack {
     task: Task,

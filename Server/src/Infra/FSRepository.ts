@@ -123,11 +123,11 @@ export class FSRepository {
     }
 
     checkFileExtracted(filename: string): boolean {
-        if(!fse.existsSync(Path.resolve(this._extractedPath, filename))) {
+        if (!fse.existsSync(Path.resolve(this._extractedPath, filename))) {
             return false;
         }
-        return fse.readdirSync(Path.resolve(this._extractedPath, filename, 'images')).length > 0 &&
-            fse.readdirSync(Path.resolve(this._extractedPath, filename, 'binaries')).length > 0;
+        return fse.readdirSync(Path.resolve(this._extractedPath, filename, 'images')).length > 0
+            && fse.readdirSync(Path.resolve(this._extractedPath, filename, 'binaries')).length > 0;
     }
 
     get xmlParser(): Parser {

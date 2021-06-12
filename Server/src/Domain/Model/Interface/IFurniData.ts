@@ -1,5 +1,5 @@
-import {FloorItem} from '../../FurniData/FloorItem';
-import {WallItem} from '../../FurniData/WallItem';
+import { FloorItem } from '../../FurniData/FloorItem';
+import { WallItem } from '../../FurniData/WallItem';
 
 export interface IFurniData {
     floorItems: {

@@ -6,11 +6,11 @@ import { HabboDataExtractor } from '../../Extractor/HabboDataExtractor';
 import { SpritesheetBuilder } from '../../App/Builder/SpritesheetBuilder';
 import { AvatarAnimationRetriever } from '../../App/Retriever/AvatarAnimationRetriever';
 import { SocketServer } from '../../Network/Server/SocketServer';
-import {FloorItem} from '../FurniData/FloorItem';
-import {HabboDataType} from '../../Extractor/Enum/HabboDataType';
-import {Logger} from '../../App/Logger/Logger';
-import {Configuration} from '../../../Config';
-import {FurniVisualizationRetriever} from '../../App/Retriever/FurniVisualizationRetriever';
+import { FloorItem } from '../FurniData/FloorItem';
+import { HabboDataType } from '../../Extractor/Enum/HabboDataType';
+import { Logger } from '../../App/Logger/Logger';
+import { Configuration } from '../../../Config';
+import { FurniVisualizationRetriever } from '../../App/Retriever/FurniVisualizationRetriever';
 
 export class FloorItemTask extends Task {
     private readonly _dataExtractor: HabboDataExtractor;
@@ -38,11 +38,10 @@ export class FloorItemTask extends Task {
     }
 
     async run() {
-
         const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
-        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}/${className}.swf`;
+        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}/${this._floorItem.revision}/${className}.swf`;
 
-        if(className === "tickets" || className === "floortile") return;
+        if (className === 'tickets' || className === 'floortile') return;
 
         try {
             await this._assetDownloader.download(assetLink, className);
@@ -58,7 +57,7 @@ export class FloorItemTask extends Task {
             Logger.error(`Flash file ${this._floorItem.id} can't be extracted.`);
         }
 
-        if(!this._flashExtractor.checkIsExtracted(className)) {
+        if (!this._flashExtractor.checkIsExtracted(className)) {
             return;
         }
 

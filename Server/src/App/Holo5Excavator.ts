@@ -6,9 +6,9 @@ import { FigureMapExtractor } from '../Extractor/FigureMapExtractor';
 import { FigureExtractorTaskRunner } from './TaskRunner/FigureExtractorTaskRunner';
 import { FigureDataExtractor } from '../Extractor/FigureDataExtractor';
 import { Holo5FigureDataAssembler } from './Assembler/Holo5FigureDataAssembler';
-import {FurniDataExtractor} from '../Extractor/FurniDataExtractor';
-import {Holo5FurniDataAssembler} from './Assembler/Holo5FurniDataAssembler';
-import {FurniExtractorTaskRunner} from './TaskRunner/FurniExtractorTaskRunner';
+import { FurniDataExtractor } from '../Extractor/FurniDataExtractor';
+import { Holo5FurniDataAssembler } from './Assembler/Holo5FurniDataAssembler';
+import { FurniExtractorTaskRunner } from './TaskRunner/FurniExtractorTaskRunner';
 
 @singleton()
 export class Holo5Excavator {

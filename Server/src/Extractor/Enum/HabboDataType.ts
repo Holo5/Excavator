@@ -3,5 +3,5 @@ export enum HabboDataType {
     FIGUREDATA_URL = 'external.figurepartlist.txt',
     FURNIDATA_URL = 'furnidata.load.url',
     FLASH_CLIENT_URL = 'flash.client.url',
-    FURNI_URL = 'dynamic.download.url'
+    FURNI_URL = 'dynamic.download.url',
 }

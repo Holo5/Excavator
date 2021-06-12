@@ -1,10 +1,10 @@
-import {container, inject, singleton} from 'tsyringe';
+import { container, inject, singleton } from 'tsyringe';
 import * as Path from 'path';
-import {xml2js} from 'xml-js';
+import { xml2js } from 'xml-js';
 import * as nsg from 'node-sprite-generator';
-import {FSRepository} from '../../Infra/FSRepository';
-import {Configuration} from '../../../Config';
-import {Logger} from '../Logger/Logger';
+import { FSRepository } from '../../Infra/FSRepository';
+import { Configuration } from '../../../Config';
+import { Logger } from '../Logger/Logger';
 
 @singleton()
 export class SpritesheetBuilder {
@@ -13,7 +13,7 @@ export class SpritesheetBuilder {
     ) {}
 
     async build(id: string, folder: string) {
-        await new Promise((resolve) => {
+        await new Promise<void>((resolve) => {
             const partsPath = Path.resolve(container.resolve(FSRepository).extractedPath, id, 'images', '*.png');
             const spriteDest = Path.resolve(container.resolve(FSRepository).buildPath, folder, id, id);
 
@@ -24,8 +24,8 @@ export class SpritesheetBuilder {
                 stylesheetPath: `${spriteDest}.json`,
                 stylesheet: Path.resolve(__dirname, 'json.tpl'),
                 compositor: 'jimp',
-            }, function (err) {
-                if(err) {
+            }, (err) => {
+                if (err) {
                     throw err;
                 }
                 resolve();
@@ -66,22 +66,22 @@ export class SpritesheetBuilder {
 
     async retrieveFurniOffset(classname: string) {
         const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(classname, Configuration.folder.furnis));
-        let xmlOffset: any = this._fsRepository.readBinaries(classname, classname + '_assets');
+        let xmlOffset: any = this._fsRepository.readBinaries(classname, `${classname}_assets`);
         xmlOffset = xml2js(xmlOffset, { compact: true });
 
         if (spritesheet?.meta?.image) {
             spritesheet.meta.image = `${classname}.png`;
         }
 
-        xmlOffset.assets.asset.forEach(asset => {
-            let assetName: string = asset._attributes.name;
+        xmlOffset.assets.asset.forEach((asset) => {
+            const assetName: string = asset._attributes.name;
 
             try {
-                let spriteSourceSize = spritesheet.frames[`${classname}_${asset._attributes.name}`].spriteSourceSize;
+                const { spriteSourceSize } = spritesheet.frames[`${classname}_${asset._attributes.name}`];
                 spriteSourceSize.x = asset._attributes.flipH === undefined ? -parseInt(asset._attributes.x) : -(parseInt(spriteSourceSize.w) - parseInt(asset._attributes.x));
                 spriteSourceSize.y = -parseInt(asset._attributes.y);
             } catch (e) {
-                Logger.error("Error finding frame " + assetName,)
+                Logger.error(`Error finding frame ${assetName}`);
             }
         });
 

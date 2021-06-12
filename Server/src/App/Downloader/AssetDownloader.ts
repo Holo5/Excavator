@@ -9,7 +9,7 @@ export class AssetDownloader {
     ) {}
 
     async download(assetLink: string, filename: string) {
-        if(this._fsRepository.readInSwfFolder(filename + ".swf") === false) {
+        if (this._fsRepository.readInSwfFolder(`${filename}.swf`) === false) {
             await download(assetLink, this._fsRepository.swfPath);
         }
     }

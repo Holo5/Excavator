@@ -1,13 +1,9 @@
-import {inject, singleton} from 'tsyringe';
-import {ITaskStack} from './ITaskStack';
-import {Lib} from '../../Domain/FigureMap/Lib';
-import {FigureMapExtractor} from '../../Extractor/FigureMapExtractor';
-import {Logger} from '../Logger/Logger';
-import {FigureTask} from '../../Domain/Tasks/FigureTask';
-import {ExtractionState} from '../../Domain/FigureMap/Enum/ExtractionState';
-import {FloorItem} from '../../Domain/FurniData/FloorItem';
-import {FurniDataExtractor} from '../../Extractor/FurniDataExtractor';
-import {FloorItemTask} from '../../Domain/Tasks/FloorItemTask';
+import { inject, singleton } from 'tsyringe';
+import { ITaskStack } from './ITaskStack';
+import { Logger } from '../Logger/Logger';
+import { FloorItem } from '../../Domain/FurniData/FloorItem';
+import { FurniDataExtractor } from '../../Extractor/FurniDataExtractor';
+import { FloorItemTask } from '../../Domain/Tasks/FloorItemTask';
 
 @singleton()
 export class FurniExtractorTaskRunner {
@@ -64,24 +60,22 @@ export class FurniExtractorTaskRunner {
     }
 
     private setFloorItemsToExtract() {
-        let knownElements: string[] = [];
+        const knownElements: string[] = [];
 
-        let elmList = this._furniDataExtractor.floorItems.filter(floorItem => {
-            if(floorItem.className.includes('*')) {
-                let realClassName = floorItem.className.split('*')[0];
-                if(knownElements.indexOf(realClassName) === -1) {
+        const elmList = this._furniDataExtractor.floorItems.filter((floorItem) => {
+            if (floorItem.className.includes('*')) {
+                const realClassName = floorItem.className.split('*')[0];
+                if (knownElements.indexOf(realClassName) === -1) {
                     floorItem.className = realClassName;
                     knownElements.push(realClassName);
                     return true;
-                } else {
-                    return false;
                 }
-            } else {
-                return true;
+                return false;
             }
+            return true;
         });
 
-        elmList.forEach(floorItem => {
+        elmList.forEach((floorItem) => {
             this._floorItemsToExtract.push(floorItem);
         });
     }

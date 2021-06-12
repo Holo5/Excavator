@@ -1,9 +1,9 @@
-import {inject, singleton} from 'tsyringe';
-import {FSRepository} from '../../Infra/FSRepository';
-import {FurniDataExtractor} from '../../Extractor/FurniDataExtractor';
-import {Logger} from '../Logger/Logger';
-import {IFurniData} from '../../Domain/Model/Interface/IFurniData';
-import {Configuration} from '../../../Config';
+import { inject, singleton } from 'tsyringe';
+import { FSRepository } from '../../Infra/FSRepository';
+import { FurniDataExtractor } from '../../Extractor/FurniDataExtractor';
+import { Logger } from '../Logger/Logger';
+import { IFurniData } from '../../Domain/Model/Interface/IFurniData';
+import { Configuration } from '../../../Config';
 
 @singleton()
 export class Holo5FurniDataAssembler {
@@ -17,14 +17,14 @@ export class Holo5FurniDataAssembler {
 
         const figureData: IFurniData = {
             floorItems: {},
-            wallItems: {}
+            wallItems: {},
         };
 
-        this._furniDataExtractor.floorItems.forEach(floorItem => {
-           figureData.floorItems[floorItem.id] = floorItem;
+        this._furniDataExtractor.floorItems.forEach((floorItem) => {
+            figureData.floorItems[floorItem.id] = floorItem;
         });
 
-        this._furniDataExtractor.wallItems.forEach(wallItem => {
+        this._furniDataExtractor.wallItems.forEach((wallItem) => {
             figureData.wallItems[wallItem.id] = wallItem;
         });
 

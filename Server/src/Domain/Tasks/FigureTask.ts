@@ -11,7 +11,7 @@ import { AvatarAnimationRetriever } from '../../App/Retriever/AvatarAnimationRet
 import { SocketServer } from '../../Network/Server/SocketServer';
 import { LibExtractionStateChangeComposer } from '../../Network/Outgoing/Figure/FigureMap/LibExtractionStateChangeComposer';
 import { Logger } from '../../App/Logger/Logger';
-import {Configuration} from '../../../Config';
+import { Configuration } from '../../../Config';
 
 export class FigureTask extends Task {
     private readonly _dataExtractor: HabboDataExtractor;
@@ -59,7 +59,7 @@ export class FigureTask extends Task {
             Logger.error(`Flash file ${this._lib.id} can't be extracted.`);
         }
 
-        if(!this._flashExtractor.checkIsExtracted(this._lib.id)) {
+        if (!this._flashExtractor.checkIsExtracted(this._lib.id)) {
             return;
         }
 

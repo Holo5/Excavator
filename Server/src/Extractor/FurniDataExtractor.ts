@@ -1,13 +1,13 @@
 import * as download from 'download';
-import {inject, singleton} from 'tsyringe';
-import {HabboDataType} from './Enum/HabboDataType';
-import {HabboDataExtractor} from './HabboDataExtractor';
-import {FSRepository} from '../Infra/FSRepository';
-import {Logger} from '../App/Logger/Logger';
-import {magenta} from 'colors';
-import {xml2js} from 'xml-js';
-import {FloorItem} from '../Domain/FurniData/FloorItem';
-import {WallItem} from '../Domain/FurniData/WallItem';
+import { inject, singleton } from 'tsyringe';
+import { magenta } from 'colors';
+import { xml2js } from 'xml-js';
+import { HabboDataType } from './Enum/HabboDataType';
+import { HabboDataExtractor } from './HabboDataExtractor';
+import { FSRepository } from '../Infra/FSRepository';
+import { Logger } from '../App/Logger/Logger';
+import { FloorItem } from '../Domain/FurniData/FloorItem';
+import { WallItem } from '../Domain/FurniData/WallItem';
 
 const LOCAL_FURNIDATA_NAME = 'furnidata.xml';
 
@@ -34,16 +34,16 @@ export class FurniDataExtractor {
 
     private convertToJson() {
         const xml = this._fsRepository.readInTmpFolder(LOCAL_FURNIDATA_NAME);
-        this._figureDataJson = xml2js(xml, {compact: false});
+        this._figureDataJson = xml2js(xml, { compact: false });
     }
 
     private parse() {
-        let libs: Array<any> = this._figureDataJson.elements[0].elements;
+        const libs: Array<any> = this._figureDataJson.elements[0].elements;
         let roomItems = libs[0].elements as Array<any>;
         let wallItems = libs[1].elements as Array<any>;
 
         roomItems = roomItems.reduce((previousValue, currentValue) => {
-            let floorItem = new FloorItem(
+            const floorItem = new FloorItem(
                 parseInt(currentValue.attributes.id),
                 currentValue.attributes.classname,
                 parseInt(this.getSubData(currentValue.elements, 'revision')),
@@ -68,7 +68,7 @@ export class FurniDataExtractor {
                 this.getSubData(currentValue.elements, 'canlayon') == 1,
                 this.getSubData(currentValue.elements, 'furniline'),
                 this.getSubData(currentValue.elements, 'environment'),
-                this.getSubData(currentValue.elements, 'rare') == 1
+                this.getSubData(currentValue.elements, 'rare') == 1,
             );
 
             previousValue.push(floorItem);
@@ -77,7 +77,7 @@ export class FurniDataExtractor {
         this._floorItems = roomItems;
 
         wallItems = wallItems.reduce((previousValue, currentValue) => {
-            let wallItem = new WallItem(
+            const wallItem = new WallItem(
                 parseInt(currentValue.attributes.id),
                 currentValue.attributes.classname,
                 parseInt(this.getSubData(currentValue.elements, 'revision')),
@@ -93,7 +93,7 @@ export class FurniDataExtractor {
                 this.getSubData(currentValue.elements, 'specialtype'),
                 this.getSubData(currentValue.elements, 'furniline'),
                 this.getSubData(currentValue.elements, 'environment'),
-                this.getSubData(currentValue.elements, 'rare') == 1
+                this.getSubData(currentValue.elements, 'rare') == 1,
             );
 
             previousValue.push(wallItem);
@@ -103,9 +103,7 @@ export class FurniDataExtractor {
     }
 
     private getSubData(elements: Array<any>, name: string) {
-        let elm = elements.find(elm => {
-            return elm.name == name;
-        });
+        const elm = elements.find((elm) => elm.name == name);
         if (elm === undefined) return '';
         if (elm.elements === undefined) return '';
 
@@ -113,17 +111,15 @@ export class FurniDataExtractor {
     }
 
     private getPartsColor(elements: Array<any>): string[] {
-        let colors: string[] = [];
+        const colors: string[] = [];
 
-        let elm = elements.find(elm => {
-            return elm.name == 'partcolors';
-        });
+        const elm = elements.find((elm) => elm.name == 'partcolors');
 
         if (elm === undefined) return [];
         if (elm.elements === undefined) return [];
 
-        elm.elements.forEach(elm1 => {
-            if(elm1.elements !== undefined && elm1.elements.length > 0) {
+        elm.elements.forEach((elm1) => {
+            if (elm1.elements !== undefined && elm1.elements.length > 0) {
                 colors.push(elm1.elements[0].text);
             }
         });
@@ -140,7 +136,6 @@ export class FurniDataExtractor {
             Logger.error('Furnidata can\'t be downloaded...');
             Logger.debug(`Link ${this._habboDataExtractor.getHabboData(HabboDataType.FURNIDATA_URL)}`);
         }
-
 
         this.convertToJson();
         this.parse();

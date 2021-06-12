@@ -11,6 +11,6 @@ export const Configuration: IExcavatorConfiguration = {
     folder: {
         figures: 'figure',
         furnis: 'furni',
-        furniIcons: 'icons'
-    }
+        furniIcons: 'icons',
+    },
 };

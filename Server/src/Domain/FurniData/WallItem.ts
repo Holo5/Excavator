@@ -32,7 +32,7 @@ export class WallItem {
         specialtype: string,
         furniline: string,
         environment: string,
-        rare: boolean
+        rare: boolean,
     ) {
         this.id = id;
         this.className = className;
