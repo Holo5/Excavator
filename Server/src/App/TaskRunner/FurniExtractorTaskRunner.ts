@@ -75,6 +75,7 @@ export class FurniExtractorTaskRunner {
             return true;
         });
 
+        this._floorItemsToExtract.push(FloorItem.tileCursor());
         elmList.forEach((floorItem) => {
             this._floorItemsToExtract.push(floorItem);
         });

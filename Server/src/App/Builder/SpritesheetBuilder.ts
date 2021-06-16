@@ -66,7 +66,14 @@ export class SpritesheetBuilder {
 
     async retrieveFurniOffset(classname: string) {
         const spritesheet: any = JSON.parse(this._fsRepository.readSpritesheet(classname, Configuration.folder.furnis));
-        let xmlOffset: any = this._fsRepository.readBinaries(classname, `${classname}_assets`);
+        let xmlOffset: any = null;
+
+        if (classname === 'TileCursor') {
+            xmlOffset = this._fsRepository.readBinaries(classname, 'tile_cursor_assets');
+        } else {
+            xmlOffset = this._fsRepository.readBinaries(classname, `${classname}_assets`);
+        }
+
         xmlOffset = xml2js(xmlOffset, { compact: true });
 
         if (spritesheet?.meta?.image) {

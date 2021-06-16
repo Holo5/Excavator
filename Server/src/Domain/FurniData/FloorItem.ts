@@ -78,4 +78,32 @@ export class FloorItem {
         this.environment = environment;
         this.rare = rare;
     }
+
+    static tileCursor() {
+        return new FloorItem(0,
+            'TileCursor',
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined);
+    }
 }
