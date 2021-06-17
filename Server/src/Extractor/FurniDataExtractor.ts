@@ -131,7 +131,7 @@ export class FurniDataExtractor {
         roomItems = roomItems.reduce((previousValue, currentValue) => {
             const floorItem = new FloorItem(
                 parseInt(currentValue.attributes.id),
-                (currentValue.attributes.classname as string).split('*')[0],
+                currentValue.attributes.classname,
                 parseInt(this.getSubData(currentValue.elements, 'revision')),
                 this.getSubData(currentValue.elements, 'category'),
                 parseInt(this.getSubData(currentValue.elements, 'defaultdir')),
@@ -165,7 +165,7 @@ export class FurniDataExtractor {
         wallItems = wallItems.reduce((previousValue, currentValue) => {
             const wallItem = new WallItem(
                 parseInt(currentValue.attributes.id),
-                (currentValue.attributes.classname as string).split('*')[0],
+                currentValue.attributes.classname,
                 parseInt(this.getSubData(currentValue.elements, 'revision')),
                 this.getSubData(currentValue.elements, 'name'),
                 this.getSubData(currentValue.elements, 'description'),

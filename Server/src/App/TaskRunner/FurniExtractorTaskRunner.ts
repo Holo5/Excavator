@@ -65,8 +65,9 @@ export class FurniExtractorTaskRunner {
         console.log(this._furniDataExtractor.floorItems.length);
 
         this._furniDataExtractor.floorItems.forEach((floorItem: FloorItem) => {
-            if (finalList[floorItem.className] === undefined) {
-                finalList[floorItem.className] = floorItem;
+            const className = floorItem.className.split('*')[0];
+            if (finalList[className] === undefined) {
+                finalList[className] = floorItem;
             }
         });
 
