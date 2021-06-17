@@ -13,7 +13,7 @@ export class SpritesheetBuilder {
     ) {}
 
     async build(id: string, folder: string) {
-        await new Promise<void>((resolve) => {
+        return new Promise<void>((resolve) => {
             const partsPath = Path.resolve(container.resolve(FSRepository).extractedPath, id, 'images', '*.png');
             const spriteDest = Path.resolve(container.resolve(FSRepository).buildPath, folder, id, id);
 

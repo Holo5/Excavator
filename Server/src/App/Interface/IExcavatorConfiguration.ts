@@ -6,6 +6,9 @@ export interface IExcavatorConfiguration {
     forceHttps: boolean,
     serverPort: number,
     packetDebug: boolean,
+    override: {
+        'furnidata.load.url'?: string
+    }
     folder: {
         figures: string,
         furnis: string,
