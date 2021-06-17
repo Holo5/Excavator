@@ -60,24 +60,17 @@ export class FurniExtractorTaskRunner {
     }
 
     private setFloorItemsToExtract() {
-        const knownElements: string[] = [];
+        const finalList: { [classname: string]: FloorItem } = {};
 
-        const elmList = this._furniDataExtractor.floorItems.filter((floorItem) => {
-            if (floorItem.className.includes('*')) {
-                const realClassName = floorItem.className.split('*')[0];
-                if (knownElements.indexOf(realClassName) === -1) {
-                    floorItem.className = realClassName;
-                    knownElements.push(realClassName);
-                    return true;
-                }
-                return false;
+        console.log(this._furniDataExtractor.floorItems.length);
+
+        this._furniDataExtractor.floorItems.forEach((floorItem: FloorItem) => {
+            if (finalList[floorItem.className] === undefined) {
+                finalList[floorItem.className] = floorItem;
             }
-            return true;
         });
 
         this._floorItemsToExtract.push(FloorItem.tileCursor());
-        elmList.forEach((floorItem) => {
-            this._floorItemsToExtract.push(floorItem);
-        });
+        this._floorItemsToExtract.push(...Object.values(finalList));
     }
 }
