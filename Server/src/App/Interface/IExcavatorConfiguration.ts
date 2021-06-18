@@ -1,4 +1,5 @@
 export interface IExcavatorConfiguration {
+    assetVersion: string,
     tmpDir: string,
     assetExtractorPath: string,
     externalVariablesUrl: string,

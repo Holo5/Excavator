@@ -1,6 +1,7 @@
 import { IExcavatorConfiguration } from './src/App/Interface/IExcavatorConfiguration';
 
 export const Configuration: IExcavatorConfiguration = {
+    assetVersion: '1.0',
     tmpDir: 'Server/tmp', // From projet root
     assetExtractorPath: '',
     externalVariablesUrl: 'https://swf.habbocity.me/gamedata/variables.txt?v11623531275',
