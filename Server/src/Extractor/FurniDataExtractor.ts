@@ -71,7 +71,7 @@ export class FurniDataExtractor {
             } else if (furniData[0] === 's') {
                 const floorItem = new FloorItem(
                     furniData[1],
-                    (furniData[2] as string).split('*')[0],
+                    furniData[2],
                     furniData[3],
                     undefined,
                     furniData[4],
@@ -100,7 +100,7 @@ export class FurniDataExtractor {
             } else if (furniData[0] === 'i') {
                 const wallItem = new WallItem(
                     furniData[1],
-                    (furniData[2] as string).split('*')[0],
+                    furniData[2],
                     furniData[3],
                     furniData[8],
                     furniData[9],
@@ -200,6 +200,8 @@ export class FurniDataExtractor {
         const colors: string[] = [];
 
         const elm = elements.find((elm) => elm.name == 'partcolors');
+
+        console.log('Hello ! :D', elm);
 
         if (elm === undefined) return [];
         if (elm.elements === undefined) return [];
