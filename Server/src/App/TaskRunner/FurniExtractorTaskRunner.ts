@@ -21,7 +21,7 @@ export class FurniExtractorTaskRunner {
     startExtraction() {
         this.setFloorItemsToExtract();
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 20; i++) {
             this.addToStack();
         }
 
@@ -71,7 +71,5 @@ export class FurniExtractorTaskRunner {
 
         this._floorItemsToExtract.push(FloorItem.tileCursor());
         this._floorItemsToExtract.push(...Object.values(finalList));
-
-        // this._floorItemsToExtract.push(finalList.bc_block_1);
     }
 }
