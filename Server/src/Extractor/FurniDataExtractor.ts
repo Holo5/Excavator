@@ -13,7 +13,8 @@ const LOCAL_FURNIDATA_NAME = 'furnidata.xml';
 
 @singleton()
 export class FurniDataExtractor {
-    private _figureDataJson: any;
+    private _furniDataJson: any;
+    private _furniDataArray: any[];
     private _floorItems: FloorItem[];
     private _wallItems: WallItem[];
 
@@ -21,6 +22,7 @@ export class FurniDataExtractor {
         @inject(HabboDataExtractor) private readonly _habboDataExtractor: HabboDataExtractor,
         @inject(FSRepository) private readonly _fsRepository: FSRepository,
     ) {
+        this._furniDataArray = [];
         this._floorItems = [];
         this._wallItems = [];
     }
@@ -32,13 +34,97 @@ export class FurniDataExtractor {
         this._fsRepository.writeInTmpFolder(LOCAL_FURNIDATA_NAME, figureMap);
     }
 
-    private convertToJson() {
-        const xml = this._fsRepository.readInTmpFolder(LOCAL_FURNIDATA_NAME);
-        this._figureDataJson = xml2js(xml, { compact: false });
+    private convertToJsonAndParse() {
+        const data = this._fsRepository.readInTmpFolder(LOCAL_FURNIDATA_NAME);
+        const isXML = (data as Buffer).toString().substr(0, 30).includes('<?xml');
+        if (isXML) {
+            this._furniDataJson = xml2js(data, { compact: false });
+            this.parseXML();
+        } else {
+            const furniDataTxt = data.toString();
+            furniDataTxt.split('\n').forEach((line) => {
+                let finalLine = line.trim();
+
+                if (finalLine[finalLine.length - 1] === ',') {
+                    finalLine = finalLine.substr(0, finalLine.length - 1);
+                }
+                finalLine = finalLine.replace('\\', '').replace('\\', '').replace('\\', '');
+
+                try {
+                    // eslint-disable-next-line no-eval
+                    const furni = eval(finalLine);
+                    if (typeof furni === 'object') {
+                        this._furniDataArray.push(furni);
+                    }
+                } catch (e) {
+                    // Logger.error(`Furnidata line non well formed: ${finalLine}`);
+                }
+            });
+            this.parseTXT();
+        }
     }
 
-    private parse() {
-        const libs: Array<any> = this._figureDataJson.elements[0].elements;
+    private parseTXT() {
+        this._furniDataArray.forEach((furniData) => {
+            if (furniData === undefined) {
+                Logger.error(`Undefined furni type: ${furniData}`);
+            } else if (furniData[0] === 's') {
+                const floorItem = new FloorItem(
+                    furniData[1],
+                    furniData[2],
+                    furniData[3],
+                    undefined,
+                    furniData[4],
+                    furniData[5],
+                    furniData[6],
+                    (furniData[7] as string).split(','),
+                    furniData[8],
+                    furniData[9],
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                );
+                this._floorItems.push(floorItem);
+            } else if (furniData[0] === 'i') {
+                const wallItem = new WallItem(
+                    furniData[1],
+                    furniData[2],
+                    furniData[3],
+                    furniData[8],
+                    furniData[9],
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                );
+                this._wallItems.push(wallItem);
+            } else if (furniData[0] === 'e') {
+                console.log(furniData);
+            }
+        });
+    }
+
+    private parseXML() {
+        const libs: Array<any> = this._furniDataJson.elements[0].elements;
         let roomItems = libs[0].elements as Array<any>;
         let wallItems = libs[1].elements as Array<any>;
 
@@ -115,6 +201,8 @@ export class FurniDataExtractor {
 
         const elm = elements.find((elm) => elm.name == 'partcolors');
 
+        console.log('Hello ! :D', elm);
+
         if (elm === undefined) return [];
         if (elm.elements === undefined) return [];
 
@@ -137,8 +225,7 @@ export class FurniDataExtractor {
             Logger.debug(`Link ${this._habboDataExtractor.getHabboData(HabboDataType.FURNIDATA_URL)}`);
         }
 
-        this.convertToJson();
-        this.parse();
+        this.convertToJsonAndParse();
 
         Logger.info(`Found ${magenta(this._floorItems.length.toString())} floor items`);
         Logger.info(`Found ${magenta(this._wallItems.length.toString())} wall items`);

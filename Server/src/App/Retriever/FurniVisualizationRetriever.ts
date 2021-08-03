@@ -60,6 +60,8 @@ export class FurniVisualizationRetriever {
                     color.colorLayer.forEach((colorLayer) => {
                         furniProperty.visualization.colors[parseInt(color._attributes.id)][parseInt(colorLayer._attributes.id)] = colorLayer._attributes.color;
                     });
+                } else if (typeof color?.colorLayer === 'object' && color?.colorLayer?._attributes !== undefined && color?.colorLayer?._attributes.id !== undefined) {
+                    furniProperty.visualization.colors[parseInt(color._attributes.id)][parseInt(color?.colorLayer._attributes.id)] = color?.colorLayer._attributes.color;
                 }
             });
         }

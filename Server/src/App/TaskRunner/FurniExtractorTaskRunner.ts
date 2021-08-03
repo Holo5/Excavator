@@ -21,7 +21,7 @@ export class FurniExtractorTaskRunner {
     startExtraction() {
         this.setFloorItemsToExtract();
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             this.addToStack();
         }
 
@@ -60,23 +60,16 @@ export class FurniExtractorTaskRunner {
     }
 
     private setFloorItemsToExtract() {
-        const knownElements: string[] = [];
+        const finalList: { [classname: string]: FloorItem } = {};
 
-        const elmList = this._furniDataExtractor.floorItems.filter((floorItem) => {
-            if (floorItem.className.includes('*')) {
-                const realClassName = floorItem.className.split('*')[0];
-                if (knownElements.indexOf(realClassName) === -1) {
-                    floorItem.className = realClassName;
-                    knownElements.push(realClassName);
-                    return true;
-                }
-                return false;
+        this._furniDataExtractor.floorItems.forEach((floorItem: FloorItem) => {
+            const className = floorItem.className.split('*')[0];
+            if (finalList[className] === undefined) {
+                finalList[className] = floorItem;
             }
-            return true;
         });
 
-        elmList.forEach((floorItem) => {
-            this._floorItemsToExtract.push(floorItem);
-        });
+        this._floorItemsToExtract.push(FloorItem.tileCursor());
+        this._floorItemsToExtract.push(...Object.values(finalList));
     }
 }

@@ -18,6 +18,7 @@ export class HabboDataExtractor {
         await this.download();
         this.extractData();
         this.replaceValues();
+        this.mergeOverrides();
     }
 
     private async download() {
@@ -57,6 +58,12 @@ export class HabboDataExtractor {
                     this._variables[index] = value.replace(reg, replacementValue);
                 }
             }
+        });
+    }
+
+    private mergeOverrides() {
+        Object.keys(Configuration.override).forEach((key) => {
+            this._variables[key] = Configuration.override[key];
         });
     }
 

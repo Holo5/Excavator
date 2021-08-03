@@ -4,4 +4,5 @@ export enum HabboDataType {
     FURNIDATA_URL = 'furnidata.load.url',
     FLASH_CLIENT_URL = 'flash.client.url',
     FURNI_URL = 'dynamic.download.url',
+    FURNI_LINK_TEMPLATE = 'flash.dynamic.download.name.template',
 }

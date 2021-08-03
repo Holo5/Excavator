@@ -38,8 +38,15 @@ export class FloorItemTask extends Task {
     }
 
     async run() {
-        const className = this._floorItem.className.includes('*') ? this._floorItem.className.split('*')[0] : this._floorItem.className;
-        const assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}/${this._floorItem.revision}/${className}.swf`;
+        const className = this._floorItem.className.split('*')[0];
+        let assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FURNI_URL)}${this._dataExtractor.getHabboData(HabboDataType.FURNI_LINK_TEMPLATE)}`;
+
+        if (className === 'TileCursor') {
+            assetLink = `${this._dataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL)}${className}.swf`;
+        } else {
+            assetLink = assetLink.replace('%revision%', this._floorItem.revision.toString());
+            assetLink = assetLink.replace('%typeid%', className);
+        }
 
         if (className === 'tickets' || className === 'floortile') return;
 
