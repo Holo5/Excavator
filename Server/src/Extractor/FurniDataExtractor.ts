@@ -201,7 +201,7 @@ export class FurniDataExtractor {
 
         const elm = elements.find((elm) => elm.name == 'partcolors');
 
-        console.log('Hello ! :D', elm);
+        // console.log('Hello ! :D', elm);
 
         if (elm === undefined) return [];
         if (elm.elements === undefined) return [];
