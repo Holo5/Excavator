@@ -1,13 +1,13 @@
 import { inject, singleton } from 'tsyringe';
-import { FigureDataExtractor } from '../../Extractor/FigureDataExtractor';
-import { FigureMapExtractor } from '../../Extractor/FigureMapExtractor';
-import { ColorPalettes, IFigureData, SetTypes } from '../../Domain/Model/Interface/IFigureData';
-import { SetType } from '../../Domain/FigureData/SetType';
-import { FSRepository } from '../../Infra/FSRepository';
-import { Logger } from '../Logger/Logger';
-import { ColorPalette } from '../../Domain/FigureData/ColorPalette';
-import { Color } from '../../Domain/FigureData/Color';
-import { Draworder } from '../../HabboLogic/Avatar/Constants/Draworder';
+import { FigureDataExtractor } from '../../extractor/FigureDataExtractor';
+import { FigureMapExtractor } from '../../extractor/FigureMapExtractor';
+import { ColorPalettes, IFigureData, SetTypes } from '../../domain/model/interfaces/IFigureData';
+import { SetType } from '../../domain/figuredata/SetType';
+import { FSRepository } from '../../infra/FSRepository';
+import { Logger } from '../logger/Logger';
+import { ColorPalette } from '../../domain/figuredata/ColorPalette';
+import { Color } from '../../domain/figuredata/Color';
+import { Draworder } from '../../habbologic/avatar/constants/Draworder';
 import { Configuration } from '../../../config';
 
 const LOCAL_FIGURE_DATA_NAME = 'figuredata.json';
