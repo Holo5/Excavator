@@ -1,8 +1,8 @@
 import { inject, singleton } from 'tsyringe';
-import { FSRepository } from '../../Infra/FSRepository';
-import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
-import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
-import { Logger } from '../Logger/Logger';
+import { FSRepository } from '../../infra/FSRepository';
+import { AvatarDirectionAngle } from '../../habbologic/avatar/enums/AvatarDirectionAngle';
+import { HabboAvatarAsset } from '../../habbologic/avatar/HabboAvatarAsset';
+import { Logger } from '../logger/Logger';
 import { Configuration } from '../../../config';
 
 export interface IType {
