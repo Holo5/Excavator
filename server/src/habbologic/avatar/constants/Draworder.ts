@@ -1,4 +1,4 @@
-import { IDraworder } from '../../../Domain/Model/Interface/IFigureData';
+import { IDraworder } from '../../../domain/model/interfaces/IFigureData';
 
 export const Draworder: IDraworder = {
     vertical: {
