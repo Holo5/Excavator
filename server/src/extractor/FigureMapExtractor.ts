@@ -3,13 +3,14 @@ import { container, inject, singleton } from 'tsyringe';
 import { magenta } from 'colors';
 import { xml2js } from 'xml-js';
 import { HabboDataExtractor } from './HabboDataExtractor';
-import { HabboDataType } from './Enum/HabboDataType';
-import { FSRepository } from '../Infra/FSRepository';
-import { Part } from '../Domain/FigureMap/Part';
-import { Lib } from '../Domain/FigureMap/Lib';
-import { FigureMapListComposer } from '../Network/Outgoing/Figure/FigureMap/FigureMapListComposer';
-import { SocketServer } from '../Network/Server/SocketServer';
-import { Logger } from '../App/Logger/Logger';
+import { HabboDataType } from './enums/HabboDataType';
+import { FSRepository } from '../infra/FSRepository';
+import { Part } from '../domain/figuredata/Part';
+import { Lib } from '../domain/figuremap/Lib';
+
+import { SocketServer } from '../network/server/SocketServer';
+import { Logger } from '../app/logger/Logger';
+import { FigureMapListComposer } from '../network/outgoing/figure/FigureMap/FigureMapListComposer';
 
 const LOCAL_FIGURE_MAP_NAME = 'figuremap.xml';
 
