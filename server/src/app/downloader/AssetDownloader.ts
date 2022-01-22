@@ -1,6 +1,6 @@
 import { inject, singleton } from 'tsyringe';
 import * as download from 'download';
-import { FSRepository } from '../../Infra/FSRepository';
+import { FSRepository } from '../../infra/FSRepository';
 
 @singleton()
 export class AssetDownloader {
