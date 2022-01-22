@@ -1,8 +1,8 @@
 import { inject, singleton } from 'tsyringe';
-import { FSRepository } from '../../Infra/FSRepository';
-import { FurniDataExtractor } from '../../Extractor/FurniDataExtractor';
-import { Logger } from '../Logger/Logger';
-import { IFurniData } from '../../Domain/Model/Interface/IFurniData';
+import { FSRepository } from '../../infra/FSRepository';
+import { FurniDataExtractor } from '../../extractor/FurniDataExtractor';
+import { Logger } from '../logger/Logger';
+import { IFurniData } from '../../domain/model/interfaces/IFurniData';
 import { Configuration } from '../../../config';
 
 @singleton()
