@@ -6,10 +6,10 @@ import * as WebSocket from 'ws';
 import { singleton } from 'tsyringe';
 import { magenta, yellow } from 'colors';
 import { Configuration } from '../../../config';
-import { Outgoing } from '../Outgoing/Outgoing';
-import { OutgoingHeader } from '../Outgoing/OutgoingHeader';
-import { FigureMapListComposer } from '../Outgoing/Figure/FigureMap/FigureMapListComposer';
-import { Logger } from '../../App/Logger/Logger';
+import { Outgoing } from '../outgoing/Outgoing';
+import { OutgoingHeader } from '../outgoing/OutgoingHeader';
+import { FigureMapListComposer } from '../outgoing/figure/FigureMap/FigureMapListComposer';
+import { Logger } from '../../app/logger/Logger';
 
 @singleton()
 export class SocketServer {
