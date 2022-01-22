@@ -2,12 +2,12 @@ import * as download from 'download';
 import { inject, singleton } from 'tsyringe';
 import { magenta } from 'colors';
 import { xml2js } from 'xml-js';
-import { HabboDataType } from './Enum/HabboDataType';
+import { HabboDataType } from './enums/HabboDataType';
 import { HabboDataExtractor } from './HabboDataExtractor';
-import { FSRepository } from '../Infra/FSRepository';
-import { Logger } from '../App/Logger/Logger';
-import { FloorItem } from '../Domain/FurniData/FloorItem';
-import { WallItem } from '../Domain/FurniData/WallItem';
+import { FSRepository } from '../infra/FSRepository';
+import { Logger } from '../app/logger/Logger';
+import { FloorItem } from '../domain/furnidata/FloorItem';
+import { WallItem } from '../domain/furnidata/WallItem';
 
 const LOCAL_FURNIDATA_NAME = 'furnidata.xml';
 
