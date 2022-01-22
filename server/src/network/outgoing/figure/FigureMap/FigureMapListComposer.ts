@@ -1,8 +1,8 @@
-import { container } from 'tsyringe';
+import { FigureMapExtractor } from '../../../../Extractor/FigureMapExtractor';
+import { Lib } from '../../../../Domain/FigureMap/Lib';
 import { Outgoing } from '../../Outgoing';
 import { OutgoingHeader } from '../../OutgoingHeader';
-import { Lib } from '../../../../Domain/FigureMap/Lib';
-import { FigureMapExtractor } from '../../../../Extractor/FigureMapExtractor';
+import { container } from 'tsyringe';
 
 export interface IFigureMapListMessage {
     libs: Lib[];

@@ -1,7 +1,7 @@
-import Vue from 'vue';
-import PerfectScrollbar from 'vue2-perfect-scrollbar';
 import { Store } from './Store/Store';
 import Excavator from './Excavator.vue';
+import PerfectScrollbar from 'vue2-perfect-scrollbar';
+import Vue from 'vue';
 
 export class Application {
     private app: Vue;

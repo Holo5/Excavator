@@ -1,16 +1,16 @@
-import { container } from 'tsyringe';
-import { Task } from './Task';
-import { HabboFlashExtractor } from '../../Extractor/HabboFlashExtractor';
 import { AssetDownloader } from '../../App/Downloader/AssetDownloader';
-import { HabboDataExtractor } from '../../Extractor/HabboDataExtractor';
-import { SpritesheetBuilder } from '../../app/builder/SpritesheetBuilder';
 import { AvatarAnimationRetriever } from '../../App/Retriever/AvatarAnimationRetriever';
-import { SocketServer } from '../../Network/Server/SocketServer';
-import { FloorItem } from '../FurniData/FloorItem';
-import { HabboDataType } from '../../Extractor/Enum/HabboDataType';
-import { Logger } from '../../App/Logger/Logger';
 import { Configuration } from '../../../config';
+import { FloorItem } from '../FurniData/FloorItem';
 import { FurniVisualizationRetriever } from '../../App/Retriever/FurniVisualizationRetriever';
+import { HabboDataExtractor } from '../../Extractor/HabboDataExtractor';
+import { HabboDataType } from '../../Extractor/Enum/HabboDataType';
+import { HabboFlashExtractor } from '../../Extractor/HabboFlashExtractor';
+import { Logger } from '../../App/Logger/Logger';
+import { SocketServer } from '../../Network/Server/SocketServer';
+import { SpritesheetBuilder } from '../../app/builder/SpritesheetBuilder';
+import { Task } from './Task';
+import { container } from 'tsyringe';
 
 export class FloorItemTask extends Task {
     private readonly _dataExtractor: HabboDataExtractor;

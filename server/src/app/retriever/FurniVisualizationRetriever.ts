@@ -1,9 +1,9 @@
-import { inject, singleton } from 'tsyringe';
-import { xml2js } from 'xml-js';
+import { Configuration } from '../../../config';
 import { FSRepository } from '../../infra/FSRepository';
 import { HabboAvatarAsset } from '../../habbologic/avatar/HabboAvatarAsset';
-import { Configuration } from '../../../config';
 import { IFurniProperty } from '../../domain/model/interfaces/IFurniProperty';
+import { inject, singleton } from 'tsyringe';
+import { xml2js } from 'xml-js';
 
 @singleton()
 export class FurniVisualizationRetriever {

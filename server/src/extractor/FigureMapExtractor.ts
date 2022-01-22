@@ -1,16 +1,16 @@
 import * as download from 'download';
+import { FSRepository } from '../infra/FSRepository';
+import { HabboDataExtractor } from './HabboDataExtractor';
+import { HabboDataType } from './enums/HabboDataType';
+import { Lib } from '../domain/figuremap/Lib';
+import { Part } from '../domain/figuremap/Part';
 import { container, inject, singleton } from 'tsyringe';
 import { magenta } from 'colors';
 import { xml2js } from 'xml-js';
-import { HabboDataExtractor } from './HabboDataExtractor';
-import { HabboDataType } from './enums/HabboDataType';
-import { FSRepository } from '../infra/FSRepository';
-import { Part } from '../domain/figuremap/Part';
-import { Lib } from '../domain/figuremap/Lib';
 
-import { SocketServer } from '../network/server/SocketServer';
-import { Logger } from '../app/logger/Logger';
 import { FigureMapListComposer } from '../network/outgoing/figure/FigureMap/FigureMapListComposer';
+import { Logger } from '../app/logger/Logger';
+import { SocketServer } from '../network/server/SocketServer';
 
 const LOCAL_FIGURE_MAP_NAME = 'figuremap.xml';
 

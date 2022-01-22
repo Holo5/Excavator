@@ -1,14 +1,14 @@
-import { inject, singleton } from 'tsyringe';
 import { FSRepository } from '../infra/FSRepository';
-import { SocketServer } from '../network/server/SocketServer';
-import { HabboDataExtractor } from '../extractor/HabboDataExtractor';
-import { FigureMapExtractor } from '../extractor/FigureMapExtractor';
-import { FigureExtractorTaskRunner } from './taskrunner/FigureExtractorTaskRunner';
 import { FigureDataExtractor } from '../extractor/FigureDataExtractor';
-import { Holo5FigureDataAssembler } from './assembler/Holo5FigureDataAssembler';
+import { FigureExtractorTaskRunner } from './taskrunner/FigureExtractorTaskRunner';
+import { FigureMapExtractor } from '../extractor/FigureMapExtractor';
 import { FurniDataExtractor } from '../extractor/FurniDataExtractor';
-import { Holo5FurniDataAssembler } from './assembler/Holo5FurniDataAssembler';
 import { FurniExtractorTaskRunner } from './taskrunner/FurniExtractorTaskRunner';
+import { HabboDataExtractor } from '../extractor/HabboDataExtractor';
+import { Holo5FigureDataAssembler } from './assembler/Holo5FigureDataAssembler';
+import { Holo5FurniDataAssembler } from './assembler/Holo5FurniDataAssembler';
+import { SocketServer } from '../network/server/SocketServer';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class Holo5Excavator {

@@ -1,17 +1,17 @@
 import * as download from 'download';
-import { container, inject, singleton } from 'tsyringe';
-import { xml2json } from 'xml-js';
-import { HabboDataExtractor } from './HabboDataExtractor';
-import { HabboDataType } from './enums/HabboDataType';
-import { FSRepository } from '../infra/FSRepository';
-import { SocketServer } from '../network/server/SocketServer';
-import { Logger } from '../app/logger/Logger';
 import { Color } from '../domain/figuredata/Color';
 import { ColorPalette } from '../domain/figuredata/ColorPalette';
-import { SetType } from '../domain/figuredata/SetType';
-import { Set } from '../domain/figuredata/Set';
+import { FSRepository } from '../infra/FSRepository';
+import { HabboDataExtractor } from './HabboDataExtractor';
+import { HabboDataType } from './enums/HabboDataType';
 import { HiddenPart } from '../domain/figuredata/HiddenPart';
+import { Logger } from '../app/logger/Logger';
 import { Part } from '../domain/figuredata/Part';
+import { Set } from '../domain/figuredata/Set';
+import { SetType } from '../domain/figuredata/SetType';
+import { SocketServer } from '../network/server/SocketServer';
+import { container, inject, singleton } from 'tsyringe';
+import { xml2json } from 'xml-js';
 
 const FIGURE_DATA_NAME = 'figuredata.xml';
 

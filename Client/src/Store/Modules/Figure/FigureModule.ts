@@ -1,5 +1,5 @@
-import { Module } from 'vuex';
 import { Lib } from '../../../../../Server/src/Domain/FigureMap/Lib';
+import { Module } from 'vuex';
 
 interface IStateInterface {
     libs: Lib[]

@@ -1,5 +1,5 @@
-import { Part } from './Part';
 import { HiddenPart } from './HiddenPart';
+import { Part } from './Part';
 
 export class Set {
     private readonly _id: string;

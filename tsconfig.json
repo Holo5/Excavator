@@ -1,31 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "es5",
+    "isolatedModules": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "lib": ["DOM", "ES6", "ESNext"]
-  },
-  "rules": {
-    "object-literal-sort-keys": false,
-    "quotemark": true,
-    "semicolon": true,
-    "array-type": [true, "array"],
-    "arrow-return-shorthand": [true, "multiline"],
-    "switch-final-break": [true, "always"],
-    "class-name": true,
-    "arrow-parens": [true, "ban-single-arg-parens"],
-    "indent": [true, "spaces", 4],
-    "newline-before-return": true,
-    "no-consecutive-blank-lines": true,
-    "variable-name": [true, "check-format", "allow-leading-underscore", "allow-pascal-case"],
-    "radix": false,
-    "ordered-imports": [
-      true,
-      {
-        "import-sources-order": "lowercase-last",
-        "named-imports-order": "lowercase-first"
-      }
+    "allowJs": false,
+    "sourceMap": true,
+    "removeComments": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": "src",
+    "lib": ["es2015","DOM"],
+    "module": "CommonJS",
+    "typeRoots": [
+      "node_modules/@types"
     ],
-    "no-console": false
+    "paths": {
+      "src/*": ["src/*"],
+    },
+    "outDir": "./dist",
+    "declaration": true
   },
+  "exclude": [
+    "node_modules/*",
+    "**/dist/**",
+    "**/test/**",
+  ]
 }

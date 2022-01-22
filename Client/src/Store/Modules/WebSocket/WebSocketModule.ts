@@ -1,10 +1,10 @@
-import { Module } from 'vuex';
 import { Configuration } from '../../../../../server/config';
-import { Outgoing } from '../../../../../Server/src/Network/Outgoing/Outgoing';
-import { OutgoingHeader } from '../../../../../Server/src/Network/Outgoing/OutgoingHeader';
 import { FigureMapIncoming } from './Incoming/Figure/FigureMap/FigureMapIncoming';
 import { Incoming } from './Incoming/Incoming';
 import { LibExtractionStateChangeIncoming } from './Incoming/Figure/FigureMap/LibExtractionStateChangeIncoming';
+import { Module } from 'vuex';
+import { Outgoing } from '../../../../../Server/src/Network/Outgoing/Outgoing';
+import { OutgoingHeader } from '../../../../../Server/src/Network/Outgoing/OutgoingHeader';
 
 interface IStateInterface {
     socket: WebSocket

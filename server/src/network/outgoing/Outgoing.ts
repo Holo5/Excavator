@@ -1,7 +1,7 @@
-import { yellow } from 'colors';
-import { OutgoingHeader } from './OutgoingHeader';
 import { IOutgoingData } from './IOutgoingData';
 import { Logger } from '../../app/logger/Logger';
+import { OutgoingHeader } from './OutgoingHeader';
+import { yellow } from 'colors';
 
 export abstract class Outgoing<Data> {
     protected readonly _header: number;

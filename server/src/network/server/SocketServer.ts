@@ -1,15 +1,15 @@
-import * as express from 'express';
-import { Express } from 'express';
-import * as http from 'http';
-import { Server } from 'http';
 import * as WebSocket from 'ws';
-import { singleton } from 'tsyringe';
-import { magenta, yellow } from 'colors';
+import * as express from 'express';
+import * as http from 'http';
 import { Configuration } from '../../../config';
-import { Outgoing } from '../outgoing/Outgoing';
-import { OutgoingHeader } from '../outgoing/OutgoingHeader';
+import { Express } from 'express';
 import { FigureMapListComposer } from '../outgoing/figure/FigureMap/FigureMapListComposer';
 import { Logger } from '../../app/logger/Logger';
+import { Outgoing } from '../outgoing/Outgoing';
+import { OutgoingHeader } from '../outgoing/OutgoingHeader';
+import { Server } from 'http';
+import { magenta, yellow } from 'colors';
+import { singleton } from 'tsyringe';
 
 @singleton()
 export class SocketServer {

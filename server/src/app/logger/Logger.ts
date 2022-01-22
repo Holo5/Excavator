@@ -1,5 +1,5 @@
-import { gray } from 'colors';
 import { LogLevel } from './LogLevel';
+import { gray } from 'colors';
 
 export class Logger {
     private static log(message: string, level: string): void {

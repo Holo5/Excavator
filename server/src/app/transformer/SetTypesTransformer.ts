@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Element } from 'xml-js';
-import { SetType } from '../../domain/figuredata/SetType';
-import { Set } from '../../domain/figuredata/Set';
-import { Part } from '../../domain/figuredata/Part';
 import { HiddenPart } from '../../domain/figuredata/HiddenPart';
+import { Part } from '../../domain/figuredata/Part';
+import { Set } from '../../domain/figuredata/Set';
+import { SetType } from '../../domain/figuredata/SetType';
 import { StringAttributes } from './XML/StringAttributes';
 
 export class SetTypesTransformer {

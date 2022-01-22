@@ -1,11 +1,11 @@
-import { singleton } from 'tsyringe';
-import { yellow } from 'colors';
 import * as Path from 'path';
 import * as fs from 'fs';
 import * as fse from 'fs-extra';
-import { Parser } from 'xml2js';
 import { Configuration } from '../../config';
 import { Logger } from '../app/logger/Logger';
+import { Parser } from 'xml2js';
+import { singleton } from 'tsyringe';
+import { yellow } from 'colors';
 
 @singleton<FSRepository>()
 export class FSRepository {

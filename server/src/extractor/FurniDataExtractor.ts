@@ -1,13 +1,13 @@
 import * as download from 'download';
+import { FSRepository } from '../infra/FSRepository';
+import { FloorItem } from '../domain/furnidata/FloorItem';
+import { HabboDataExtractor } from './HabboDataExtractor';
+import { HabboDataType } from './enums/HabboDataType';
+import { Logger } from '../app/logger/Logger';
+import { WallItem } from '../domain/furnidata/WallItem';
 import { inject, singleton } from 'tsyringe';
 import { magenta } from 'colors';
 import { xml2js } from 'xml-js';
-import { HabboDataType } from './enums/HabboDataType';
-import { HabboDataExtractor } from './HabboDataExtractor';
-import { FSRepository } from '../infra/FSRepository';
-import { Logger } from '../app/logger/Logger';
-import { FloorItem } from '../domain/furnidata/FloorItem';
-import { WallItem } from '../domain/furnidata/WallItem';
 
 const LOCAL_FURNIDATA_NAME = 'furnidata.xml';
 
@@ -189,7 +189,7 @@ export class FurniDataExtractor {
     }
 
     private getSubData(elements: Array<any>, name: string) {
-        const elm = elements.find((elm) => elm.name == name);
+        const elm = elements.find((subElm) => subElm.name == name);
         if (elm === undefined) return '';
         if (elm.elements === undefined) return '';
 
@@ -199,7 +199,7 @@ export class FurniDataExtractor {
     private getPartsColor(elements: Array<any>): string[] {
         const colors: string[] = [];
 
-        const elm = elements.find((elm) => elm.name == 'partcolors');
+        const elm = elements.find((subElm) => subElm.name == 'partcolors');
 
         // console.log('Hello ! :D', elm);
 

@@ -1,9 +1,9 @@
-import { inject, singleton } from 'tsyringe';
+import { Configuration } from '../../../config';
 import { FSRepository } from '../../infra/FSRepository';
 import { FurniDataExtractor } from '../../extractor/FurniDataExtractor';
-import { Logger } from '../logger/Logger';
 import { IFurniData } from '../../domain/model/interfaces/IFurniData';
-import { Configuration } from '../../../config';
+import { Logger } from '../logger/Logger';
+import { inject, singleton } from 'tsyringe';
 
 @singleton()
 export class Holo5FurniDataAssembler {

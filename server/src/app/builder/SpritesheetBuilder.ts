@@ -1,10 +1,10 @@
-import { container, inject, singleton } from 'tsyringe';
 import * as Path from 'path';
-import { xml2js } from 'xml-js';
 import * as nsg from 'node-sprite-generator';
-import { FSRepository } from '../../Infra/FSRepository';
 import { Configuration } from '../../../config';
+import { FSRepository } from '../../Infra/FSRepository';
 import { Logger } from '../logger/Logger';
+import { container, inject, singleton } from 'tsyringe';
+import { xml2js } from 'xml-js';
 
 @singleton()
 export class SpritesheetBuilder {

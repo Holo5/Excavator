@@ -1,7 +1,7 @@
+import { FigureModule } from './Modules/Figure/FigureModule';
+import { WebSocketModule } from './Modules/WebSocket/WebSocketModule';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { WebSocketModule } from './Modules/WebSocket/WebSocketModule';
-import { FigureModule } from './Modules/Figure/FigureModule';
 
 Vue.use(Vuex);
 

@@ -1,9 +1,9 @@
-import { inject, singleton } from 'tsyringe';
-import { FSRepository } from '../../infra/FSRepository';
 import { AvatarDirectionAngle } from '../../habbologic/avatar/enums/AvatarDirectionAngle';
+import { Configuration } from '../../../config';
+import { FSRepository } from '../../infra/FSRepository';
 import { HabboAvatarAsset } from '../../habbologic/avatar/HabboAvatarAsset';
 import { Logger } from '../logger/Logger';
-import { Configuration } from '../../../config';
+import { inject, singleton } from 'tsyringe';
 
 export interface IType {
     gesture: string,

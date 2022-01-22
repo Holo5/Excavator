@@ -1,5 +1,5 @@
-import { Part } from './Part';
 import { ExtractionState } from './Enum/ExtractionState';
+import { Part } from './Part';
 
 export class Lib {
     public id: string;

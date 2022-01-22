@@ -1,14 +1,14 @@
-import { inject, singleton } from 'tsyringe';
+import { Color } from '../../domain/figuredata/Color';
+import { ColorPalette } from '../../domain/figuredata/ColorPalette';
+import { ColorPalettes, IFigureData, SetTypes } from '../../domain/model/interfaces/IFigureData';
+import { Configuration } from '../../../config';
+import { Draworder } from '../../habbologic/avatar/constants/Draworder';
+import { FSRepository } from '../../infra/FSRepository';
 import { FigureDataExtractor } from '../../extractor/FigureDataExtractor';
 import { FigureMapExtractor } from '../../extractor/FigureMapExtractor';
-import { ColorPalettes, IFigureData, SetTypes } from '../../domain/model/interfaces/IFigureData';
-import { SetType } from '../../domain/figuredata/SetType';
-import { FSRepository } from '../../infra/FSRepository';
 import { Logger } from '../logger/Logger';
-import { ColorPalette } from '../../domain/figuredata/ColorPalette';
-import { Color } from '../../domain/figuredata/Color';
-import { Draworder } from '../../habbologic/avatar/constants/Draworder';
-import { Configuration } from '../../../config';
+import { SetType } from '../../domain/figuredata/SetType';
+import { inject, singleton } from 'tsyringe';
 
 const LOCAL_FIGURE_DATA_NAME = 'figuredata.json';
 

@@ -1,8 +1,9 @@
 /* eslint-disable no-mixed-operators */
-import { singleton } from 'tsyringe';
-import { IType } from '../../app/retriever/AvatarAnimationRetriever';
+/* eslint-disable @typescript-eslint/naming-convention */
 import { AvatarDirectionAngle } from './enums/AvatarDirectionAngle';
 import { AvatarFigurePartType } from './enums/AvatarFigurePartType';
+import { IType } from '../../app/retriever/AvatarAnimationRetriever';
+import { singleton } from 'tsyringe';
 
 @singleton()
 export class HabboAvatarAsset {

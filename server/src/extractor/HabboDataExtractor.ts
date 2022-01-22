@@ -1,8 +1,8 @@
-import { inject, singleton } from 'tsyringe';
 import * as download from 'download';
-import { FSRepository } from '../infra/FSRepository';
 import { Configuration } from '../../config';
+import { FSRepository } from '../infra/FSRepository';
 import { HabboDataType } from './enums/HabboDataType';
+import { inject, singleton } from 'tsyringe';
 
 const LOCAL_EXTERNAL_VARIABLES_NAME = 'external_variables.txt';
 
