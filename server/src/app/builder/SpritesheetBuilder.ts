@@ -1,7 +1,7 @@
 import * as Path from 'path';
 import * as nsg from 'node-sprite-generator';
 import { Configuration } from '../../../config';
-import { FSRepository } from '../../Infra/FSRepository';
+import { FSRepository } from '../../infra/FSRepository';
 import { Logger } from '../logger/Logger';
 import { container, inject, singleton } from 'tsyringe';
 import { xml2js } from 'xml-js';
