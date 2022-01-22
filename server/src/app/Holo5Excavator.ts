@@ -1,14 +1,14 @@
 import { inject, singleton } from 'tsyringe';
-import { FSRepository } from '../Infra/FSRepository';
-import { SocketServer } from '../Network/Server/SocketServer';
-import { HabboDataExtractor } from '../Extractor/HabboDataExtractor';
-import { FigureMapExtractor } from '../Extractor/FigureMapExtractor';
-import { FigureExtractorTaskRunner } from './TaskRunner/FigureExtractorTaskRunner';
-import { FigureDataExtractor } from '../Extractor/FigureDataExtractor';
-import { Holo5FigureDataAssembler } from './Assembler/Holo5FigureDataAssembler';
-import { FurniDataExtractor } from '../Extractor/FurniDataExtractor';
-import { Holo5FurniDataAssembler } from './Assembler/Holo5FurniDataAssembler';
-import { FurniExtractorTaskRunner } from './TaskRunner/FurniExtractorTaskRunner';
+import { FSRepository } from '../infra/FSRepository';
+import { SocketServer } from '../network/server/SocketServer';
+import { HabboDataExtractor } from '../extractor/HabboDataExtractor';
+import { FigureMapExtractor } from '../extractor/FigureMapExtractor';
+import { FigureExtractorTaskRunner } from './taskrunner/FigureExtractorTaskRunner';
+import { FigureDataExtractor } from '../extractor/FigureDataExtractor';
+import { Holo5FigureDataAssembler } from './assembler/Holo5FigureDataAssembler';
+import { FurniDataExtractor } from '../extractor/FurniDataExtractor';
+import { Holo5FurniDataAssembler } from './assembler/Holo5FurniDataAssembler';
+import { FurniExtractorTaskRunner } from './taskrunner/FurniExtractorTaskRunner';
 
 @singleton()
 export class Holo5Excavator {
