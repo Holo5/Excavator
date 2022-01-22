@@ -5,7 +5,7 @@ import { xml2js } from 'xml-js';
 import { HabboDataExtractor } from './HabboDataExtractor';
 import { HabboDataType } from './enums/HabboDataType';
 import { FSRepository } from '../infra/FSRepository';
-import { Part } from '../domain/figuredata/Part';
+import { Part } from '../domain/figuremap/Part';
 import { Lib } from '../domain/figuremap/Lib';
 
 import { SocketServer } from '../network/server/SocketServer';
