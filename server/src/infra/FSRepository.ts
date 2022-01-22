@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import * as fse from 'fs-extra';
 import { Parser } from 'xml2js';
 import { Configuration } from '../../config';
-import { Logger } from '../App/Logger/Logger';
+import { Logger } from '../app/logger/Logger';
 
 @singleton<FSRepository>()
 export class FSRepository {
