@@ -1,8 +1,8 @@
 import { inject, singleton } from 'tsyringe';
 import { exec } from 'child_process';
 import * as Path from 'path';
-import { FSRepository } from '../Infra/FSRepository';
-import { Logger } from '../App/Logger/Logger';
+import { FSRepository } from '../infra/FSRepository';
+import { Logger } from '../app/logger/Logger';
 
 @singleton()
 export class HabboFlashExtractor {
