@@ -1,9 +1,9 @@
 import { inject, singleton } from 'tsyringe';
 import { ITaskStack } from './ITaskStack';
-import { Logger } from '../Logger/Logger';
-import { FloorItem } from '../../Domain/FurniData/FloorItem';
-import { FurniDataExtractor } from '../../Extractor/FurniDataExtractor';
-import { FloorItemTask } from '../../Domain/Tasks/FloorItemTask';
+import { Logger } from '../logger/Logger';
+import { FloorItem } from '../../domain/furnidata/FloorItem';
+import { FurniDataExtractor } from '../../extractor/FurniDataExtractor';
+import { FloorItemTask } from '../../domain/tasks/FloorItemTask';
 
 @singleton()
 export class FurniExtractorTaskRunner {
