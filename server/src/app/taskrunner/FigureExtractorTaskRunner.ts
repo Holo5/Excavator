@@ -1,10 +1,10 @@
 import { inject, singleton } from 'tsyringe';
-import { FigureMapExtractor } from '../../Extractor/FigureMapExtractor';
-import { Lib } from '../../Domain/FigureMap/Lib';
-import { ExtractionState } from '../../Domain/FigureMap/Enum/ExtractionState';
+import { FigureMapExtractor } from '../../extractor/FigureMapExtractor';
+import { Lib } from '../../domain/figuremap/Lib';
+import { ExtractionState } from '../../domain/figuremap/enums/ExtractionState';
 import { ITaskStack } from './ITaskStack';
-import { FigureTask } from '../../Domain/Tasks/FigureTask';
-import { Logger } from '../Logger/Logger';
+import { FigureTask } from '../../domain/tasks/FigureTask';
+import { Logger } from '../logger/Logger';
 
 @singleton()
 export class FigureExtractorTaskRunner {
