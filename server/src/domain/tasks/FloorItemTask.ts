@@ -3,13 +3,13 @@ import { Task } from './Task';
 import { HabboFlashExtractor } from '../../Extractor/HabboFlashExtractor';
 import { AssetDownloader } from '../../App/Downloader/AssetDownloader';
 import { HabboDataExtractor } from '../../Extractor/HabboDataExtractor';
-import { SpritesheetBuilder } from '../../App/Builder/SpritesheetBuilder';
+import { SpritesheetBuilder } from '../../app/builder/SpritesheetBuilder';
 import { AvatarAnimationRetriever } from '../../App/Retriever/AvatarAnimationRetriever';
 import { SocketServer } from '../../Network/Server/SocketServer';
 import { FloorItem } from '../FurniData/FloorItem';
 import { HabboDataType } from '../../Extractor/Enum/HabboDataType';
 import { Logger } from '../../App/Logger/Logger';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 import { FurniVisualizationRetriever } from '../../App/Retriever/FurniVisualizationRetriever';
 
 export class FloorItemTask extends Task {

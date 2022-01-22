@@ -2,7 +2,7 @@ import { inject, singleton } from 'tsyringe';
 import { xml2js } from 'xml-js';
 import { FSRepository } from '../../Infra/FSRepository';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 import { IFurniProperty } from '../../Domain/Model/Interface/IFurniProperty';
 
 @singleton()

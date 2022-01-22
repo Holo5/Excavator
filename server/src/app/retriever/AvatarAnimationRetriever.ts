@@ -3,7 +3,7 @@ import { FSRepository } from '../../Infra/FSRepository';
 import { AvatarDirectionAngle } from '../../HabboLogic/Avatar/Enum/AvatarDirectionAngle';
 import { HabboAvatarAsset } from '../../HabboLogic/Avatar/HabboAvatarAsset';
 import { Logger } from '../Logger/Logger';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 
 export interface IType {
     gesture: string,

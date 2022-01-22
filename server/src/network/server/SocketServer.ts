@@ -5,7 +5,7 @@ import { Server } from 'http';
 import * as WebSocket from 'ws';
 import { singleton } from 'tsyringe';
 import { magenta, yellow } from 'colors';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 import { Outgoing } from '../Outgoing/Outgoing';
 import { OutgoingHeader } from '../Outgoing/OutgoingHeader';
 import { FigureMapListComposer } from '../Outgoing/Figure/FigureMap/FigureMapListComposer';

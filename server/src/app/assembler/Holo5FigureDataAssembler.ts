@@ -8,7 +8,7 @@ import { Logger } from '../Logger/Logger';
 import { ColorPalette } from '../../Domain/FigureData/ColorPalette';
 import { Color } from '../../Domain/FigureData/Color';
 import { Draworder } from '../../HabboLogic/Avatar/Constants/Draworder';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 
 const LOCAL_FIGURE_DATA_NAME = 'figuredata.json';
 

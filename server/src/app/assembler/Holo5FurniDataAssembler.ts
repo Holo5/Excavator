@@ -3,7 +3,7 @@ import { FSRepository } from '../../Infra/FSRepository';
 import { FurniDataExtractor } from '../../Extractor/FurniDataExtractor';
 import { Logger } from '../Logger/Logger';
 import { IFurniData } from '../../Domain/Model/Interface/IFurniData';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 
 @singleton()
 export class Holo5FurniDataAssembler {

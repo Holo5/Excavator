@@ -6,12 +6,12 @@ import { AssetDownloader } from '../../App/Downloader/AssetDownloader';
 import { HabboDataExtractor } from '../../Extractor/HabboDataExtractor';
 import { HabboDataType } from '../../Extractor/Enum/HabboDataType';
 import { ExtractionState } from '../FigureMap/Enum/ExtractionState';
-import { SpritesheetBuilder } from '../../App/Builder/SpritesheetBuilder';
+import { SpritesheetBuilder } from '../../app/builder/SpritesheetBuilder';
 import { AvatarAnimationRetriever } from '../../App/Retriever/AvatarAnimationRetriever';
 import { SocketServer } from '../../Network/Server/SocketServer';
 import { LibExtractionStateChangeComposer } from '../../Network/Outgoing/Figure/FigureMap/LibExtractionStateChangeComposer';
 import { Logger } from '../../App/Logger/Logger';
-import { Configuration } from '../../../Config';
+import { Configuration } from '../../../config';
 
 export class FigureTask extends Task {
     private readonly _dataExtractor: HabboDataExtractor;

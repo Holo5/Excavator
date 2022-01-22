@@ -3,8 +3,8 @@ import * as Path from 'path';
 import { xml2js } from 'xml-js';
 import * as nsg from 'node-sprite-generator';
 import { FSRepository } from '../../Infra/FSRepository';
-import { Configuration } from '../../../Config';
-import { Logger } from '../Logger/Logger';
+import { Configuration } from '../../../config';
+import { Logger } from '../logger/Logger';
 
 @singleton()
 export class SpritesheetBuilder {
