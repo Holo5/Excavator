@@ -6,5 +6,6 @@ export interface IConfiguration {
     externalTextsUrl?: string,
     commands: typeof Task[],
     tmpFolder: string,
+    distFolder: string,
     overrideExternalVariables?: string[]
 }

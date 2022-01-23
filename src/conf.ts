@@ -10,5 +10,6 @@ export const Configuration: IConfiguration = {
         ConvertExternalTexts,
     ],
     tmpFolder: path.resolve(__dirname, '..', 'tmp'),
+    distFolder: path.resolve(__dirname, '..', 'dist'),
     overrideExternalVariables: [],
 };
