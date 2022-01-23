@@ -4,24 +4,21 @@ import { Logger } from '../logger/Logger';
 export class Task implements ITask {
     async execute(): Promise<void> {
         this.success();
-        this.log('extracting');
-        this.warning('COUCOU');
-        this.error('OK ?');
     }
 
-    private success() {
-        Logger.success('Completed !');
+    protected success() {
+        Logger.success(`${this.constructor.name} | Task completed !`);
     }
 
-    private error(error: string) {
+    protected error(error: string) {
         Logger.error(error);
     }
 
-    private log(msg: string) {
+    protected log(msg: string) {
         Logger.info(msg);
     }
 
-    private warning(msg: string) {
+    protected warning(msg: string) {
         Logger.warning(msg);
     }
 }
