@@ -2,11 +2,19 @@ import { ITask } from './ITask';
 import { Logger } from '../logger/Logger';
 
 export class Task implements ITask {
+
+    constructor(
+        private isASubTask: boolean = false,
+    ) {
+    }
+
     async execute(): Promise<void> {
         this.success();
     }
 
     protected success() {
+        if (this.isASubTask) return;
+
         Logger.success(`${this.constructor.name} | Task completed !`);
     }
 
