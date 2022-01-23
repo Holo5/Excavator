@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "isolatedModules": true,
+    "isolatedModules": false,
     "experimentalDecorators": true,
     "allowJs": false,
     "sourceMap": true,
