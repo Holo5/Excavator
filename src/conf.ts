@@ -4,5 +4,9 @@ import path from 'path';
 export const Configuration: IConfiguration = {
     https: true,
     externalVariablesUrl: 'https://www.habbo.fr/gamedata/external_variables/0',
+    commands: [
+
+    ],
     tmpFolder: path.resolve(__dirname, '..', 'tmp'),
+    overrideExternalVariables: [],
 };

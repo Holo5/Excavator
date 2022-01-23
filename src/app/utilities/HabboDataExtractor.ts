@@ -1,17 +1,23 @@
 import * as Path from 'path';
 import { Configuration } from '../../conf';
 import { Downloader } from './Downloader';
+import { Logger } from '../logger/Logger';
 import { Task } from '../tasks/Task';
 import fs from 'fs';
 
 export class HabboDataExtractor extends Task {
     private _variables: Record<string, string>;
+    private static variables: Record<string, string>;
 
-    async init() {
+
+    async execute(): Promise<void> {
         await this.download();
         this.extractData();
         this.replaceValues();
         this.mergeOverrides();
+
+        HabboDataExtractor.variables = this._variables;
+        this.success();
     }
 
     private async download() {
@@ -51,6 +57,8 @@ export class HabboDataExtractor extends Task {
     }
 
     private mergeOverrides() {
+        if (Configuration.overrideExternalVariables === undefined) return;
+        
         Object.keys(Configuration.overrideExternalVariables).forEach((key) => {
             // TODO fix this shit
             // @ts-ignore
@@ -58,16 +66,21 @@ export class HabboDataExtractor extends Task {
         });
     }
 
-    getHabboData(habboDataType: HabboDataType): string {
-        const data = this._variables[habboDataType];
-        if (data !== undefined && data.substring(0, 2) === '//') {
-            return this._variables[habboDataType].replace('//', Configuration.https ? 'https://' : 'http://').trim();
+    public static getHabboData(habboDataType: HabboDataType): string {
+        if (this.variables === undefined) {
+            Logger.error("You can't get a habboData variable if you don't init HabboDataExtractor !");
+            return '';
         }
-        return this._variables[habboDataType].trim();
+
+        const data = HabboDataExtractor.variables[habboDataType];
+        if (data !== undefined && data.substring(0, 2) === '//') {
+            return HabboDataExtractor.variables[habboDataType].replace('//', Configuration.https ? 'https://' : 'http://').trim();
+        }
+        return HabboDataExtractor.variables[habboDataType].trim();
     }
 }
 
-enum HabboDataType {
+export enum HabboDataType {
     FIGUREMAP_URL = 'flash.dynamic.avatar.download.configuration',
     FIGUREDATA_URL = 'external.figurepartlist.txt',
     FURNIDATA_URL = 'furnidata.load.url',

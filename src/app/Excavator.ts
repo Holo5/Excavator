@@ -1,4 +1,5 @@
-import { GameData } from './commands/GameData';
+import { Configuration } from '../conf';
+import { HabboDataExtractor } from './utilities/HabboDataExtractor';
 import { Task } from './tasks/Task';
 
 export class Excavator extends Task {
@@ -8,7 +9,8 @@ export class Excavator extends Task {
         super();
 
         this.taskToExecute = [
-            GameData,
+            HabboDataExtractor,
+            ...Configuration.commands,
         ];
     }
 
