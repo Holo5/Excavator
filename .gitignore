@@ -1,4 +1,5 @@
 node_modules/*
 Client/Build/*
 tmp/*
+dist/*
 .idea/*
