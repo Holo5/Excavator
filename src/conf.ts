@@ -1,4 +1,4 @@
-import { ConvertEffectMap } from './app/commands/avatar/effects/ConvertEffectMap';
+import { ConvertEffectMap } from './app/commands/avatar/effects/effectmap/ConvertEffectMap';
 import { ConvertExternalTexts } from './app/commands/gamedata/ExternalTexts/ConvertExternalTexts';
 import { ConvertExternalVariables } from './app/commands/gamedata/ExternalVariables/ConvertExternalVariables';
 import { IConfiguration } from './app/interfaces/IConfiguration';
