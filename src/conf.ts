@@ -1,4 +1,5 @@
 import { ConvertExternalTexts } from './app/commands/GameData/ExternalTexts/ConvertExternalTexts';
+import { ConvertExternalVariables } from './app/commands/GameData/ExternalVariables/ConvertExternalVariables';
 import { IConfiguration } from './app/interfaces/IConfiguration';
 import path from 'path';
 
@@ -8,6 +9,7 @@ export const Configuration: IConfiguration = {
     externalTextsUrl: 'https://www.habbo.fr/gamedata/external_flash_texts/0',
     commands: [
         ConvertExternalTexts,
+        ConvertExternalVariables,
     ],
     tmpFolder: path.resolve(__dirname, '..', 'tmp'),
     distFolder: path.resolve(__dirname, '..', 'dist'),
