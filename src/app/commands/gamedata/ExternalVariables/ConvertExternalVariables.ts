@@ -27,7 +27,7 @@ export class ConvertExternalVariables extends Task {
 
             this.success();
         } catch (e) {
-            this.error(`Can't convert external texts. Error: ${e}`);
+            this.error(`Can't convert external variables. Error: ${e}`);
         }
     }
 }
