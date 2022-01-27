@@ -1,6 +1,6 @@
-import { ConvertEffectMap } from './app/commands/avatar/effects/effectmap/ConvertEffectMap';
 import { ConvertExternalTexts } from './app/commands/gamedata/ExternalTexts/ConvertExternalTexts';
 import { ConvertExternalVariables } from './app/commands/gamedata/ExternalVariables/ConvertExternalVariables';
+import { ExtractEffects } from './app/commands/avatar/effects/effect-extractor/ExtractEffects';
 import { IConfiguration } from './app/interfaces/IConfiguration';
 import path from 'path';
 
@@ -11,7 +11,7 @@ export const Configuration: IConfiguration = {
     commands: [
         ConvertExternalTexts,
         ConvertExternalVariables,
-        ConvertEffectMap,
+        ExtractEffects,
     ],
     tmpFolder: path.resolve(__dirname, '..', 'tmp'),
     distFolder: path.resolve(__dirname, '..', 'dist'),
