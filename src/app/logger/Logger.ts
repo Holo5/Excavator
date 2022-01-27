@@ -11,7 +11,7 @@ export class Logger {
     }
 
     public static info(message: string): void {
-        Logger.log(LogLevel.INFO, message);
+        Logger.log(LogLevel.INFO, '    » ' + message);
     }
 
     public static warning(message: string): void {
