@@ -31,7 +31,7 @@ export class ConvertEffectMap extends Task {
 
             this.success();
         } catch (e) {
-            this.error(`Can't convert external texts. Error: ${e}`);
+            this.error(`Can't convert effect map. Error: ${e}`);
         }
     }
 }
