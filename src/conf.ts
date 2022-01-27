@@ -1,5 +1,5 @@
-import { ConvertExternalTexts } from './app/commands/GameData/ExternalTexts/ConvertExternalTexts';
-import { ConvertExternalVariables } from './app/commands/GameData/ExternalVariables/ConvertExternalVariables';
+import { ConvertExternalTexts } from './app/commands/gamedata/ExternalTexts/ConvertExternalTexts';
+import { ConvertExternalVariables } from './app/commands/gamedata/ExternalVariables/ConvertExternalVariables';
 import { IConfiguration } from './app/interfaces/IConfiguration';
 import path from 'path';
 
