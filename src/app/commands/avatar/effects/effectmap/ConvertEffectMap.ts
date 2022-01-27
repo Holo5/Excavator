@@ -1,15 +1,10 @@
 import { Configuration } from '../../../../../conf';
 import { DownloadEffectMap } from './DownloadEffectMap';
+import { IEffect } from './interfaces/IEffect';
 import { Task } from '../../../../tasks/Task';
 import { xml2json } from 'xml-js';
 import fs from 'fs';
 import path from 'path';
-
-interface Effect {
-    id: string,
-    lib: string,
-    type: string
-}
 
 export class ConvertEffectMap extends Task {
     async execute(): Promise<void> {
@@ -20,7 +15,7 @@ export class ConvertEffectMap extends Task {
             const effectMapJson = xml2json(data.toString(), { compact:false });
             const effectMap = JSON.parse(effectMapJson);
 
-            const effects: Effect[] = [];
+            const effects: IEffect[] = [];
 
             for (const effect of effectMap.elements[0].elements) {
                 effects.push({ id: effect.attributes.id, lib: effect.attributes.lib, type: effect.attributes.type });
