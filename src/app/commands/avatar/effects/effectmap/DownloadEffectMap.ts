@@ -1,7 +1,7 @@
-import { Configuration } from '../../../../conf';
-import { Downloader } from '../../../utilities/Downloader';
-import { HabboDataExtractor, HabboDataType } from '../../../utilities/HabboDataExtractor';
-import { Task } from '../../../tasks/Task';
+import { Configuration } from '../../../../../conf';
+import { Downloader } from '../../../../utilities/Downloader';
+import { HabboDataExtractor, HabboDataType } from '../../../../utilities/HabboDataExtractor';
+import { Task } from '../../../../tasks/Task';
 import path from 'path';
 
 export class DownloadEffectMap extends Task {
