@@ -2,6 +2,7 @@ import { Configuration } from '../../../../../conf';
 import { ConvertEffectMap } from '../effectmap/ConvertEffectMap';
 import { Downloader } from '../../../../utilities/Downloader';
 import { HabboDataExtractor, HabboDataType } from '../../../../utilities/HabboDataExtractor';
+import { HabboSwfExtractor } from '@holo5/habbo-swf-extractor';
 import { IEffect } from '../effectmap/interfaces/IEffect';
 import { Task } from '../../../../tasks/Task';
 import fs from 'fs';
@@ -19,8 +20,14 @@ export class ExtractEffects extends Task {
             for (const effect of effects) {
                 await Downloader.getFile(
                     HabboDataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + effect.lib + '.swf',
-                    path.resolve(Configuration.tmpFolder, 'effects'),
+                    path.resolve(Configuration.tmpFolder, 'effects', '_swf'),
                     effect.lib + '.swf',
+                );
+
+                await HabboSwfExtractor.dumpAsset(
+                    effect.lib,
+                    path.resolve(Configuration.tmpFolder, 'effects', '_swf'),
+                    path.resolve(Configuration.tmpFolder, 'effects', '_extracted'),
                 );
 
                 this.log(effect.lib + ' downloaded !');
@@ -28,7 +35,7 @@ export class ExtractEffects extends Task {
 
             this.success();
         } catch (e) {
-            this.error(`Can't convert external texts. Error: ${e}`);
+            this.error(`Can't extract effects. Error: ${e}`);
         }
     }
 }
