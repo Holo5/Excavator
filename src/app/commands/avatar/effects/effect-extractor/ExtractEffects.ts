@@ -30,6 +30,7 @@ export class ExtractEffects extends Task {
                     path.resolve(Configuration.tmpFolder, 'effects', '_extracted'),
                 );
 
+
                 this.log(effect.lib + ' downloaded !');
             }
 
