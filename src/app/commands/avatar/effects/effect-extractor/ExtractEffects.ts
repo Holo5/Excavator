@@ -18,6 +18,9 @@ export class ExtractEffects extends Task {
             const effects: IEffect[] = JSON.parse(data.toString());
 
             for (const effect of effects) {
+
+                if (effect.lib !== 'Dance1') return;
+
                 await Downloader.getFile(
                     HabboDataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + effect.lib + '.swf',
                     path.resolve(Configuration.tmpFolder, 'effects', '_swf'),
@@ -31,11 +34,21 @@ export class ExtractEffects extends Task {
                 );
 
                 this.log(effect.lib + ' downloaded !');
+
+                if (effect.lib.includes('Dance')) {
+                    this.extractDance(effect.lib);
+                } else {
+                    this.log(`Can't extract effect ${effect.lib}. Not implemented at the moment !`);
+                }
             }
 
             this.success();
         } catch (e) {
             this.error(`Can't extract effects. Error: ${e}`);
         }
+    }
+
+    private extractDance(lib: string) {
+        this.log(`Extract ${lib}`);
     }
 }
