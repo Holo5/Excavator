@@ -36,7 +36,7 @@ export class ExtractEffects extends Task {
                 this.log(effect.lib + ' downloaded !');
 
                 if (effect.lib.includes('Dance')) {
-                    this.extractDance(effect.lib);
+                    this.convertToJson(effect.lib);
                 } else {
                     this.log(`Can't extract effect ${effect.lib}. Not implemented at the moment !`);
                 }
@@ -48,7 +48,8 @@ export class ExtractEffects extends Task {
         }
     }
 
-    private extractDance(lib: string) {
-        this.log(`Extract ${lib}`);
+    private convertToJson(lib: string) {
+        const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'effects', '_extracted', lib, 'animation.xml'), { encoding: 'utf8' });
+        console.log(data);
     }
 }
