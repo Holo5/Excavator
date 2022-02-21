@@ -51,7 +51,12 @@ export class ExtractEffects extends Task {
 
     private convertToJson(lib: string) {
         const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'effects', '_extracted', lib, 'animation.xml'), { encoding: 'utf8' });
-        const animationJson = xml2json(data.toString(), { compact:false });
-        console.log(animationJson);
+        const animationJson = JSON.parse(xml2json(data.toString(), { compact:false }));
+
+        for (const frame of animationJson.elements[0].elements) {
+            for (const bodyPart of frame.elements) {
+                console.log(bodyPart);
+            }
+        }
     }
 }
