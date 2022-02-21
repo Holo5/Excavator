@@ -1,10 +1,5 @@
-export interface IDance {
-    frames: IDanceFrame[]
-}
-
-export interface IDanceFrame {
-    bodyParts: IDanceBodyPart[]
-}
+export type IDance = Array<IDanceFrame>;
+export type IDanceFrame = Array<IDanceBodyPart>;
 
 export interface IDanceBodyPart {
     id: string,

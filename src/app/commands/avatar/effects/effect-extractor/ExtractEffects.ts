@@ -3,7 +3,7 @@ import { ConvertEffectMap } from '../effectmap/ConvertEffectMap';
 import { Downloader } from '../../../../utilities/Downloader';
 import { HabboDataExtractor, HabboDataType } from '../../../../utilities/HabboDataExtractor';
 import { HabboSwfExtractor } from '@holo5/habbo-swf-extractor';
-import { IDanceBodyPart } from './interfaces/IDance';
+import { IDance, IDanceBodyPart } from './interfaces/IDance';
 import { IEffect } from '../effectmap/interfaces/IEffect';
 import { Task } from '../../../../tasks/Task';
 import { xml2json } from 'xml-js';
@@ -54,7 +54,7 @@ export class ExtractEffects extends Task {
         const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'effects', '_extracted', lib, 'animation.xml'), { encoding: 'utf8' });
         const animationJson = JSON.parse(xml2json(data.toString(), { compact:false }));
 
-        const dance: IDanceBodyPart[][] = [];
+        const dance: IDance = [];
 
         for (const frame of animationJson.elements[0].elements) {
             const f: IDanceBodyPart[] = [];
@@ -75,6 +75,7 @@ export class ExtractEffects extends Task {
             dance.push(f);
         }
 
-        console.log(dance);
+        fs.mkdirSync(path.resolve(Configuration.distFolder, 'effects', lib), { recursive: true });
+        fs.writeFileSync(path.resolve(Configuration.distFolder, 'effects', lib, `${lib}.json`), JSON.stringify(dance), { encoding: 'utf8', flag: 'w+' });
     }
 }
