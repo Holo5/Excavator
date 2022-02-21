@@ -5,6 +5,7 @@ import { HabboDataExtractor, HabboDataType } from '../../../../utilities/HabboDa
 import { HabboSwfExtractor } from '@holo5/habbo-swf-extractor';
 import { IEffect } from '../effectmap/interfaces/IEffect';
 import { Task } from '../../../../tasks/Task';
+import { xml2json } from 'xml-js';
 import fs from 'fs';
 import path from 'path';
 
@@ -50,6 +51,7 @@ export class ExtractEffects extends Task {
 
     private convertToJson(lib: string) {
         const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'effects', '_extracted', lib, 'animation.xml'), { encoding: 'utf8' });
-        console.log(data);
+        const animationJson = xml2json(data.toString(), { compact:false });
+        console.log(animationJson);
     }
 }
