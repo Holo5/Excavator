@@ -3,6 +3,7 @@ import { ConvertEffectMap } from '../effectmap/ConvertEffectMap';
 import { Downloader } from '../../../../utilities/Downloader';
 import { HabboDataExtractor, HabboDataType } from '../../../../utilities/HabboDataExtractor';
 import { HabboSwfExtractor } from '@holo5/habbo-swf-extractor';
+import { IDance, IDanceBodyPart, IDanceFrame } from './interfaces/IDance';
 import { IEffect } from '../effectmap/interfaces/IEffect';
 import { Task } from '../../../../tasks/Task';
 import { xml2json } from 'xml-js';
@@ -53,10 +54,28 @@ export class ExtractEffects extends Task {
         const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'effects', '_extracted', lib, 'animation.xml'), { encoding: 'utf8' });
         const animationJson = JSON.parse(xml2json(data.toString(), { compact:false }));
 
+        const dance: IDance = {
+            frames: [],
+        };
+
         for (const frame of animationJson.elements[0].elements) {
+            const f: IDanceFrame = {
+                bodyParts: [],
+            };
+
             for (const bodyPart of frame.elements) {
-                console.log(bodyPart);
+                const bP: IDanceBodyPart = {
+                    id: bodyPart.id,
+                    action: bodyPart.action,
+                    dx: parseInt(bodyPart.dx),
+                    dy: parseInt(bodyPart.dy),
+                    dd: parseInt(bodyPart.dd),
+                };
+
+                f.bodyParts.push(bP);
             }
+
+            dance.frames.push(f);
         }
     }
 }
