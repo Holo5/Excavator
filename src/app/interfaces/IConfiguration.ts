@@ -5,7 +5,7 @@ export interface IConfiguration {
     https: boolean,
     externalVariablesUrl: string,
     externalTextsUrl?: string,
-    commands: Constructor<Task>[],
+    tasks: Constructor<Task>[],
     tmpFolder: string,
     distFolder: string,
     overrideExternalVariables?: string[]

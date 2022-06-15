@@ -42,7 +42,7 @@ export class ExtractEffects extends Task {
                     path.resolve(Configuration.tmpFolder, 'effects', '_extracted'),
                 );
 
-                this.log(effect.lib + ' downloaded !');
+                this.log(effect.lib + ' extracted !');
 
                 if (effect.lib.includes('Dance')) {
                     this.convertToJson(effect.lib);

@@ -8,7 +8,7 @@ export const Configuration: IConfiguration = {
     https: true,
     externalVariablesUrl: 'https://www.habbo.fr/gamedata/external_variables/0',
     externalTextsUrl: 'https://www.habbo.fr/gamedata/external_flash_texts/0',
-    commands: [
+    tasks: [
         ConvertExternalTexts,
         ConvertExternalVariables,
         ExtractEffects,
