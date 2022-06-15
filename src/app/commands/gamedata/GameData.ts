@@ -1,6 +1,6 @@
-import { Configuration } from '../../conf';
-import { Downloader } from '../utilities/Downloader';
-import { Task } from '../tasks/Task';
+import { Configuration } from '../../../conf';
+import { Downloader } from '../../utilities/Downloader';
+import { Task } from '../../tasks/Task';
 import fs from 'fs';
 import path from 'path';
 
