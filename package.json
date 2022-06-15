@@ -4,8 +4,6 @@
   "description": "Habbo furniture & figure extractor for Holo5.",
   "main": "index.js",
   "scripts": {
-    "client:dev:win": "yarn parcel Client\\index.html --no-cache --out-dir Client\\Build",
-    "client:dev:unix": "yarn parcel Client/index.html --no-cache --out-dir Client/Build",
     "server:dev": "yarn ts-node-dev --respawn src/main.ts",
     "lint": "eslint --ext .js,.ts ./ --color"
   },
