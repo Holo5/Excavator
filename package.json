@@ -23,12 +23,6 @@
     "url": "https://github.com/Pi-Bouf/Holo5-Excavator/issues"
   },
   "homepage": "https://github.com/Pi-Bouf/Holo5-Excavator#readme",
-  "alias": {
-    "vue": "./node_modules/vue/dist/vue.common.js",
-    "mixins": "./Client/assets/sass/mixins.scss",
-    "images": "./Client/assets/images/",
-    "perfect-scrollbar": "./node_modules/vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css"
-  },
   "devDependencies": {
     "@types/download": "^8.0.1",
     "@types/express": "^4.17.13",
