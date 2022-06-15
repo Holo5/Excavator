@@ -1,4 +1,5 @@
 import { Configuration } from '../../../../../conf';
+import { Constructor } from '../../../../tasks/types/Constructor';
 import { DownloadEffectMap } from './DownloadEffectMap';
 import { IEffect } from './interfaces/IEffect';
 import { Task } from '../../../../tasks/Task';
@@ -7,9 +8,14 @@ import fs from 'fs';
 import path from 'path';
 
 export class ConvertEffectMap extends Task {
-    async execute(): Promise<void> {
-        await (new DownloadEffectMap(true)).execute();
 
+    dependencies(): Constructor<Task>[] {
+        return [
+            DownloadEffectMap,
+        ];
+    }
+
+    async execute(): Promise<void> {
         try {
             const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'gamedata', 'effectmap.xml'), { encoding: 'utf8' });
             const effectMapJson = xml2json(data.toString(), { compact:false });

@@ -1,4 +1,5 @@
 import { Configuration } from '../../../../../conf';
+import { Constructor } from '../../../../tasks/types/Constructor';
 import { ConvertEffectMap } from '../effectmap/ConvertEffectMap';
 import { Downloader } from '../../../../utilities/Downloader';
 import { HabboDataExtractor, HabboDataType } from '../../../../utilities/HabboDataExtractor';
@@ -11,9 +12,15 @@ import fs from 'fs';
 import path from 'path';
 
 export class ExtractEffects extends Task {
-    async execute(): Promise<void> {
-        await (new ConvertEffectMap(true)).execute();
 
+
+    dependencies(): Constructor<Task>[] {
+        return [
+            ConvertEffectMap,
+        ];
+    }
+
+    async execute(): Promise<void> {
         try {
             const data = fs.readFileSync(path.resolve(Configuration.distFolder, 'gamedata', 'effectmap.json'), { encoding: 'utf8' });
 

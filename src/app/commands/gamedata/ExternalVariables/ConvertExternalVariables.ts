@@ -1,4 +1,5 @@
 import { Configuration } from '../../../../conf';
+import { Constructor } from '../../../tasks/types/Constructor';
 import { DownloadExternalVariables } from './DownloadExternalVariables';
 import { Task } from '../../../tasks/Task';
 import fs from 'fs';
@@ -7,9 +8,13 @@ import path from 'path';
 export class ConvertExternalVariables extends Task {
     private texts: Record<string, string> = {};
 
-    async execute(): Promise<void> {
-        await (new DownloadExternalVariables(true)).execute();
+    dependencies(): Constructor<Task>[] {
+        return [
+            DownloadExternalVariables,
+        ];
+    }
 
+    async execute(): Promise<void> {
         try {
             const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'gamedata', 'external_flash_vars.txt'), { encoding: 'utf8' });
 

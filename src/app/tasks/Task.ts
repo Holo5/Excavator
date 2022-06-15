@@ -1,3 +1,4 @@
+import { Constructor } from './types/Constructor';
 import { ITask } from './ITask';
 import { Logger } from '../logger/Logger';
 
@@ -6,6 +7,10 @@ export class Task implements ITask {
     constructor(
         private isASubTask: boolean = false,
     ) {
+    }
+
+    dependencies(): Constructor<Task>[] {
+        return [];
     }
 
     async execute(): Promise<void> {

@@ -1,4 +1,5 @@
 import { Configuration } from '../../../../conf';
+import { Constructor } from '../../../tasks/types/Constructor';
 import { DownloadExternalTexts } from './DownloadExternalTexts';
 import { Task } from '../../../tasks/Task';
 import fs from 'fs';
@@ -7,9 +8,13 @@ import path from 'path';
 export class ConvertExternalTexts extends Task {
     private texts: Record<string, string> = {};
 
-    async execute(): Promise<void> {
-        await (new DownloadExternalTexts(true)).execute();
+    dependencies(): Constructor<Task>[] {
+        return [
+            DownloadExternalTexts,
+        ];
+    }
 
+    async execute(): Promise<void> {
         try {
             const data = fs.readFileSync(path.resolve(Configuration.tmpFolder, 'gamedata', 'external_flash_texts.txt'), { encoding: 'utf8' });
 
