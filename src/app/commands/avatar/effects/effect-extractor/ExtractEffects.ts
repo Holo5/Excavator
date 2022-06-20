@@ -12,8 +12,7 @@ import fs from 'fs';
 import path from 'path';
 
 export class ExtractEffects extends Task {
-
-
+    
     dependencies(): Constructor<Task>[] {
         return [
             ConvertEffectMap,
@@ -28,7 +27,7 @@ export class ExtractEffects extends Task {
 
             for (const effect of effects) {
 
-                if (effect.lib !== 'Dance1') return;
+                if (!effect.lib.includes('Dance')) return;
 
                 await Downloader.getFile(
                     HabboDataExtractor.getHabboData(HabboDataType.FLASH_CLIENT_URL) + effect.lib + '.swf',

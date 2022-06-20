@@ -1,6 +1,4 @@
-import { ConvertExternalTexts } from './app/commands/gamedata/ExternalTexts/ConvertExternalTexts';
-import { ConvertExternalVariables } from './app/commands/gamedata/ExternalVariables/ConvertExternalVariables';
-import { ExtractEffects } from './app/commands/avatar/effects/effect-extractor/ExtractEffects';
+import { ConvertFigureData } from './app/commands/avatar/figure/figuredata/ConvertFigureData';
 import { IConfiguration } from './app/interfaces/IConfiguration';
 import path from 'path';
 
@@ -9,9 +7,11 @@ export const Configuration: IConfiguration = {
     externalVariablesUrl: 'https://www.habbo.fr/gamedata/external_variables/0',
     externalTextsUrl: 'https://www.habbo.fr/gamedata/external_flash_texts/0',
     tasks: [
-        ConvertExternalTexts,
-        ConvertExternalVariables,
-        ExtractEffects,
+        ConvertFigureData,
+        // ConvertFigureMap,
+        // ConvertExternalTexts,
+        // ConvertExternalVariables,
+        // ExtractEffects,
     ],
     tmpFolder: path.resolve(__dirname, '..', 'tmp'),
     distFolder: path.resolve(__dirname, '..', 'dist'),
